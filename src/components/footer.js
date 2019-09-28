@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {
   IconGithub,
   IconLinkedin,
-  IconCodepen,
-  IconInstagram,
+  IconStackOverflow,
+  IconCodesandbox,
   IconTwitter,
   IconStar,
   IconFork,
@@ -83,10 +83,10 @@ const Footer = ({ githubInfo }) => (
                   <IconGithub />
                 ) : name === 'Linkedin' ? (
                   <IconLinkedin />
-                ) : name === 'Codepen' ? (
-                  <IconCodepen />
-                ) : name === 'Instagram' ? (
-                  <IconInstagram />
+                ) : name === 'Stack-Overflow' ? (
+                  <IconStackOverflow />
+                ) : name === 'Codesandbox' ? (
+                  <IconCodesandbox />
                 ) : name === 'Twitter' ? (
                   <IconTwitter />
                 ) : (
@@ -99,10 +99,10 @@ const Footer = ({ githubInfo }) => (
     </SocialContainer>
     <Copy>
       <GithubLink
-        href="https://github.com/bchiang7/v4"
+        href="https://github.com/denvash/dennisvash.com"
         target="_blank"
         rel="nofollow noopener noreferrer">
-        <div>Designed &amp; Built by Brittany Chiang</div>
+        <div>Designed &amp; Built by Dennis Vash</div>
 
         {githubInfo.stars && githubInfo.forks && (
           <GithubInfo>

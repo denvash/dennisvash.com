@@ -10,29 +10,29 @@ module.exports = {
   googleVerification: '43X8RZJhlVlUbePr3JCjOey_lNOJjbhtQ0jA0qeisyM',
   name: 'Dennis Vash',
   location: 'Haifa, Israel',
-  email: 'denvash@gmail.com',
+  email: 'dennisvash@gmail.com',
   github: 'https://dennisvash.com',
   twitterHandle: '@denvash',
   socialMedia: [
     {
       name: 'Github',
-      url: 'https://dennisvash.com',
+      url: 'https://github.com/denvash',
     },
     {
-      name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/dennis-vash/',
+      name: 'StackOverflow',
+      url: 'https://stackoverflow.com/users/7882470/dennis-vash',
+    },
+    {
+      name: 'Twitter',
+      url: 'https://twitter.com/denvash',
     },
     {
       name: 'Codesandbox',
       url: 'https://codesandbox.io/u/denvash',
     },
     {
-      name: 'Stack Overflow',
-      url: 'https://stackoverflow.com/users/7882470/dennis-vash',
-    },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/denvash',
+      name: 'Linkedin',
+      url: 'https://www.linkedin.com/in/dennis-vash/',
     },
   ],
 

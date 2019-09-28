@@ -4,6 +4,17 @@
 
 > The fourth iteration of brittanychiang.com built with [Gatsby](https://www.gatsbyjs.org/) and hosted with [Netlify](https://www.netlify.com/)
 
+- [ ] Fix Icons
+- [ ] StoryBook
+- [ ] Logo
+- [ ] Add Theme Picker
+- [ ] Change Scroller
+- [ ] Add Const
+- [ ] Add MDX
+- [ ] Add Music player
+- [ ] Choose music according to theme path
+- [ ] Fix Imports
+
 ## 🛠 Installation
 
 1. **Install the Gatsby CLI**
