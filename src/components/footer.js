@@ -102,7 +102,7 @@ const Footer = ({ githubInfo }) => (
         href="https://github.com/denvash/dennisvash.com"
         target="_blank"
         rel="nofollow noopener noreferrer">
-        <div>Designed &amp; Built by Dennis Vash</div>
+        <div>Built by Dennis Vash | Designed by Brittany Chiang</div>
 
         {githubInfo.stars && githubInfo.forks && (
           <GithubInfo>
