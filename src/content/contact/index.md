@@ -1,5 +1,5 @@
 ---
-title: 'Get In Touch'
+title: 'Lets Talk!'
 ---
 
-Although I'm not currently looking for freelance opportunities, my inbox is always open. Whether for a potential project or just to say hi, I'll try my best to answer your email!
+Whether for a potential project, web, open source or any computer science topic, I'll glad to talk!

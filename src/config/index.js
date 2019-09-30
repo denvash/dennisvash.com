@@ -12,7 +12,7 @@ module.exports = {
   location: 'Haifa, Israel',
   email: 'dennisvash@gmail.com',
   github: 'https://dennisvash.com',
-  twitterHandle: '@denvash',
+  twitterHandle: '@DennisVash',
   socialMedia: [
     {
       name: 'Github',
@@ -24,7 +24,7 @@ module.exports = {
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/denvash',
+      url: 'https://twitter.com/dennisvash',
     },
     {
       name: 'Codesandbox',
