@@ -8,6 +8,7 @@ import Hero from './hero';
 import Jobs from './Jobs';
 import Layout from './layout';
 import Loader from './loader';
+// import Loader from './Loader';
 import Menu from './menu';
 import Nav from './nav';
 import Projects from './projects';
