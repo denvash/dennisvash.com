@@ -4,8 +4,9 @@ title: 'CodinGame Solutions'
 image: ''
 github: 'https://github.com/denvash/codingame-puzzles-solutions'
 tech:
-  - Solutions
-  - Multi Languages
+  - Algorithms
+  - Data-Structures
+  - Multi-Languages
 show: 'true'
 ---
 

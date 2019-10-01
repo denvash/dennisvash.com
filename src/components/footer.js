@@ -83,7 +83,7 @@ const Footer = ({ githubInfo }) => (
                   <IconGithub />
                 ) : name === 'Linkedin' ? (
                   <IconLinkedin />
-                ) : name === 'Stack-Overflow' ? (
+                ) : name === 'StackOverflow' ? (
                   <IconStackOverflow />
                 ) : name === 'Codesandbox' ? (
                   <IconCodesandbox />
@@ -102,7 +102,7 @@ const Footer = ({ githubInfo }) => (
         href="https://github.com/denvash/dennisvash.com"
         target="_blank"
         rel="nofollow noopener noreferrer">
-        <div>Built by Dennis Vash | Designed by Brittany Chiang</div>
+        <div>Built by Dennis Vash</div>
 
         {githubInfo.stars && githubInfo.forks && (
           <GithubInfo>

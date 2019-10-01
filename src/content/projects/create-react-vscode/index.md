@@ -6,9 +6,9 @@ github: 'https://github.com/denvash/create-react-vscode'
 external: 'https://marketplace.visualstudio.com/items?itemName=DennisVash.create-react-vscode'
 tech:
   - Extensions-Pack
-  - VS-Code
   - React
+  - VS-Code
 show: 'true'
 ---
 
-Extension Pack for developing React applications
+Maintained [VS-Code Extension Pack](https://code.visualstudio.com/blogs/2017/03/07/extension-pack-roundup) for developing [React applications](https://reactjs.org/).

@@ -5,12 +5,10 @@ image: ''
 github: 'https://github.com/denvash/common-data-structures'
 external: ''
 tech:
-  - Data-Structures
   - Algorithms
+  - Data-Structures
   - Multi-Languages
 show: 'true'
 ---
 
-Implementations with complexity analysis of common data-structures.
-
-Was in use during my university studies.
+Implementations with complexity analysis of common [Data-Structures](https://www.wikiwand.com/en/Data_structure).

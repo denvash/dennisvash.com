@@ -42,11 +42,11 @@ module.exports = {
       url: '#about',
     },
     {
-      name: 'Experience',
+      name: 'Timeline',
       url: '#jobs',
     },
     {
-      name: 'Work',
+      name: 'Projects',
       url: '#projects',
     },
     {

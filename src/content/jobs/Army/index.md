@@ -1,12 +1,12 @@
 ---
-date: '2010-03-10'
+date: '1'
 title: 'Squad Leader'
-company: 'Unit Egoz 621'
+company: 'Egoz Unit 621'
 location: 'Israel'
-range: 'March 2010 - March 2014'
+range: '2010 - 2014'
 url: 'https://www.idf.il/en/minisites/egoz-unit/'
 ---
 
-- Reserve Duty: Squad Leader (First Sergeant).
-- Warrant Service: Director of Sniping School (Sergeant).
-- Compulsory Service: Squad Leader (Staff Sergeant).
+- Reserve Duty: Squad Leader | _First Sergeant_.
+- Warrant Service: Director of Shooting School | _Sergeant_.
+- Compulsory Service: Squad Leader | _Staff Sergeant_.

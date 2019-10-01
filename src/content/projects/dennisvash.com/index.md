@@ -9,8 +9,7 @@ tech:
   - React
   - CSS-in-JS
   - Figma
-  - SSR
 show: 'true'
 ---
 
-Server side rendering Personal website powered by Gatsby.
+Server side rendering Personal website empowered by [Gatsby](https://www.gatsbyjs.org/).
