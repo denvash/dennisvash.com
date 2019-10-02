@@ -21,9 +21,10 @@ const LoaderContainer = styled.div`
   right: 0;
   z-index: 99;
 `;
+
 const LogoWrapper = styled.div`
   width: max-content;
-  max-width: 100px;
+  max-width: 400px;
   transition: ${theme.transition};
   opacity: ${props => (props.isMounted ? 1 : 0)};
   svg {
@@ -33,7 +34,7 @@ const LogoWrapper = styled.div`
     margin: 0 auto;
     fill: none;
     user-select: none;
-    #B {
+    #inner {
       opacity: 0;
     }
   }
@@ -48,20 +49,20 @@ const Loader = ({ finishLoading }) => {
 
     loader
       .add({
-        targets: '#logo path',
+        targets: '#loader path',
         delay: 500,
         duration: 2000,
         easing: 'easeInOutQuart',
         strokeDashoffset: [anime.setDashoffset, 0],
       })
       .add({
-        targets: '#logo #B',
+        targets: '#loader #inner',
         duration: 800,
         easing: 'easeInOutQuart',
         opacity: 1,
       })
       .add({
-        targets: '#logo',
+        targets: '#loader',
         delay: 700,
         duration: 300,
         easing: 'easeInOutQuart',
