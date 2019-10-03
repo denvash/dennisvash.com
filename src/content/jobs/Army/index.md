@@ -8,5 +8,4 @@ url: 'https://www.idf.il/en/minisites/egoz-unit/'
 ---
 
 - Reserve Duty: Squad Leader | _First Sergeant_.
-- Warrant Service: Director of Shooting School | _Sergeant_.
-- Compulsory Service: Squad Leader | _Staff Sergeant_.
+- Compulsory & Warrant Service: Squad Leader | _Sergeant_.
