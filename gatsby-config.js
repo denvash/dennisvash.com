@@ -7,25 +7,25 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-robots-txt',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'BrittanyChiang',
-        short_name: 'BrittanyChiang',
+        name: 'DennisVash',
+        short_name: 'DennisVash',
         start_url: '/',
         background_color: config.darkNavyColor,
         theme_color: config.navyColor,
         display: 'minimal-ui',
-        icon: 'src/images/logo.png',
+        icon: './src/images/logo.png',
       },
     },
-    `gatsby-plugin-offline`,
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -33,8 +33,9 @@ module.exports = {
         path: `${__dirname}/src/content/`,
       },
     },
+    // 'gatsby-plugin-resolve-src',
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
@@ -56,7 +57,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.googleAnalyticsID,
       },

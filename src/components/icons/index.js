@@ -1,7 +1,7 @@
 // import IconLoader from './loader';
-import IconLoader from './Loader.svg';
+import IconLoader from './Loader/Loader.svg';
 // import IconLogo from './logo';
-import IconLogo from './Logo.svg';
+import IconLogo from './Logo/Logo.svg';
 import IconGithub from './github';
 import IconLinkedin from './linkedin';
 import IconStackOverflow from './Stackoverflow.svg';

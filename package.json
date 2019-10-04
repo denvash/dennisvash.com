@@ -15,7 +15,9 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "storybook": "NODE_PATH=src/ NODE_ENV=production start-storybook -s public",
+    "build-storybook": "NODE_PATH=src/ NODE_ENV=production build-storybook -s public"
   },
   "husky": {
     "hooks": {
@@ -38,6 +40,7 @@
     "gatsby-plugin-netlify": "^2.1.11",
     "gatsby-plugin-offline": "^3.0.1",
     "gatsby-plugin-react-helmet": "^3.1.6",
+    "gatsby-plugin-resolve-src": "^2.0.0",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.2.19",
     "gatsby-plugin-sitemap": "^2.2.10",
@@ -57,9 +60,15 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "@upstatement/eslint-config": "0.4.2",
+    "@babel/core": "^7.6.2",
+    "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-links": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1",
+    "@upstatement/eslint-config": "^0.4.2",
     "@upstatement/prettier-config": "^0.3.0",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
