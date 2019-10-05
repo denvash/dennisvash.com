@@ -80,7 +80,7 @@ const Layout = ({ children }) => {
           <SkipToContent href="#content">Skip to Content</SkipToContent>
 
           {isLoading ? (
-            <Loader finishLoading={() => setIsLoading(false)} />
+            <Loader parameters={{ complete: () => setIsLoading(false) }} />
           ) : (
             <div className="container">
               <Nav />

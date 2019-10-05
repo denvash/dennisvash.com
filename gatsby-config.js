@@ -33,7 +33,7 @@ module.exports = {
         path: `${__dirname}/src/content/`,
       },
     },
-    // 'gatsby-plugin-resolve-src',
+    'gatsby-plugin-resolve-src',
     {
       resolve: 'gatsby-transformer-remark',
       options: {

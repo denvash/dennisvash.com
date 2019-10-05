@@ -6,7 +6,7 @@ import Footer from './footer';
 import Head from './head';
 import Hero from './hero';
 import Jobs from './Jobs';
-import Layout from './layout';
+import Layout from './Layout';
 // import Loader from './loader';
 import Loader from './Loader/Loader';
 import Menu from './menu';

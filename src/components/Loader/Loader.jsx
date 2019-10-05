@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
-import Helmet from "react-helmet";
-import PropTypes from "prop-types";
-import anime from "animejs";
-import { IconLoader } from "@components/icons";
-import styled from "styled-components";
-import { mixins, theme } from "@styles";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import anime from 'animejs';
+import { IconLoader } from '@components/icons';
+import styled from 'styled-components';
+import { mixins, theme } from 'styles';
 
 const { colors } = theme;
 
+const ID = {
+  inner: 'inner',
+  outer: 'outer',
+  loader: 'loader',
+};
+
 // #region styles
-const LoaderContainer = styled.div`
+const CenterScreen = styled.div`
   ${mixins.flexCenter};
   background-color: ${colors.darkNavy};
   position: fixed;
@@ -26,7 +31,6 @@ const LogoWrapper = styled.div`
   width: max-content;
   max-width: 400px;
   transition: ${theme.transition};
-  opacity: ${props => (props.isMounted ? 1 : 0)};
   svg {
     width: 100%;
     height: 100%;
@@ -34,77 +38,71 @@ const LogoWrapper = styled.div`
     margin: 0 auto;
     fill: none;
     user-select: none;
-    #inner {
+    #${ID.inner} {
       opacity: 0;
     }
   }
 `;
 // #endregion
 
-const Loader = ({ finishLoading, loop }) => {
-  // #region  Animation
-  const animate = () => {
-    const loader = anime.timeline({
-      complete: () => finishLoading(),
-      loop
+// #region  Animation
+const easing = 'easeInOutQuart';
+
+const animate = parameters => {
+  const loader = anime.timeline(parameters);
+
+  loader
+    .add({
+      targets: `#${ID.loader} path`,
+      delay: 500,
+      duration: 2000,
+      easing,
+      strokeDashoffset: [anime.setDashoffset, 0],
+    })
+    .add({
+      targets: `#${ID.loader} #${ID.inner}`,
+      duration: 800,
+      easing,
+      opacity: 1,
+    })
+    .add({
+      targets: `#${ID.loader}`,
+      delay: 700,
+      duration: 300,
+      easing,
+      opacity: 0,
+      scale: 0.1,
+    })
+    .add({
+      targets: `.${ID.loader}`,
+      duration: 200,
+      easing,
+      opacity: 0,
+      zIndex: -1,
     });
+};
+// #endregion
 
-    loader
-      .add({
-        targets: "#loader path",
-        delay: 500,
-        duration: 2000,
-        easing: "easeInOutQuart",
-        strokeDashoffset: [anime.setDashoffset, 0]
-      })
-      .add({
-        targets: "#loader #inner",
-        duration: 800,
-        easing: "easeInOutQuart",
-        opacity: 1
-      })
-      .add({
-        targets: "#loader",
-        delay: 700,
-        duration: 300,
-        easing: "easeInOutQuart",
-        opacity: 0,
-        scale: 0.1
-      })
-      .add({
-        targets: ".loader",
-        duration: 200,
-        easing: "easeInOutQuart",
-        opacity: 0,
-        zIndex: -1
-      });
-  };
-  // #endregion
-
-  const [isMounted, setIsMounted] = useState(false);
-
+const Loader = ({ parameters }) => {
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 10);
-    animate();
-    return () => clearTimeout(timeout);
+    animate(parameters);
   }, []);
 
   return (
-    <LoaderContainer className="loader">
-      <LogoWrapper isMounted={isMounted}>
+    <CenterScreen className={ID.loader}>
+      <LogoWrapper>
         <IconLoader />
       </LogoWrapper>
-    </LoaderContainer>
+    </CenterScreen>
   );
 };
 
 Loader.defaultProps = {
-  loop: false
+  parameters: {},
 };
 
 Loader.propTypes = {
-  finishLoading: PropTypes.func.isRequired,
-  loop: PropTypes.bool
+  parameters: PropTypes.object,
 };
 
 export default Loader;

@@ -16,7 +16,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "storybook": "NODE_PATH=src/ NODE_ENV=production start-storybook -s public",
+    "storybook": "NODE_PATH=src/ NODE_ENV=production start-storybook -s public --port 6006",
     "build-storybook": "NODE_PATH=src/ NODE_ENV=production build-storybook -s public"
   },
   "husky": {
