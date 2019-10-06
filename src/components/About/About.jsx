@@ -5,16 +5,20 @@ import sr from '@utils/sr';
 import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+
 const { colors, fontSizes, fonts } = theme;
 
+// #region  Styling
 const AboutContainer = styled(Section)`
   position: relative;
 `;
+
 const FlexContainer = styled.div`
   ${mixins.flexBetween};
   align-items: flex-start;
   ${media.tablet`display: block;`};
 `;
+
 const ContentContainer = styled.div`
   width: 60%;
   max-width: 480px;
@@ -23,12 +27,14 @@ const ContentContainer = styled.div`
     ${mixins.inlineLink};
   }
 `;
+
 const SkillsContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, minmax(140px, 200px));
   overflow: hidden;
   margin-top: 20px;
 `;
+
 const Skill = styled.li`
   position: relative;
   margin-bottom: 10px;
@@ -44,7 +50,14 @@ const Skill = styled.li`
     font-size: ${fontSizes.small};
     line-height: 12px;
   }
+  &:hover {
+    cursor: pointer;
+    color: ${colors.lightSlate};
+    outline: none;
+    transition: ${theme.transition};
+  }
 `;
+
 const PicContainer = styled.div`
   position: relative;
   width: 40%;
@@ -53,6 +66,7 @@ const PicContainer = styled.div`
   ${media.tablet`margin: 60px auto 0;`};
   ${media.phablet`width: 70%;`};
 `;
+
 const Avatar = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
@@ -60,6 +74,7 @@ const Avatar = styled(Img)`
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
 `;
+
 const AvatarContainer = styled.a`
   ${mixins.boxShadow};
   width: 100%;
@@ -104,12 +119,13 @@ const AvatarContainer = styled.a`
     z-index: -1;
   }
 `;
+// #endregion
 
-const About = ({ data }) => {
-  const { frontmatter, html } = data;
+const About = ({ frontmatter, html }) => {
   const { title, skills, avatar } = frontmatter;
 
   const revealContainer = useRef(null);
+
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
@@ -135,7 +151,8 @@ const About = ({ data }) => {
 };
 
 About.propTypes = {
-  data: PropTypes.array.isRequired,
+  frontmatter: PropTypes.object.isRequired,
+  html: PropTypes.string.isRequired,
 };
 
 export default About;

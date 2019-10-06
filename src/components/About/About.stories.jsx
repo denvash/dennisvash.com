@@ -14,4 +14,4 @@ export default {
   title: 'Molecules|About',
 };
 
-export const NoAvatar = () => <About data={data} />;
+export const NoAvatar = () => <About {...data} />;
