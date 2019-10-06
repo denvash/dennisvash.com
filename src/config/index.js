@@ -11,7 +11,7 @@ module.exports = {
   name: 'Dennis Vash',
   location: 'Haifa, Israel',
   email: 'dennisvash@gmail.com',
-  github: 'https://dennisvash.com',
+  github: 'https://github.com/denvash',
   twitterHandle: '@DennisVash',
   socialMedia: [
     {

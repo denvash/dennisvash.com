@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import theme from './theme';
+import { theme } from '@styles';
+
 const { colors } = theme;
 
 const InlineLink = styled.a`

@@ -106,8 +106,9 @@ const AvatarContainer = styled.a`
 `;
 
 const About = ({ data }) => {
-  const { frontmatter, html } = data[0].node;
+  const { frontmatter, html } = data;
   const { title, skills, avatar } = frontmatter;
+
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
@@ -121,11 +122,13 @@ const About = ({ data }) => {
             {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
           </SkillsContainer>
         </ContentContainer>
-        <PicContainer>
-          <AvatarContainer href={github}>
-            <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
-          </AvatarContainer>
-        </PicContainer>
+        {avatar && (
+          <PicContainer>
+            <AvatarContainer href={github}>
+              <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+            </AvatarContainer>
+          </PicContainer>
+        )}
       </FlexContainer>
     </AboutContainer>
   );

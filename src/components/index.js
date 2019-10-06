@@ -1,4 +1,4 @@
-import About from './about';
+import About from './About/About';
 import Contact from './contact';
 import Email from './email';
 import Featured from './featured';
@@ -10,7 +10,7 @@ import Layout from './Layout';
 // import Loader from './loader';
 import Loader from './Loader/Loader';
 import Menu from './menu';
-import Nav from './nav';
+import Nav from './Nav/Nav';
 import Projects from './projects';
 import Social from './social';
 
