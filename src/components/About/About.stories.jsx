@@ -3,10 +3,8 @@ import React from 'react';
 import { About } from '@components';
 
 const data = {
-  frontmatter: {
-    title: 'About Me',
-    skills: ['HTML & CSS-in-JS', 'React', 'Redux', 'Node.js', 'Express', 'GraphQL', 'Figma'],
-  },
+  title: 'About Me',
+  skills: ['HTML & CSS-in-JS', 'React', 'Redux', 'Node.js', 'Express', 'GraphQL', 'Figma'],
   html: '<p>About Text</p>',
 };
 

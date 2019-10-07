@@ -1,11 +1,15 @@
+// #region  Imports
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { email } from '@config';
 import styled from 'styled-components';
+
 import { theme, mixins, media, Section } from '@styles';
+// #endregion
+
 const { colors, fontSizes, fonts } = theme;
 
+// #region  Styling
 const HeroContainer = styled(Section)`
   ${mixins.flexCenter};
   flex-direction: column;
@@ -51,12 +55,11 @@ const Blurb = styled.div`
     ${mixins.inlineLink};
   }
 `;
-const EmailLink = styled.a`
-  ${mixins.bigButton};
-  margin-top: 50px;
-`;
+// #endregion
 
-const Hero = ({ data }) => {
+const delay = number => ({ transitionDelay: `${number}ms` });
+
+const Hero = ({ title, name, subtitle, html }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -64,30 +67,19 @@ const Hero = ({ data }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const { frontmatter, html } = data[0].node;
+  const one = () => <Hi style={delay(100)}>{title}</Hi>;
+  const two = () => <Name style={delay(200)}>{name}.</Name>;
+  const three = () => <Subtitle style={delay(300)}>{subtitle}</Subtitle>;
+  const four = () => <Blurb style={delay(400)} dangerouslySetInnerHTML={{ __html: html }} />;
 
-  const one = () => <Hi style={{ transitionDelay: '100ms' }}>{frontmatter.title}</Hi>;
-  const two = () => <Name style={{ transitionDelay: '200ms' }}>{frontmatter.name}.</Name>;
-  const three = () => (
-    <Subtitle style={{ transitionDelay: '300ms' }}>{frontmatter.subtitle}</Subtitle>
-  );
-  const four = () => (
-    <Blurb style={{ transitionDelay: '400ms' }} dangerouslySetInnerHTML={{ __html: html }} />
-  );
-  const five = () => (
-    <div style={{ transitionDelay: '500ms' }}>
-      <EmailLink href={`mailto:${email}`}>Get In Touch</EmailLink>
-    </div>
-  );
-
-  const items = [one, two, three, four, five];
+  const items = [one, two, three, four];
 
   return (
     <HeroContainer>
-      <TransitionGroup>
+      <TransitionGroup component={null}>
         {isMounted &&
-          items.map((item, i) => (
-            <CSSTransition key={i} classNames="fadeup" timeout={3000}>
+          items.map((item, key) => (
+            <CSSTransition key={key} classNames="fadeup" timeout={3000}>
               {item}
             </CSSTransition>
           ))}
@@ -97,7 +89,11 @@ const Hero = ({ data }) => {
 };
 
 Hero.propTypes = {
-  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  contactText: PropTypes.string.isRequired,
+  html: PropTypes.string.isRequired,
 };
 
 export default Hero;

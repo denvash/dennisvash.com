@@ -10,16 +10,22 @@ const MainContainer = styled(Main)`
   counter-reset: section;
 `;
 
-const getQueryData = ([{ node }]) => node;
+const parseQueryData = data =>
+  data.map(({ node: { frontmatter, ...rest } }) => ({ ...frontmatter, ...rest }));
+
+const parseSingleNode = data => {
+  const [first] = parseQueryData(data);
+  return first;
+};
 
 const IndexPage = ({ data }) => (
   <Layout>
     <MainContainer id="content">
-      <Hero data={data.hero.edges} />
-      <About {...getQueryData(data.about.edges)} />
-      <Jobs data={data.jobs.edges} />
-      <Featured data={data.featured.edges} />
-      <Projects data={data.projects.edges} />
+      <Hero {...parseSingleNode(data.hero.edges)} />
+      <About {...parseSingleNode(data.about.edges)} />
+      <Jobs data={parseQueryData(data.jobs.edges)} />
+      <Featured data={parseQueryData(data.featured.edges)} />
+      <Projects data={parseQueryData(data.projects.edges)} />
       <Contact data={data.contact.edges} />
     </MainContainer>
   </Layout>
@@ -40,7 +46,6 @@ export const pageQuery = graphql`
             title
             name
             subtitle
-            contactText
           }
           html
         }

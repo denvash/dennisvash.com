@@ -121,11 +121,8 @@ const AvatarContainer = styled.a`
 `;
 // #endregion
 
-const About = ({ frontmatter, html }) => {
-  const { title, skills, avatar } = frontmatter;
-
+const About = ({ title, skills, avatar, html }) => {
   const revealContainer = useRef(null);
-
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
@@ -151,8 +148,7 @@ const About = ({ frontmatter, html }) => {
 };
 
 About.propTypes = {
-  frontmatter: PropTypes.object.isRequired,
-  html: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default About;

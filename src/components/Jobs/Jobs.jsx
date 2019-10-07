@@ -1,11 +1,16 @@
+// #region  imports
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig } from 'config';
 import styled from 'styled-components';
+
+import sr from '@utils/sr';
+import { srConfig, content } from '@config';
 import { theme, mixins, media, Section, Heading } from '@styles';
+// #endregion
+
 const { colors, fontSizes, fonts } = theme;
 
+// #region  Styling
 const JobsContainer = styled(Section)`
   position: relative;
   max-width: 700px;
@@ -160,9 +165,11 @@ const JobTitle = styled.h4`
   font-weight: 500;
   margin-bottom: 5px;
 `;
+
 const Company = styled.span`
   color: ${colors.green};
 `;
+
 const JobDetails = styled.h5`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
@@ -174,68 +181,59 @@ const JobDetails = styled.h5`
     width: 15px;
   }
 `;
+// #endregion
 
 const Jobs = ({ data }) => {
   const [activeTabId, setActiveTabId] = useState(0);
+
   const revealContainer = useRef(null);
+
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
     <JobsContainer id="jobs" ref={revealContainer}>
-      <Heading>What I&apos;ve been up to</Heading>
+      <Heading>{content.jobs.heading}</Heading>
       <TabsContainer>
         <Tabs role="tablist">
-          {data &&
-            data.map(({ node }, i) => {
-              const { company } = node.frontmatter;
-              const onClick = () => setActiveTabId(i);
-              return (
-                <li key={i}>
-                  <Tab
-                    isActive={activeTabId === i}
-                    onClick={onClick}
-                    role="tab"
-                    aria-selected={activeTabId === i ? 'true' : 'false'}
-                    aria-controls={`tab${i}`}
-                    id={`tab${i}`}
-                    tabIndex={activeTabId === i ? '0' : '-1'}>
-                    <span>{company}</span>
-                  </Tab>
-                </li>
-              );
-            })}
+          {data.map(({ company }, i) => (
+            <li key={i}>
+              <Tab
+                isActive={activeTabId === i}
+                onClick={() => setActiveTabId(i)}
+                role="tab"
+                aria-selected={activeTabId === i ? 'true' : 'false'}
+                aria-controls={`tab${i}`}
+                id={`tab${i}`}>
+                <span>{company}</span>
+              </Tab>
+            </li>
+          ))}
           <Highlighter activeTabId={activeTabId} />
         </Tabs>
         <ContentContainer>
-          {data &&
-            data.map(({ node }, i) => {
-              const { frontmatter, html } = node;
-              const { title, url, company, range } = frontmatter;
-              return (
-                <TabContent
-                  key={i}
-                  isActive={activeTabId === i}
-                  id={`job${i}`}
-                  role="tabpanel"
-                  tabIndex="0"
-                  aria-labelledby={`job${i}`}
-                  aria-hidden={activeTabId !== i}>
-                  <JobTitle>
-                    <span>{title}</span>
-                    <Company>
-                      <span>&nbsp;@&nbsp;</span>
-                      <a href={url} target="_blank" rel="nofollow noopener noreferrer">
-                        {company}
-                      </a>
-                    </Company>
-                  </JobTitle>
-                  <JobDetails>
-                    <span>{range}</span>
-                  </JobDetails>
-                  <div dangerouslySetInnerHTML={{ __html: html }} />
-                </TabContent>
-              );
-            })}
+          {data.map(({ title, url, company, range, html }, i) => (
+            <TabContent
+              key={i}
+              isActive={activeTabId === i}
+              id={`job${i}`}
+              role="tabpanel"
+              aria-labelledby={`job${i}`}
+              aria-hidden={activeTabId !== i}>
+              <JobTitle>
+                <span>{title}</span>
+                <Company>
+                  <span>&nbsp;@&nbsp;</span>
+                  <a href={url} target="_blank" rel="nofollow noopener noreferrer">
+                    {company}
+                  </a>
+                </Company>
+              </JobTitle>
+              <JobDetails>
+                <span>{range}</span>
+              </JobDetails>
+              <div dangerouslySetInnerHTML={{ __html: html }} />
+            </TabContent>
+          ))}
         </ContentContainer>
       </TabsContainer>
     </JobsContainer>

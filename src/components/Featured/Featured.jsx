@@ -1,11 +1,16 @@
+// #region  Imports
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
-import { IconGithub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
+
 import { theme, mixins, media, Section, Heading } from '@styles';
+import { srConfig, content } from '@config';
+import { IconGithub, IconExternal } from '@components/icons';
+import sr from '@utils/sr';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const FeaturedContainer = styled(Section)`
@@ -199,84 +204,68 @@ const Project = styled.div`
     }
   }
 `;
+// #endregion
 
 const Featured = ({ data }) => {
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
+
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
-  const featuredProjects = data.filter(({ node }) => node.frontmatter.show === 'true');
+  const featuredProjects = data.filter(({ show }) => show === 'true');
 
   return (
     <FeaturedContainer id="projects">
-      <Heading ref={revealTitle}>Some Things I&apos;ve Built</Heading>
+      <Heading ref={revealTitle}>{content.featured.heading}</Heading>
 
-      <div>
-        {featuredProjects &&
-          featuredProjects.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { external, title, tech, github, cover } = frontmatter;
-
-            return (
-              <Project key={i} ref={el => (revealProjects.current[i] = el)}>
-                <ContentContainer>
-                  <FeaturedLabel>Featured Project</FeaturedLabel>
-                  <ProjectName>
-                    {external ? (
-                      <a
-                        href={external}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label="External Link">
-                        {title}
-                      </a>
-                    ) : (
-                      title
-                    )}
-                  </ProjectName>
-                  <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
-                  {tech && (
-                    <TechList>
-                      {tech.map((tech, i) => (
-                        <li key={i}>{tech}</li>
-                      ))}
-                    </TechList>
-                  )}
-                  <Links>
-                    {github && (
-                      <a
-                        href={github}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label="Github Link">
-                        <IconGithub />
-                      </a>
-                    )}
-                    {external && (
-                      <a
-                        href={external}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label="External Link">
-                        <IconExternal />
-                      </a>
-                    )}
-                  </Links>
-                </ContentContainer>
-
-                <ImgContainer
-                  href={external ? external : github ? github : '#'}
+      {featuredProjects.map(({ external, title, tech, github, cover, html }, i) => (
+        <Project key={i} ref={el => (revealProjects.current[i] = el)}>
+          <ContentContainer>
+            <FeaturedLabel>Featured Project</FeaturedLabel>
+            <ProjectName>{title}</ProjectName>
+            <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
+            {tech && (
+              <TechList>
+                {tech.map((tech, i) => (
+                  <li key={i}>{tech}</li>
+                ))}
+              </TechList>
+            )}
+            <Links>
+              {github && (
+                <a
+                  href={github}
                   target="_blank"
-                  rel="nofollow noopener noreferrer">
-                  <FeaturedImg fluid={cover.childImageSharp.fluid} />
-                </ImgContainer>
-              </Project>
-            );
-          })}
-      </div>
+                  rel="nofollow noopener noreferrer"
+                  aria-label="Github Link">
+                  <IconGithub />
+                </a>
+              )}
+              {external && (
+                <a
+                  href={external}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  aria-label="External Link">
+                  <IconExternal />
+                </a>
+              )}
+            </Links>
+          </ContentContainer>
+
+          {cover && (
+            <ImgContainer
+              href={external ? external : github ? github : '#'}
+              target="_blank"
+              rel="nofollow noopener noreferrer">
+              <FeaturedImg fluid={cover.childImageSharp.fluid} />
+            </ImgContainer>
+          )}
+        </Project>
+      ))}
     </FeaturedContainer>
   );
 };

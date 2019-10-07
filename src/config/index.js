@@ -55,6 +55,15 @@ module.exports = {
     },
   ],
 
+  content: {
+    jobs: {
+      heading: `What I've been up to`,
+    },
+    featured: {
+      heading: `Some Things I've Built`,
+    },
+  },
+
   navHeight: 100,
   greenColor: '#64ffda',
   navyColor: '#0a192f',

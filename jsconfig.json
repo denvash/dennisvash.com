@@ -5,12 +5,13 @@
     "paths": {
       "@styles": ["src/styles/index"],
       "@fonts": ["src/fonts/*"],
+      "@components/*": ["src/components/*"],
       "@components": ["src/components/index"],
       "@config": ["src/config/index"],
       "@content": ["src/content"],
       "@images": ["src/images"],
       "@pages": ["src/pages"],
-      "@utils": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"]
     }
   }
 }

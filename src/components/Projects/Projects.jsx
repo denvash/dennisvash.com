@@ -1,11 +1,16 @@
+// #region  Imports
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import sr from '@utils/sr';
+import styled from 'styled-components';
+
 import { srConfig } from '@config';
 import { IconGithub, IconExternal, IconFolder } from '@components/icons';
-import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
+import sr from '@utils/sr';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const ProjectsContainer = styled(Section)`
@@ -110,18 +115,21 @@ const TechList = styled.ul`
 const ShowMoreButton = styled(Button)`
   margin: 100px auto 0;
 `;
+// #endregion
+
+const GRID_LIMIT = 3;
 
 const Projects = ({ data }) => {
   const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
+
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
-  const GRID_LIMIT = 3;
-  const projects = data.filter(({ node }) => node.frontmatter.show === 'true');
+  const projects = data.filter(({ show }) => show === 'true');
   const firstRow = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstRow;
 
@@ -131,64 +139,60 @@ const Projects = ({ data }) => {
       <ProjectsGrid>
         <TransitionGroup className="projects">
           {projectsToShow &&
-            projectsToShow.map(({ node }, i) => {
-              const { frontmatter, html } = node;
-              const { github, external, title, tech } = frontmatter;
-              return (
-                <CSSTransition
+            projectsToShow.map(({ github, external, title, tech, html }, i) => (
+              <CSSTransition
+                key={i}
+                classNames="fadeup"
+                timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
+                exit={false}>
+                <Project
                   key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <Project
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    tabIndex="0"
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
-                    <ProjectInner>
-                      <header>
-                        <ProjectHeader>
-                          <Folder>
-                            <IconFolder />
-                          </Folder>
-                          <Links>
-                            {github && (
-                              <IconLink
-                                href={github}
-                                target="_blank"
-                                rel="nofollow noopener noreferrer"
-                                aria-label="Github Link">
-                                <IconGithub />
-                              </IconLink>
-                            )}
-                            {external && (
-                              <IconLink
-                                href={external}
-                                target="_blank"
-                                rel="nofollow noopener noreferrer"
-                                aria-label="External Link">
-                                <IconExternal />
-                              </IconLink>
-                            )}
-                          </Links>
-                        </ProjectHeader>
-                        <ProjectName>{title}</ProjectName>
-                        <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
-                      </header>
-                      <footer>
-                        <TechList>
-                          {tech.map((tech, i) => (
-                            <li key={i}>{tech}</li>
-                          ))}
-                        </TechList>
-                      </footer>
-                    </ProjectInner>
-                  </Project>
-                </CSSTransition>
-              );
-            })}
+                  ref={el => (revealProjects.current[i] = el)}
+                  tabIndex="0"
+                  style={{
+                    transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+                  }}>
+                  <ProjectInner>
+                    <header>
+                      <ProjectHeader>
+                        <Folder>
+                          <IconFolder />
+                        </Folder>
+                        <Links>
+                          {github && (
+                            <IconLink
+                              href={github}
+                              target="_blank"
+                              rel="nofollow noopener noreferrer"
+                              aria-label="Github Link">
+                              <IconGithub />
+                            </IconLink>
+                          )}
+                          {external && (
+                            <IconLink
+                              href={external}
+                              target="_blank"
+                              rel="nofollow noopener noreferrer"
+                              aria-label="External Link">
+                              <IconExternal />
+                            </IconLink>
+                          )}
+                        </Links>
+                      </ProjectHeader>
+                      <ProjectName>{title}</ProjectName>
+                      <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
+                    </header>
+                    <footer>
+                      <TechList>
+                        {tech.map((tech, i) => (
+                          <li key={i}>{tech}</li>
+                        ))}
+                      </TechList>
+                    </footer>
+                  </ProjectInner>
+                </Project>
+              </CSSTransition>
+            ))}
         </TransitionGroup>
       </ProjectsGrid>
 
