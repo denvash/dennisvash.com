@@ -5,15 +5,11 @@
 ⚠️ Under construction 🚧
 
 - [ ] Fix Icons
-- [ ] StoryBook
-- [ ] Logo
+- [x] StoryBook
+- [x] Logo
 - [ ] Add Theme Picker
 - [ ] Change Scroller
-- [ ] Add Const
 - [ ] Add MDX
-- [ ] Add Music player
-- [ ] Choose music according to theme path
 - [ ] Fix Imports
-- [ ] Fix More projects button
 - [ ] Add Card icons
-- [ ] Finish timeline
+- [x] Finish timeline
