@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./",
+    "jsx": "react",
     "paths": {
-      "@components": ["./src/components"],
-      "@styles": ["./src/styles/index"],
-      "@icons": ["./src/components/icons"]
+      "@styles": ["src/styles/index"],
+      "@fonts": ["src/fonts/*"],
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components/index"],
+      "@config": ["src/config/index"],
+      "@content": ["src/content"],
+      "@images": ["src/images"],
+      "@pages": ["src/pages"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }

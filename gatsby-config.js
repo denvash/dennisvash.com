@@ -30,10 +30,10 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/src/content/`,
+        path: `${__dirname}/src/content`,
       },
     },
-    // 'gatsby-plugin-resolve-src',
+    'gatsby-plugin-resolve-src',
     {
       resolve: 'gatsby-transformer-remark',
       options: {

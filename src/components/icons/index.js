@@ -1,6 +1,4 @@
-// import IconLoader from './loader';
 import IconLoader from './Loader/Loader.svg';
-// import IconLogo from './logo';
 import IconLogo from './Logo/Logo.svg';
 import IconGithub from './github';
 import IconLinkedin from './linkedin';
@@ -12,7 +10,11 @@ import IconFolder from './folder';
 import IconLocation from './location';
 import IconStar from './star';
 import IconFork from './fork';
-import FormattedIcon from './FormattedIcon';
+import IconDev from './Dev/Dev.svg';
+
+import iconMapper from './iconMapper';
+
+export default iconMapper;
 
 export {
   IconLoader,
@@ -27,5 +29,5 @@ export {
   IconLocation,
   IconStar,
   IconFork,
-  FormattedIcon,
+  IconDev,
 };
