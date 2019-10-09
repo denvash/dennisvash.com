@@ -1,17 +1,17 @@
 import About from './About/About';
-import Contact from './contact';
-import Email from './email';
+import Contact from './Contact/Contact';
+import Email from './Email/Email';
 import Featured from './Featured/Featured';
-import Footer from './footer';
-import Head from './head';
+import Footer from './Footer/Footer';
+import Head from './Head';
 import Hero from './Hero/Hero';
 import Jobs from './Jobs/Jobs';
 import Layout from './Layout';
 import Loader from './Loader/Loader';
-import Menu from './menu';
+import Menu from './Menu/Menu';
 import Nav from './Nav/Nav';
 import Projects from './Projects/Projects';
-import Social from './social';
+import Social from './Social/Social';
 
 export {
   About,

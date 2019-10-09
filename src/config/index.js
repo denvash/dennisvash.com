@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   siteTitle: 'Dennis Vash | Software Engineer',
   siteDescription:
     'Dennis Vash is a software engineer based in Haifa, Israel who specializes in developing exceptional, high-quality websites and applications.',
@@ -13,28 +13,32 @@ module.exports = {
   email: 'dennisvash@gmail.com',
   github: 'https://github.com/denvash',
   twitterHandle: '@DennisVash',
-  socialMedia: [
-    {
+  socialMedia: {
+    GITHUB: {
       name: 'Github',
       url: 'https://github.com/denvash',
     },
-    {
+    STACK_OVERFLOW: {
       name: 'StackOverflow',
       url: 'https://stackoverflow.com/users/7882470/dennis-vash',
     },
-    {
+    TWITTER: {
       name: 'Twitter',
       url: 'https://twitter.com/dennisvash',
     },
-    {
+    CODESANDBOX: {
       name: 'Codesandbox',
       url: 'https://codesandbox.io/u/denvash',
     },
-    {
+    DEV: {
+      name: 'Dev',
+      url: 'https://dev.to/denvash',
+    },
+    LINKEDIN: {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/dennis-vash/',
     },
-  ],
+  },
 
   navLinks: [
     {
@@ -62,6 +66,12 @@ module.exports = {
     featured: {
       heading: `Some Things I've Built`,
     },
+    contact: {
+      heading: `What's Next?`,
+    },
+    footer: {
+      heading: 'Crafted by Dennis Vash',
+    },
   },
 
   navHeight: 100,
@@ -85,3 +95,4 @@ module.exports = {
     viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
   }),
 };
+module.exports = config;

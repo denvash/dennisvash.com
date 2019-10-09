@@ -1,17 +1,13 @@
+// #region  Imports
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  IconGithub,
-  IconLinkedin,
-  IconStackOverflow,
-  IconCodesandbox,
-  IconTwitter,
-  IconStar,
-  IconFork,
-} from '@components/icons';
-import { socialMedia } from '@config';
+import iconMapper, { IconStar, IconFork } from '@components/icons';
+import { socialMedia, content } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const FooterContainer = styled.footer`
@@ -42,7 +38,7 @@ const SocialLink = styled.a`
     height: 20px;
   }
 `;
-const Copy = styled.div`
+const GithubContainer = styled.div`
   margin: 10px 0;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.xsmall};
@@ -66,58 +62,41 @@ const GithubInfo = styled.div`
     margin-right: 5px;
   }
 `;
+// #endregion
 
-const Footer = ({ githubInfo }) => (
+const Footer = ({ githubInfo: { stars = 0, forks = 0 } }) => (
   <FooterContainer>
     <SocialContainer>
       <SocialItemList>
         {socialMedia &&
-          socialMedia.map(({ name, url }, i) => (
+          Object.values(socialMedia).map(({ name, url }, i) => (
             <li key={i}>
               <SocialLink
                 href={url}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 aria-label={name}>
-                {name === 'Github' ? (
-                  <IconGithub />
-                ) : name === 'Linkedin' ? (
-                  <IconLinkedin />
-                ) : name === 'StackOverflow' ? (
-                  <IconStackOverflow />
-                ) : name === 'Codesandbox' ? (
-                  <IconCodesandbox />
-                ) : name === 'Twitter' ? (
-                  <IconTwitter />
-                ) : (
-                  <IconGithub />
-                )}
+                {iconMapper[name]}
               </SocialLink>
             </li>
           ))}
       </SocialItemList>
     </SocialContainer>
-    <Copy>
-      <GithubLink
-        href="https://github.com/denvash/dennisvash.com"
-        target="_blank"
-        rel="nofollow noopener noreferrer">
-        <div>Built by Dennis Vash</div>
-
-        {githubInfo.stars && githubInfo.forks && (
-          <GithubInfo>
-            <span>
-              <IconStar />
-              <span>{githubInfo.stars}</span>
-            </span>
-            <span>
-              <IconFork />
-              <span>{githubInfo.forks}</span>
-            </span>
-          </GithubInfo>
-        )}
+    <GithubContainer>
+      <GithubLink href={socialMedia.GITHUB.url} target="_blank" rel="nofollow noopener noreferrer">
+        <div>{content.footer.heading}</div>
+        <GithubInfo>
+          <span>
+            <IconStar />
+            <span>{stars}</span>
+          </span>
+          <span>
+            <IconFork />
+            <span>{forks}</span>
+          </span>
+        </GithubInfo>
       </GithubLink>
-    </Copy>
+    </GithubContainer>
   </FooterContainer>
 );
 

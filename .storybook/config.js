@@ -1,5 +1,15 @@
-import { configure, addParameters } from '@storybook/react';
+import React from 'react';
+
+import { configure, addParameters, addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
+import GlobalStyle from '../src/styles/GlobalStyle.styles';
+
+addDecorator(s => (
+  <>
+    <GlobalStyle />
+    {s()}
+  </>
+));
 
 addParameters({
   options: {

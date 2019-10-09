@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// #region  Imports
 import { socialMedia } from '@config';
-import { FormattedIcon } from '@components/icons';
+import iconMapper from '@components/icons';
+import { media, theme } from '@styles';
+import React, { useEffect, useState } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { theme, media } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors } = theme;
 
 const SocialContainer = styled.div`
@@ -44,6 +48,7 @@ const SocialLink = styled.a`
     height: 18px;
   }
 `;
+// #endregion
 
 const Social = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -60,14 +65,14 @@ const Social = () => {
           <CSSTransition timeout={3000} classNames="fade">
             <SocialItemList>
               {socialMedia &&
-                socialMedia.map(({ url, name }, i) => (
+                Object.values(socialMedia).map(({ url, name }, i) => (
                   <SocialItem key={i}>
                     <SocialLink
                       href={url}
                       target="_blank"
                       rel="nofollow noopener noreferrer"
                       aria-label={name}>
-                      <FormattedIcon name={name} />
+                      {iconMapper[name]}
                     </SocialLink>
                   </SocialItem>
                 ))}

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// #region  Imports
 import { email } from '@config';
+import { media, theme } from '@styles';
+import React, { useEffect, useState } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { theme, media } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const EmailContainer = styled.div`
@@ -45,6 +49,7 @@ const EmailLink = styled.a`
     transform: translateY(-3px);
   }
 `;
+// #endregion
 
 const Email = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -60,7 +65,9 @@ const Email = () => {
         {isMounted && (
           <CSSTransition timeout={3000} classNames="fade">
             <EmailLinkWrapper>
-              <EmailLink href={`mailto:${email}`}>{email}</EmailLink>
+              <EmailLink href={`mailto:${email}`} target="_blank">
+                {email}
+              </EmailLink>
             </EmailLinkWrapper>
           </CSSTransition>
         )}

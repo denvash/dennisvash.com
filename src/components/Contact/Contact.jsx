@@ -1,9 +1,14 @@
+// #region  Imports
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig, email } from '@config';
 import styled from 'styled-components';
+
+import sr from '@utils/sr';
+import { srConfig, email, content } from '@config';
 import { theme, mixins, media, Section, Heading } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const ContactContainer = styled(Section)`
@@ -42,16 +47,15 @@ const EmailLink = styled.a`
   ${mixins.bigButton};
   margin-top: 50px;
 `;
+// #endregion
 
-const Contact = ({ data }) => {
-  const { frontmatter, html } = data[0].node;
-  const { title } = frontmatter;
+const Contact = ({ title, html }) => {
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
     <ContactContainer id="contact" ref={revealContainer}>
-      <GreenHeading>What&apos;s Next?</GreenHeading>
+      <GreenHeading>{content.contact.heading}</GreenHeading>
 
       <Title>{title}</Title>
 
@@ -65,7 +69,8 @@ const Contact = ({ data }) => {
 };
 
 Contact.propTypes = {
-  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  html: PropTypes.string.isRequired,
 };
 
 export default Contact;

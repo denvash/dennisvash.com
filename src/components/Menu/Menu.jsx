@@ -1,9 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+// #region  Imports
 import { navLinks } from '@config';
+import { media, mixins, theme } from '@styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const MenuContainer = styled.div`
@@ -75,6 +79,7 @@ const ResumeLink = styled.a`
   margin: 10% auto 0;
   width: max-content;
 `;
+// #endregion
 
 const Menu = ({ menuOpen, toggleMenu }) => {
   const handleMenuClick = e => {
@@ -82,9 +87,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
     const isLink = target.hasAttribute('href');
     const isNotMenu = target.classList && target.classList[0].includes('MenuContainer');
 
-    if (isLink || isNotMenu) {
-      toggleMenu();
-    }
+    (isLink || isNotMenu) && toggleMenu();
   };
 
   return (

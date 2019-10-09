@@ -1,8 +1,9 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
 import styled from 'styled-components';
+
+import { graphql } from 'gatsby';
+import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
 import { mixins, Main } from '@styles';
 
 const MainContainer = styled(Main)`
@@ -26,7 +27,7 @@ const IndexPage = ({ data }) => (
       <Jobs data={parseQueryData(data.jobs.edges)} />
       <Featured data={parseQueryData(data.featured.edges)} />
       <Projects data={parseQueryData(data.projects.edges)} />
-      <Contact data={data.contact.edges} />
+      <Contact {...parseSingleNode(data.contact.edges)} />
     </MainContainer>
   </Layout>
 );

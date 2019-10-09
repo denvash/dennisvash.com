@@ -27,4 +27,4 @@ export default {
   title: 'Molecules|Projects',
 };
 
-export const NoAvatar = () => <Featured data={data} />;
+export const Default = () => <Featured data={data} />;
