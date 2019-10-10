@@ -26,7 +26,7 @@ const FooterContainer = styled.footer`
 const INITIAL_GITHUB_INFO = { stars: 0, forks: 0 };
 
 const Layout = ({ children, metadata }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [githubInfo, setGithubInfo] = useState(INITIAL_GITHUB_INFO);
 
   useEffect(() => {
