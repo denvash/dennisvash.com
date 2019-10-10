@@ -25,7 +25,7 @@ const FooterContainer = styled.footer`
 
 const INITIAL_GITHUB_INFO = { stars: 0, forks: 0 };
 
-const Layout = ({ children, metadata }) => {
+const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [githubInfo, setGithubInfo] = useState(INITIAL_GITHUB_INFO);
 
@@ -45,7 +45,7 @@ const Layout = ({ children, metadata }) => {
 
   return (
     <div id="root">
-      <Head metadata={metadata} />
+      <Head />
       <GlobalStyle />
       {isLoading ? (
         <Loader parameters={parameters} />
