@@ -11,6 +11,6 @@ skills:
   - Figma
 ---
 
-Hello! I'm Dennis, a (future) software engineer based in Haifa, Israel who enjoys building things that live on the internet. I develop exceptional websites and web apps that provide intuitive, pixel-perfect user interfaces with efficient and modern back-ends.
+Hello! I'm Dennis, a software engineer who enjoys building things that live on the internet. I develop exceptional websites and web apps that provide intuitive, pixel-perfect user interfaces with efficient and modern back-ends.
 
 Here's is my favorite technologies stack:
