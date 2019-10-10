@@ -1,10 +1,10 @@
 // #region  Imports
-import React from 'react';
+import iconMapper, { IconFork, IconStar } from '@components/icons';
+import { content, socialMedia } from '@config';
+import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
-import iconMapper, { IconStar, IconFork } from '@components/icons';
-import { socialMedia, content } from '@config';
+import React from 'react';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
 // #endregion
 
 // #region  Styling
@@ -82,21 +82,28 @@ const Footer = ({ githubInfo: { stars = 0, forks = 0 } }) => (
           ))}
       </SocialItemList>
     </SocialContainer>
-    <GithubContainer>
-      <GithubLink href={socialMedia.GITHUB.url} target="_blank" rel="nofollow noopener noreferrer">
-        <div>{content.footer.heading}</div>
-        <GithubInfo>
-          <span>
-            <IconStar />
-            <span>{stars}</span>
-          </span>
-          <span>
-            <IconFork />
-            <span>{forks}</span>
-          </span>
-        </GithubInfo>
-      </GithubLink>
-    </GithubContainer>
+    🚧 The site still under construction ⚠️
+    {/* {reval after fixing git auth} */}
+    {false && (
+      <GithubContainer>
+        <GithubLink
+          href={socialMedia.GITHUB.url}
+          target="_blank"
+          rel="nofollow noopener noreferrer">
+          <div>{content.footer.heading}</div>
+          <GithubInfo>
+            <span>
+              <IconStar />
+              <span>{stars}</span>
+            </span>
+            <span>
+              <IconFork />
+              <span>{forks}</span>
+            </span>
+          </GithubInfo>
+        </GithubLink>
+      </GithubContainer>
+    )}
   </FooterContainer>
 );
 

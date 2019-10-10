@@ -34,9 +34,9 @@ const IconLogo = ({
 );
 
 IconLogo.propTypes = {
-  id: PropTypes.string.isRequired,
-  inner: PropTypes.object.isRequired,
-  outer: PropTypes.object.isRequired,
+  id: PropTypes.string,
+  inner: PropTypes.object,
+  outer: PropTypes.object,
 };
 
 export default IconLogo;

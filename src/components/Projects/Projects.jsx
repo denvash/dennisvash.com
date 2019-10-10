@@ -1,13 +1,12 @@
 // #region  Imports
-import React, { useState, useEffect, useRef } from 'react';
+import { IconExternal, IconFolder, IconGithub } from '@components/icons';
+import { srConfig } from '@config';
+import { media, mixins, Section, theme } from '@styles';
+import sr from '@utils/sr';
 import PropTypes from 'prop-types';
+import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-
-import { srConfig } from '@config';
-import { IconGithub, IconExternal, IconFolder } from '@components/icons';
-import { theme, mixins, media, Section, Button } from '@styles';
-import sr from '@utils/sr';
 // #endregion
 
 // #region  Styling
@@ -17,14 +16,6 @@ const ProjectsContainer = styled(Section)`
   ${mixins.flexCenter};
   flex-direction: column;
   align-items: flex-start;
-`;
-const ProjectsTitle = styled.h4`
-  margin: 0 auto 50px;
-  font-size: ${fontSizes.h3};
-  ${media.tablet`font-size: 24px;`};
-  a {
-    display: block;
-  }
 `;
 const ProjectsGrid = styled.div`
   .projects {
@@ -112,15 +103,11 @@ const TechList = styled.ul`
     }
   }
 `;
-const ShowMoreButton = styled(Button)`
-  margin: 100px auto 0;
-`;
 // #endregion
 
 const GRID_LIMIT = 3;
 
 const Projects = ({ data }) => {
-  const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
 
@@ -130,16 +117,13 @@ const Projects = ({ data }) => {
   }, []);
 
   const projects = data.filter(({ show }) => show === 'true');
-  const firstRow = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstRow;
 
   return (
     <ProjectsContainer>
-      <ProjectsTitle ref={revealTitle}>Side Projects</ProjectsTitle>
       <ProjectsGrid>
         <TransitionGroup className="projects">
-          {projectsToShow &&
-            projectsToShow.map(({ github, external, title, tech, html }, i) => (
+          {projects &&
+            projects.map(({ github, external, title, tech, html }, i) => (
               <CSSTransition
                 key={i}
                 classNames="fadeup"
@@ -195,10 +179,6 @@ const Projects = ({ data }) => {
             ))}
         </TransitionGroup>
       </ProjectsGrid>
-
-      <ShowMoreButton onClick={() => setShowMore(!showMore)}>
-        {showMore ? 'Fewer' : 'More'} Projects
-      </ShowMoreButton>
     </ProjectsContainer>
   );
 };

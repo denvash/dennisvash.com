@@ -1,45 +1,28 @@
 // #region  Imports
 import { Email, Footer, Head, Loader, Nav, Social } from '@components';
-import { content } from '@config';
-import { GlobalStyle, mixins, theme } from '@styles';
+import { GlobalStyle } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 // #endregion
-
-const { colors } = theme;
-
-const FooterContainer = styled.footer`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  padding: 15px;
-  background-color: ${colors.darkNavy};
-  color: ${colors.slate};
-  text-align: center;
-  height: auto;
-  min-height: 70px;
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-`;
 
 const INITIAL_GITHUB_INFO = { stars: 0, forks: 0 };
 
 const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [githubInfo, setGithubInfo] = useState(INITIAL_GITHUB_INFO);
+  // const [githubInfo, setGithubInfo] = useState(INITIAL_GITHUB_INFO);
 
-  useEffect(() => {
-    fetch(content.footer.fetchUrl)
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count: stars, forks_count: forks } = json;
-        setGithubInfo({
-          stars,
-          forks,
-        });
-      });
-  }, []);
+  // TODO: AUTH
+  // useEffect(() => {
+  //   fetch(content.footer.fetchUrl)
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       const { stargazers_count: stars, forks_count: forks } = json;
+  //       setGithubInfo({
+  //         stars,
+  //         forks,
+  //       });
+  //     });
+  // }, []);
 
   const parameters = { complete: () => setIsLoading(false) };
 
@@ -55,14 +38,9 @@ const Layout = ({ children }) => {
           <Social />
           <Email />
           {children}
-          <Footer githubInfo={githubInfo} />
+          <Footer githubInfo={INITIAL_GITHUB_INFO} />
         </div>
       )}
-      <FooterContainer>
-        <span role="img" aria-label="warning">
-          The site still under construction ⚠️
-        </span>
-      </FooterContainer>
     </div>
   );
 };
