@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+// #region  Imports
+import { IconLogo } from '@components/icons';
 import anime from 'animejs';
-import { IconLoader } from '@components/icons';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { mixins, theme } from 'styles';
-
-const { colors } = theme;
+// #endregion
 
 const ID = {
   inner: 'inner',
   outer: 'outer',
   loader: 'loader',
+  logoWrapper: 'logoWrapper',
 };
 
 // #region styles
+const { colors } = theme;
+
 const CenterScreen = styled.div`
   ${mixins.flexCenter};
   background-color: ${colors.darkNavy};
@@ -31,6 +34,7 @@ const LogoWrapper = styled.div`
   width: max-content;
   max-width: 400px;
   transition: ${theme.transition};
+  opacity: 0;
   svg {
     width: 100%;
     height: 100%;
@@ -52,6 +56,10 @@ const animate = parameters => {
   const loader = anime.timeline(parameters);
 
   loader
+    .add({
+      targets: `.${ID.logoWrapper}`,
+      opacity: [0, 1],
+    })
     .add({
       targets: `#${ID.loader} path`,
       delay: 500,
@@ -83,22 +91,18 @@ const animate = parameters => {
 };
 // #endregion
 
-const Loader = ({ parameters }) => {
+const Loader = ({ parameters = {} }) => {
   useEffect(() => {
     animate(parameters);
   }, []);
 
   return (
     <CenterScreen className={ID.loader}>
-      <LogoWrapper>
-        <IconLoader />
+      <LogoWrapper className={ID.logoWrapper}>
+        <IconLogo />
       </LogoWrapper>
     </CenterScreen>
   );
-};
-
-Loader.defaultProps = {
-  parameters: {},
 };
 
 Loader.propTypes = {

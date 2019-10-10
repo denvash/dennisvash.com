@@ -20,7 +20,7 @@ const parseSingleNode = data => {
 };
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout metadata={data.site.siteMetadata}>
     <MainContainer id="content">
       <Hero {...parseSingleNode(data.hero.edges)} />
       <About {...parseSingleNode(data.about.edges)} />
@@ -40,6 +40,13 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+        description
+      }
+    }
     hero: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/hero/" } }) {
       edges {
         node {

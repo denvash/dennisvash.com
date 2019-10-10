@@ -1,7 +1,7 @@
 const config = {
   siteTitle: 'Dennis Vash | Software Engineer',
   siteDescription:
-    'Dennis Vash is a software engineer based in Haifa, Israel who specializes in developing exceptional, high-quality websites and applications.',
+    'Dennis Vash is a software engineer based in Israel who specializes in developing exceptional, high-quality websites and applications.',
   siteKeywords:
     'Dennis Vash, Dennis, Vash, denvash, software engineer, front-end engineer, web developer, javascript',
   siteUrl: 'https://dennisvash.com',
@@ -18,9 +18,13 @@ const config = {
       name: 'Github',
       url: 'https://github.com/denvash',
     },
-    STACK_OVERFLOW: {
+    STACKOVERFLOW: {
       name: 'StackOverflow',
       url: 'https://stackoverflow.com/users/7882470/dennis-vash',
+    },
+    DEV: {
+      name: 'Dev',
+      url: 'https://dev.to/denvash',
     },
     TWITTER: {
       name: 'Twitter',
@@ -30,9 +34,10 @@ const config = {
       name: 'Codesandbox',
       url: 'https://codesandbox.io/u/denvash',
     },
-    DEV: {
-      name: 'Dev',
-      url: 'https://dev.to/denvash',
+
+    MEDIUM: {
+      name: 'Medium',
+      url: 'https://medium.com/@dennisvash',
     },
     LINKEDIN: {
       name: 'Linkedin',
@@ -71,6 +76,7 @@ const config = {
     },
     footer: {
       heading: 'Crafted by Dennis Vash',
+      fetchUrl: 'https://api.github.com/repos/denvash/dennisvash.com',
     },
   },
 
