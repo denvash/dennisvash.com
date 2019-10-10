@@ -71,9 +71,6 @@ const config = {
     featured: {
       heading: `Some Things I've Built`,
     },
-    contact: {
-      heading: `What's Next?`,
-    },
     footer: {
       heading: 'Crafted by Dennis Vash',
       fetchUrl: 'https://api.github.com/repos/denvash/dennisvash.com',
