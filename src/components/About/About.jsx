@@ -148,7 +148,10 @@ const About = ({ title, skills, avatar, html }) => {
 };
 
 About.propTypes = {
-  data: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  skills: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  html: PropTypes.string,
 };
 
 export default About;

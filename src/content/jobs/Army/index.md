@@ -7,5 +7,5 @@ range: '2010 - 2014'
 url: 'https://www.idf.il/en/minisites/egoz-unit/'
 ---
 
-- Reserve Duty: Squad Leader | _First Sergeant_.
+- Reserve Duty: Squad Leader | _Sergeant_major_.
 - Compulsory & Warrant Service: Squad Leader | _Sergeant_.

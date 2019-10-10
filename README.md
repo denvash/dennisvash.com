@@ -13,3 +13,8 @@
 - [ ] Fix Imports
 - [ ] Add Card icons
 - [x] Finish timeline
+
+## Page fixes
+
+- [x] Layout
+- [ ]

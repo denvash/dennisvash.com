@@ -1,103 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+// #region  Imports
+import { Email, Footer, Head, Loader, Nav, Social } from '@components';
+import { content } from '@config';
+import { GlobalStyle, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { GlobalStyle, theme } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+// #endregion
 
-const SkipToContent = styled.a`
-  position: absolute;
-  top: auto;
-  left: -999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  z-index: -99;
-  &:hover {
-    background-color: ${colors.darkGrey};
-  }
-  &:focus,
-  &:active {
-    outline: 0;
-    color: ${colors.green};
-    background-color: ${colors.lightNavy};
-    border-radius: ${theme.borderRadius};
-    padding: 18px 23px;
-    font-size: ${fontSizes.small};
-    font-family: ${fonts.SFMono};
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: ${theme.transition};
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    overflow: auto;
-    z-index: 99;
-  }
+const { colors } = theme;
+
+const FooterContainer = styled.footer`
+  ${mixins.flexCenter};
+  flex-direction: column;
+  padding: 15px;
+  background-color: ${colors.darkNavy};
+  color: ${colors.slate};
+  text-align: center;
+  height: auto;
+  min-height: 70px;
+  bottom: 0;
+  width: 100%;
+  position: fixed;
 `;
+
+const INITIAL_GITHUB_INFO = { stars: 0, forks: 0 };
 
 const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [githubInfo, setGithubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
+  const [githubInfo, setGithubInfo] = useState(INITIAL_GITHUB_INFO);
 
   useEffect(() => {
-    fetch('https://api.github.com/repos/denvash/dennisvash.com')
+    fetch(content.footer.fetchUrl)
       .then(response => response.json())
       .then(json => {
-        const { stargazers_count, forks_count } = json;
+        const { stargazers_count: stars, forks_count: forks } = json;
         setGithubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
+          stars,
+          forks,
         });
       });
   }, []);
 
+  const parameters = { complete: () => setIsLoading(false) };
+
   return (
-    <StaticQuery
-      query={graphql`
-        query LayoutQuery {
-          site {
-            siteMetadata {
-              title
-              siteUrl
-              description
-            }
-          }
-        }
-      `}
-      render={({ site }) => (
-        <div id="root">
-          <Head metadata={site.siteMetadata} />
-
-          <GlobalStyle />
-
-          <SkipToContent href="#content">Skip to Content</SkipToContent>
-
-          {isLoading ? (
-            <Loader parameters={{ complete: () => setIsLoading(false) }} />
-          ) : (
-            <div className="container">
-              <Nav />
-              <Social />
-              <Email />
-              {children}
-              <Footer githubInfo={githubInfo} />
-            </div>
-          )}
+    <div id="root">
+      <Head />
+      <GlobalStyle />
+      {isLoading ? (
+        <Loader parameters={parameters} />
+      ) : (
+        <div className="container">
+          <Nav />
+          <Social />
+          <Email />
+          {children}
+          <Footer githubInfo={githubInfo} />
         </div>
       )}
-    />
+      <FooterContainer>
+        <span role="img" aria-label="warning">
+          The site still under construction ⚠️
+        </span>
+      </FooterContainer>
+    </div>
   );
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  metadata: PropTypes.object.isRequired,
 };
 
 export default Layout;

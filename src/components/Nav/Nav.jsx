@@ -40,26 +40,21 @@ const Navbar = styled.nav`
   counter-reset: item 0;
   z-index: 12;
 `;
-const Logo = styled.div`
-  ${mixins.flexCenter};
-`;
-const LogoLink = styled.a`
-  display: block;
-  color: ${colors.green};
-  width: 42px;
-  height: 42px;
-  &:hover,
-  &:focus {
-    svg {
-      fill: ${colors.transGreen};
+
+const LogoContainer = styled.div`
+  svg {
+    width: 100px;
+    height: 40px;
+    user-select: none;
+    #inner {
+      stroke-width: 7px;
+    }
+    #outer {
+      stroke-width: 5px;
     }
   }
-  svg {
-    fill: none;
-    transition: ${theme.transition};
-    user-select: none;
-  }
 `;
+
 const Hamburger = styled.div`
   ${mixins.flexCenter};
   overflow: visible;
@@ -237,11 +232,9 @@ class Nav extends Component {
           <TransitionGroup>
             {isMounted && (
               <CSSTransition classNames="fade" timeout={3000}>
-                <Logo>
-                  <LogoLink href="/" aria-label="home">
-                    <IconLogo />
-                  </LogoLink>
-                </Logo>
+                <LogoContainer>
+                  <IconLogo />
+                </LogoContainer>
               </CSSTransition>
             )}
           </TransitionGroup>

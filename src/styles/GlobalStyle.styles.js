@@ -298,6 +298,20 @@ const GlobalStyle = createGlobalStyle`
     transition: opacity 1000ms ${theme.easing};
   }
 
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    background-color: ${colors.lightNavy};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    width: 3px;
+    background-color: ${colors.lightSlate};
+  }
 `;
 
 export default GlobalStyle;

@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
+import { About, Contact, Featured, Hero, Jobs, Layout, Projects } from '@components';
+import { Main, mixins } from '@styles';
 import { graphql } from 'gatsby';
-import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
-import { mixins, Main } from '@styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const MainContainer = styled(Main)`
   ${mixins.sidePadding};

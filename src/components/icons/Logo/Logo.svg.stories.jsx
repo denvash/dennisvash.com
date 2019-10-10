@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from './Logo.svg';
+import IconLogo from './Logo.svg';
 
 export default {
-  title: 'Atoms|Icons/Icon',
+  title: 'Atoms|Icons/Logo',
 };
 
-export const SVG = () => <Logo />;
+export const SVG = () => <IconLogo />;
