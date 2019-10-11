@@ -1,10 +1,9 @@
 // #region  Imports
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useHero } from '@hooks';
+import { media, mixins, Section, theme } from '@styles';
+import React, { useEffect, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-
-import { theme, mixins, media, Section } from '@styles';
 // #endregion
 
 const { colors, fontSizes, fonts } = theme;
@@ -59,18 +58,19 @@ const Blurb = styled.div`
 
 const delay = number => ({ transitionDelay: `${number}ms` });
 
-const Hero = ({ title, name, subtitle, html }) => {
+const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const { title, name, subtitle, html } = useHero();
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsMounted(true), 1000);
     return () => clearTimeout(timeout);
   }, []);
 
-  const one = () => <Hi style={delay(100)}>{title}</Hi>;
-  const two = () => <Name style={delay(200)}>{name}.</Name>;
-  const three = () => <Subtitle style={delay(300)}>{subtitle}</Subtitle>;
-  const four = () => <Blurb style={delay(400)} dangerouslySetInnerHTML={{ __html: html }} />;
+  const one = <Hi style={delay(100)}>{title}</Hi>;
+  const two = <Name style={delay(200)}>{name}.</Name>;
+  const three = <Subtitle style={delay(300)}>{subtitle}</Subtitle>;
+  const four = <Blurb style={delay(400)} dangerouslySetInnerHTML={{ __html: html }} />;
 
   const items = [one, two, three, four];
 
@@ -86,14 +86,6 @@ const Hero = ({ title, name, subtitle, html }) => {
       </TransitionGroup>
     </HeroContainer>
   );
-};
-
-Hero.propTypes = {
-  title: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  contactText: PropTypes.string.isRequired,
-  html: PropTypes.string.isRequired,
 };
 
 export default Hero;
