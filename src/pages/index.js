@@ -24,8 +24,8 @@ const IndexPage = ({ data }) => (
       <Hero {...parseSingleNode(data.hero.edges)} />
       <About {...parseSingleNode(data.about.edges)} />
       <Jobs data={parseQueryData(data.jobs.edges)} />
-      <Featured data={parseQueryData(data.featured.edges)} />
-      <Projects data={parseQueryData(data.projects.edges)} />
+      <Featured />
+      <Projects />
       <Contact {...parseSingleNode(data.contact.edges)} />
     </MainContainer>
   </Layout>

@@ -10,7 +10,7 @@ tech:
   - Redux
   - Figma
   - Ant-Design
-show: 'true'
+featured: 'true'
 ---
 
 HKube is a cloud-native open source framework to run distributed pipeline of algorithms built on Kubernetes.

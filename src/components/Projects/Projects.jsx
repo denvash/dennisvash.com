@@ -1,9 +1,9 @@
 // #region  Imports
 import { IconExternal, IconFolder, IconGithub } from '@components/icons';
 import { srConfig } from '@config';
+import { useProjects } from '@hooks';
 import { media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
@@ -107,16 +107,15 @@ const TechList = styled.ul`
 
 const GRID_LIMIT = 3;
 
-const Projects = ({ data }) => {
-  const revealTitle = useRef(null);
+const predicate = ({ featured }) => !(featured === 'true');
+
+const Projects = () => {
   const revealProjects = useRef([]);
+  const projects = useProjects(predicate);
 
   useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
-
-  const projects = data.filter(({ show }) => show === 'true');
 
   return (
     <ProjectsContainer>
@@ -181,10 +180,6 @@ const Projects = ({ data }) => {
       </ProjectsGrid>
     </ProjectsContainer>
   );
-};
-
-Projects.propTypes = {
-  data: PropTypes.array.isRequired,
 };
 
 export default Projects;

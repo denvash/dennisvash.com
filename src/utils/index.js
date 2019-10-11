@@ -9,3 +9,5 @@ export const throttle = (func, wait = 100) => {
     }
   };
 };
+
+export { parseQueryNodes, parseSingleNode } from './parseQuery';

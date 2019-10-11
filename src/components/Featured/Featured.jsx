@@ -8,6 +8,7 @@ import { theme, mixins, media, Section, Heading } from '@styles';
 import { srConfig, content } from '@config';
 import { IconGithub, IconExternal } from '@components/icons';
 import sr from '@utils/sr';
+import { useProjects } from '@hooks';
 // #endregion
 
 // #region  Styling
@@ -206,22 +207,23 @@ const Project = styled.div`
 `;
 // #endregion
 
-const Featured = ({ data }) => {
+const predicate = ({ featured }) => featured === 'true';
+
+const Featured = () => {
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
+  const data = useProjects(predicate);
 
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
-  const featuredProjects = data.filter(({ show }) => show === 'true');
-
   return (
     <FeaturedContainer id="projects">
       <Heading ref={revealTitle}>{content.featured.heading}</Heading>
 
-      {featuredProjects.map(({ external, title, tech, github, cover, html }, i) => (
+      {data.map(({ external, title, tech, github, cover, html }, i) => (
         <Project key={i} ref={el => (revealProjects.current[i] = el)}>
           <ContentContainer>
             <FeaturedLabel>Featured Project</FeaturedLabel>

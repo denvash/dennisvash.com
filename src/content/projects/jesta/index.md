@@ -9,7 +9,8 @@ tech:
   - Firebase
   - Android
   - Figma
-show: 'true'
+featured: 'true'
 ---
 
-Jesta is a social application which connects between people who are willing to take up tasks and people who publish them.
+Jesta is a social application which connects between people who are willing
+to take up tasks and people who publish them.
