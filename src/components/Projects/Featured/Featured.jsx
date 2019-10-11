@@ -1,13 +1,13 @@
 // #region  Imports
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import { theme, mixins, media, Section, Heading } from '@styles';
-import { srConfig, content } from '@config';
+import { theme, mixins, media, Section } from '@styles';
+import { srConfig } from '@config';
 import { IconGithub, IconExternal } from '@components/icons';
 import sr from '@utils/sr';
+import { useProjects } from '@hooks';
 // #endregion
 
 // #region  Styling
@@ -206,22 +206,19 @@ const Project = styled.div`
 `;
 // #endregion
 
-const Featured = ({ data }) => {
-  const revealTitle = useRef(null);
+const predicate = ({ featured }) => featured === 'true';
+
+const Featured = () => {
   const revealProjects = useRef([]);
+  const data = useProjects(predicate);
 
   useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
-  const featuredProjects = data.filter(({ show }) => show === 'true');
-
   return (
-    <FeaturedContainer id="projects">
-      <Heading ref={revealTitle}>{content.featured.heading}</Heading>
-
-      {featuredProjects.map(({ external, title, tech, github, cover, html }, i) => (
+    <>
+      {data.map(({ external, title, tech, github, cover, html }, i) => (
         <Project key={i} ref={el => (revealProjects.current[i] = el)}>
           <ContentContainer>
             <FeaturedLabel>Featured Project</FeaturedLabel>
@@ -266,12 +263,8 @@ const Featured = ({ data }) => {
           )}
         </Project>
       ))}
-    </FeaturedContainer>
+    </>
   );
-};
-
-Featured.propTypes = {
-  data: PropTypes.array.isRequired,
 };
 
 export default Featured;

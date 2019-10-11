@@ -1,4 +1,4 @@
-import { About, Contact, Featured, Hero, Jobs, Layout, Projects } from '@components';
+import { About, Contact, Hero, Jobs, Layout, Projects } from '@components';
 import { Main, mixins } from '@styles';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
@@ -24,8 +24,7 @@ const IndexPage = ({ data }) => (
       <Hero {...parseSingleNode(data.hero.edges)} />
       <About {...parseSingleNode(data.about.edges)} />
       <Jobs data={parseQueryData(data.jobs.edges)} />
-      <Featured data={parseQueryData(data.featured.edges)} />
-      <Projects data={parseQueryData(data.projects.edges)} />
+      <Projects />
       <Contact {...parseSingleNode(data.contact.edges)} />
     </MainContainer>
   </Layout>

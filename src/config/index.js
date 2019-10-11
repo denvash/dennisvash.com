@@ -68,7 +68,7 @@ const config = {
     jobs: {
       heading: `What I've been up to`,
     },
-    featured: {
+    projects: {
       heading: `Some Things I've Built`,
     },
     footer: {

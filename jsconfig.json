@@ -11,7 +11,8 @@
       "@content": ["src/content"],
       "@images": ["src/images"],
       "@pages": ["src/pages"],
-      "@utils/*": ["src/utils/*"]
+      "@utils": ["src/utils/index"],
+      "@hooks": ["src/hooks/index"]
     }
   }
 }
