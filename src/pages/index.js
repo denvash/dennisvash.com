@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => (
   <Layout>
     <MainContainer id="content">
       <Hero />
-      <About {...parseSingleNode(data.about.edges)} />
+      <About />
       <Jobs data={parseQueryData(data.jobs.edges)} />
       <Projects />
       <Contact {...parseSingleNode(data.contact.edges)} />

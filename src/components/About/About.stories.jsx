@@ -1,15 +1,8 @@
 import React from 'react';
-
-import { About } from '@components';
-
-const data = {
-  title: 'About Me',
-  skills: ['HTML & CSS-in-JS', 'React', 'Redux', 'Node.js', 'Express', 'GraphQL', 'Figma'],
-  html: '<p>About Text</p>',
-};
+import About from './About';
 
 export default {
   title: 'Molecules|About',
 };
 
-export const NoAvatar = () => <About {...data} />;
+export const Default = () => <About />;
