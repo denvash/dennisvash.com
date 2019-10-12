@@ -1,16 +1,16 @@
 // #region  imports
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
+import { content, srConfig } from '@config';
+import { Heading, media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
-import { srConfig, content } from '@config';
-import { theme, mixins, media, Section, Heading } from '@styles';
+import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { useTimeline } from '@hooks';
 // #endregion
 
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
-// #region  Styling
 const JobsContainer = styled(Section)`
   position: relative;
   max-width: 700px;
@@ -183,10 +183,10 @@ const JobDetails = styled.h5`
 `;
 // #endregion
 
-const Jobs = ({ data }) => {
+const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
-
   const revealContainer = useRef(null);
+  const data = useTimeline();
 
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 

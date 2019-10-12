@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig, email } from '@config';
 import { mixins, Section, Heading } from '@styles';
+import { useContact } from '@hooks';
 // #endregion
 
 // #region  Styling
@@ -23,9 +24,11 @@ const EmailLink = styled.a`
 `;
 // #endregion
 
-const Contact = ({ title, html }) => {
+const Contact = () => {
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+
+  const { title, html } = useContact();
 
   return (
     <ContactContainer id="contact" ref={revealContainer}>
