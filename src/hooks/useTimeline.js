@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 const projectsQuery = graphql`
   {
     jobs: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/jobs/" } }
+      filter: { fileAbsolutePath: { regex: "/timeline/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {
