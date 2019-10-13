@@ -1,9 +1,9 @@
 import { parseQueryNodes } from '@utils';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const projectsQuery = graphql`
+const query = graphql`
   {
-    projects: allMarkdownRemark(
+    query: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/content/projects/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -30,8 +30,8 @@ const projectsQuery = graphql`
 `;
 
 const useProjects = predicate => {
-  const queryData = useStaticQuery(projectsQuery);
-  return parseQueryNodes(queryData.projects.nodes).filter(predicate);
+  const queryData = useStaticQuery(query);
+  return parseQueryNodes(queryData.query.nodes).filter(predicate);
 };
 
 export default useProjects;

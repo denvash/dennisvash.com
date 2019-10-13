@@ -1,6 +1,5 @@
 // #region  Imports
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import sr from '@utils/sr';
@@ -41,11 +40,6 @@ const Contact = () => {
       </EmailLink>
     </ContactContainer>
   );
-};
-
-Contact.propTypes = {
-  title: PropTypes.string.isRequired,
-  html: PropTypes.string.isRequired,
 };
 
 export default Contact;

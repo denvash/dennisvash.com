@@ -1,9 +1,9 @@
 import { parseQueryNode } from '@utils';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const projectsQuery = graphql`
+const query = graphql`
   {
-    contact: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
+    query: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/contact/" } }) {
       nodes {
         frontmatter {
           title
@@ -15,8 +15,8 @@ const projectsQuery = graphql`
 `;
 
 const useContact = () => {
-  const queryData = useStaticQuery(projectsQuery);
-  return parseQueryNode(queryData.contact.nodes);
+  const queryData = useStaticQuery(query);
+  return parseQueryNode(queryData.query.nodes);
 };
 
 export default useContact;

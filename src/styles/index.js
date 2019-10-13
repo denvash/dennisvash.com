@@ -1,7 +1,7 @@
 import theme from './theme';
-import GlobalStyle from './GlobalStyle.styles';
+import GlobalStyle, { ANIMATION_CLASSES } from './GlobalStyle.styles';
 import mixins from './mixins';
-import media from './media';
+import media, { MEDIA_SIZES } from './media';
 import Header from './Header/Header.styles';
 import Main from './Main/Main.styles';
 import Section from './Section/Section.styles';
@@ -22,4 +22,6 @@ export {
   Heading,
   Button,
   InlineLink,
+  MEDIA_SIZES,
+  ANIMATION_CLASSES,
 };

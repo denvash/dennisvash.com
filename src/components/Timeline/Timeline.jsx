@@ -2,7 +2,6 @@
 import { content, srConfig } from '@config';
 import { Heading, media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useTimeline } from '@hooks';
@@ -183,7 +182,9 @@ const JobDetails = styled.h5`
 `;
 // #endregion
 
-const Jobs = () => {
+const { heading, id } = content.Timeline;
+
+const Timeline = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const revealContainer = useRef(null);
   const data = useTimeline();
@@ -191,8 +192,8 @@ const Jobs = () => {
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
-    <JobsContainer id="jobs" ref={revealContainer}>
-      <Heading>{content.jobs.heading}</Heading>
+    <JobsContainer id={id} ref={revealContainer}>
+      <Heading>{heading}</Heading>
       <TabsContainer>
         <Tabs role="tablist">
           {data.map(({ company }, i) => (
@@ -222,7 +223,7 @@ const Jobs = () => {
               <JobTitle>
                 <span>{title}</span>
                 <Company>
-                  <span>&nbsp;@&nbsp;</span>
+                  <span>{` @ `}</span>
                   <a href={url} target="_blank" rel="nofollow noopener noreferrer">
                     {company}
                   </a>
@@ -240,8 +241,4 @@ const Jobs = () => {
   );
 };
 
-Jobs.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
-export default Jobs;
+export default Timeline;

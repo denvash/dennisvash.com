@@ -1,8 +1,8 @@
 import React from 'react';
-import Jobs from './Timeline';
+import Timeline from './Timeline';
 
 export default {
   title: 'Molecules|Timeline',
 };
 
-export const Default = () => <Jobs />;
+export const Default = () => <Timeline />;

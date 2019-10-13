@@ -1,9 +1,9 @@
 import { parseQueryNodes } from '@utils';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const projectsQuery = graphql`
+const query = graphql`
   {
-    jobs: allMarkdownRemark(
+    query: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/timeline/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -22,8 +22,8 @@ const projectsQuery = graphql`
 `;
 
 const useTimeline = () => {
-  const queryData = useStaticQuery(projectsQuery);
-  return parseQueryNodes(queryData.jobs.nodes);
+  const queryData = useStaticQuery(query);
+  return parseQueryNodes(queryData.query.nodes);
 };
 
 export default useTimeline;

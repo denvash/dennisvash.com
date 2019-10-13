@@ -1,8 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
-import theme from './theme';
-import media from './media';
 import * as fontFamilies from './fonts';
+import media from './media';
+import theme from './theme';
+
 const { colors, fontSizes, fonts } = theme;
+
+export const ANIMATION_CLASSES = {
+  FADE: 'fade',
+  FADE_UP: 'fadeup',
+  FADE_DOWN: 'fadedown',
+};
+
+const { FADE, FADE_UP, FADE_DOWN } = ANIMATION_CLASSES;
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -264,36 +273,36 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  .fadeup-enter {
+  .${FADE_UP}-enter {
     opacity: 0.01;
     transform: translateY(20px);
     transition: opacity 300ms ${theme.easing}, transform 300ms ${theme.easing};
   }
 
-  .fadeup-enter-active {
+  .${FADE_UP}-enter-active {
     opacity: 1;
     transform: translateY(0px);
     transition: opacity 300ms ${theme.easing}, transform 300ms ${theme.easing};
   }
 
-  .fadedown-enter {
+  .${FADE_DOWN}-enter {
     opacity: 0.01;
     transform: translateY(-20px);
     transition: opacity 300ms ${theme.easing}, transform 300ms ${theme.easing};
   }
 
-  .fadedown-enter-active {
+  .${FADE_DOWN}-enter-active {
     opacity: 1;
     transform: translateY(0px);
     transition: opacity 300ms ${theme.easing}, transform 300ms ${theme.easing};
   }
 
-  .fade-enter {
+  .${FADE}-enter {
     opacity: 0.01;
     transition: opacity 1000ms ${theme.easing};
   }
 
-  .fade-enter-active {
+  .${FADE}-enter-active {
     opacity: 1;
     transition: opacity 1000ms ${theme.easing};
   }

@@ -11,6 +11,7 @@ import Menu from './Menu/Menu';
 import Nav from './Nav/Nav';
 import Projects from './Projects/Projects';
 import Social from './Social/Social';
+import Transition from './Transition';
 
 export {
   About,
@@ -26,4 +27,5 @@ export {
   Nav,
   Projects,
   Social,
+  Transition,
 };

@@ -47,7 +47,6 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  metadata: PropTypes.object.isRequired,
 };
 
 export default Layout;
