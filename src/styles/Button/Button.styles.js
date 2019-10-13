@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { theme } from '@styles';
+import { transparentize } from 'polished';
+const { fontSizes, fonts, colors } = theme;
 
-const { colors, fontSizes, fonts } = theme;
+const { primary } = colors;
 
 const Button = styled.button`
-  color: ${colors.green};
+  color: ${primary};
   background-color: transparent;
-  border: 1px solid ${colors.green};
+  border: 1px solid ${primary};
   border-radius: ${theme.borderRadius};
   font-size: ${fontSizes.smallish};
   font-family: ${fonts.SFMono};
@@ -19,7 +21,7 @@ const Button = styled.button`
   &:hover,
   &:focus,
   &:active {
-    background-color: ${colors.transGreen};
+    background-color: ${props => transparentize(0.9, primary(props))};
     outline: none;
   }
   &:after {

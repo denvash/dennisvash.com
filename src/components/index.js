@@ -12,6 +12,7 @@ import Nav from './Nav/Nav';
 import Projects from './Projects/Projects';
 import Social from './Social/Social';
 import Transition from './Transition';
+import ThemeProvider from './ThemeProvider';
 
 export {
   About,
@@ -28,4 +29,5 @@ export {
   Projects,
   Social,
   Transition,
+  ThemeProvider,
 };

@@ -1,17 +1,8 @@
 import React from 'react';
-
-import { Hero } from '@components';
-
-const data = {
-  title: 'Hi, my name is',
-  name: 'Dennis Vash',
-  subtitle: 'I create things for the web.',
-  contactText: 'Get In Touch',
-  html: 'html string',
-};
+import Hero from './Hero';
 
 export default {
-  title: 'Molecules|Hero',
+  title: 'Organisms|Hero',
 };
 
-export const NoAvatar = () => <Hero {...data} />;
+export const NoAvatar = () => <Hero />;

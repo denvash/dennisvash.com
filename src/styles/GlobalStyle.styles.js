@@ -181,7 +181,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${colors.highlight};
+    background-color: ${colors.lightNavy};
   }
 
   h1,
@@ -235,11 +235,6 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: 0;
     border-radius: 0;
-
-    &:focus,
-    &:active {
-      outline-color: ${colors.blue};
-    }
   }
 
   input, textarea {
@@ -313,12 +308,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
+    height: 1px;
     width: 4px;
     background-color: ${colors.lightNavy};
   }
 
   ::-webkit-scrollbar-thumb {
-    width: 3px;
+    width: 1px;
     background-color: ${colors.lightSlate};
   }
 `;

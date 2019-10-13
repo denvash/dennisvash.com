@@ -50,6 +50,7 @@
     "gatsby-source-filesystem": "^2.1.31",
     "gatsby-transformer-remark": "^2.6.28",
     "gatsby-transformer-sharp": "^2.2.21",
+    "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",
@@ -57,12 +58,15 @@
     "react-helmet": "^5.2.1",
     "react-transition-group": "^4.3.0",
     "scrollreveal": "^4.0.5",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "styled-theming": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@storybook/addon-actions": "^5.2.3",
+    "@storybook/addon-knobs": "^5.2.3",
     "@storybook/addon-links": "^5.2.3",
+    "@storybook/addon-viewport": "^5.2.3",
     "@storybook/addons": "^5.2.3",
     "@storybook/react": "^5.2.3",
     "@upstatement/eslint-config": "^0.4.2",

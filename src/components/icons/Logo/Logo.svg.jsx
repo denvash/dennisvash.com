@@ -8,11 +8,11 @@ const defaultProps = {
   id: 'loader',
   inner: {
     id: 'inner',
-    color: colors.primary,
+    color: colors.green,
   },
   outer: {
     id: 'outer',
-    color: colors.primary,
+    color: colors.green,
   },
 };
 

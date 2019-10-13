@@ -10,7 +10,7 @@ import { useTimeline } from '@hooks';
 // #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
-const JobsContainer = styled(Section)`
+const TimelineContainer = styled(Section)`
   position: relative;
   max-width: 700px;
 `;
@@ -33,10 +33,12 @@ const Tabs = styled.ul`
     margin-bottom: 30px;
     width: calc(100% + 100px);
     margin-left: -50px;
+    padding-bottom: 10px;
   `};
   ${media.phablet`
     width: calc(100% + 50px);
     margin-left: -25px;
+    padding-bottom: 10px;
   `};
 
   li {
@@ -107,7 +109,7 @@ const Highlighter = styled.span`
     max-width: ${theme.tabWidth}px;
     height: 2px;
     top: auto;
-    bottom: 0;
+    bottom: 10px;
     transform: translateX(
       ${props => (props.activeTabId > 0 ? props.activeTabId * theme.tabWidth : 0)}px
     );
@@ -115,6 +117,7 @@ const Highlighter = styled.span`
   `};
   ${media.phablet`
     margin-left: 25px;
+    bottom: 10px;
   `};
 `;
 const ContentContainer = styled.div`
@@ -158,7 +161,7 @@ const TabContent = styled.div`
     ${mixins.inlineLink};
   }
 `;
-const JobTitle = styled.h4`
+const TimelineTitle = styled.h4`
   color: ${colors.lightestSlate};
   font-size: ${fontSizes.xxlarge};
   font-weight: 500;
@@ -169,7 +172,7 @@ const Company = styled.span`
   color: ${colors.green};
 `;
 
-const JobDetails = styled.h5`
+const TimelineDetails = styled.h5`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
   font-weight: normal;
@@ -192,7 +195,7 @@ const Timeline = () => {
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
-    <JobsContainer id={id} ref={revealContainer}>
+    <TimelineContainer id={id} ref={revealContainer}>
       <Heading>{heading}</Heading>
       <TabsContainer>
         <Tabs role="tablist">
@@ -220,7 +223,7 @@ const Timeline = () => {
               role="tabpanel"
               aria-labelledby={`job${i}`}
               aria-hidden={activeTabId !== i}>
-              <JobTitle>
+              <TimelineTitle>
                 <span>{title}</span>
                 <Company>
                   <span>{` @ `}</span>
@@ -228,16 +231,16 @@ const Timeline = () => {
                     {company}
                   </a>
                 </Company>
-              </JobTitle>
-              <JobDetails>
+              </TimelineTitle>
+              <TimelineDetails>
                 <span>{range}</span>
-              </JobDetails>
+              </TimelineDetails>
               <div dangerouslySetInnerHTML={{ __html: html }} />
             </TabContent>
           ))}
         </ContentContainer>
       </TabsContainer>
-    </JobsContainer>
+    </TimelineContainer>
   );
 };
 

@@ -1,5 +1,5 @@
 // #region  Imports
-import { navLinks } from '@config';
+import { content, navBar } from '@config';
 import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -36,7 +36,7 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${colors.shadowNavy};
+  box-shadow: -10px 0px 30px -15px ${colors.darkNavy};
   ${media.thone`padding: 25px;`};
   ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
@@ -99,12 +99,11 @@ const Menu = ({ menuOpen, toggleMenu }) => {
       <Sidebar>
         <NavLinks>
           <NavList>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavListItem key={i}>
-                  <NavLink href={url}>{name}</NavLink>
-                </NavListItem>
-              ))}
+            {navBar.map((name, i) => (
+              <NavListItem key={i}>
+                <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+              </NavListItem>
+            ))}
           </NavList>
           <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
             Resume
