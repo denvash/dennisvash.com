@@ -1,5 +1,5 @@
 // #region  Imports
-import { navBar, content } from '@config';
+import { content, navBar } from '@config';
 import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -101,7 +101,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
           <NavList>
             {navBar.map((name, i) => (
               <NavListItem key={i}>
-                <NavLink href={content[name].id}>{name}</NavLink>
+                <NavLink href={`#${content[name].id}`}>{name}</NavLink>
               </NavListItem>
             ))}
           </NavList>
