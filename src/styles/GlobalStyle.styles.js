@@ -313,12 +313,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
+    height: 1px;
     width: 4px;
     background-color: ${colors.lightNavy};
   }
 
   ::-webkit-scrollbar-thumb {
-    width: 3px;
+    width: 1px;
     background-color: ${colors.lightSlate};
   }
 `;

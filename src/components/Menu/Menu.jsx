@@ -1,5 +1,5 @@
 // #region  Imports
-import { navLinks } from '@config';
+import { navBar, content } from '@config';
 import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -99,12 +99,11 @@ const Menu = ({ menuOpen, toggleMenu }) => {
       <Sidebar>
         <NavLinks>
           <NavList>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavListItem key={i}>
-                  <NavLink href={url}>{name}</NavLink>
-                </NavListItem>
-              ))}
+            {navBar.map((name, i) => (
+              <NavListItem key={i}>
+                <NavLink href={content[name].id}>{name}</NavLink>
+              </NavListItem>
+            ))}
           </NavList>
           <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
             Resume

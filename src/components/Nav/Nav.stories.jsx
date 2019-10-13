@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 
 export default {
-  title: 'Molecules|Nav',
+  title: 'Organisms|Nav',
 };
 
 const paragraph = `Lorem ipsum mollis lacinia sollicitudin adipiscing interdum elit lobortis felis egestas,
