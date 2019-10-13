@@ -2,11 +2,11 @@
 import { IconExternal, IconFolder, IconGithub } from '@components/icons';
 import { srConfig } from '@config';
 import { useProjects } from '@hooks';
-import { media, mixins, theme } from '@styles';
+import { media, mixins, theme, ANIMATION_CLASSES } from '@styles';
 import sr from '@utils/sr';
 import React, { useEffect, useRef } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
+import Transition from '@components/Transition';
 // #endregion
 
 // #region  Styling
@@ -112,53 +112,52 @@ const SideProjects = () => {
 
   return (
     <ProjectsGrid>
-      <TransitionGroup className="projects">
-        {projects &&
-          projects.map(({ github, external, title, tech, html }, i) => (
-            <CSSTransition key={i} classNames="fadeup" timeout={5000}>
-              <Project key={i} ref={el => (revealProjects.current[i] = el)}>
-                <ProjectInner>
-                  <header>
-                    <ProjectHeader>
-                      <Folder>
-                        <IconFolder />
-                      </Folder>
-                      <Links>
-                        {github && (
-                          <IconLink
-                            href={github}
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            aria-label="Github Link">
-                            <IconGithub />
-                          </IconLink>
-                        )}
-                        {external && (
-                          <IconLink
-                            href={external}
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            aria-label="External Link">
-                            <IconExternal />
-                          </IconLink>
-                        )}
-                      </Links>
-                    </ProjectHeader>
-                    <ProjectName>{title}</ProjectName>
-                    <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
-                  </header>
-                  <footer>
-                    <TechList>
-                      {tech.map((tech, i) => (
-                        <li key={i}>{tech}</li>
-                      ))}
-                    </TechList>
-                  </footer>
-                </ProjectInner>
-              </Project>
-            </CSSTransition>
-          ))}
-      </TransitionGroup>
+      <Transition.Group className="projects">
+        {projects.map(({ github, external, title, tech, html }, i) => (
+          <Transition key={i} classNames={ANIMATION_CLASSES.FADE_UP} timeout={5000}>
+            <Project key={i} ref={el => (revealProjects.current[i] = el)}>
+              <ProjectInner>
+                <header>
+                  <ProjectHeader>
+                    <Folder>
+                      <IconFolder />
+                    </Folder>
+                    <Links>
+                      {github && (
+                        <IconLink
+                          href={github}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="Github Link">
+                          <IconGithub />
+                        </IconLink>
+                      )}
+                      {external && (
+                        <IconLink
+                          href={external}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link">
+                          <IconExternal />
+                        </IconLink>
+                      )}
+                    </Links>
+                  </ProjectHeader>
+                  <ProjectName>{title}</ProjectName>
+                  <ProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
+                </header>
+                <footer>
+                  <TechList>
+                    {tech.map((tech, i) => (
+                      <li key={i}>{tech}</li>
+                    ))}
+                  </TechList>
+                </footer>
+              </ProjectInner>
+            </Project>
+          </Transition>
+        ))}
+      </Transition.Group>
     </ProjectsGrid>
   );
 };

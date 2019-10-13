@@ -3,8 +3,8 @@ import { socialMedia } from '@config';
 import iconMapper from '@components/icons';
 import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
+import Transition from '@components/Transition';
 // #endregion
 
 // #region  Styling
@@ -60,9 +60,9 @@ const Social = () => {
 
   return (
     <SocialContainer>
-      <TransitionGroup>
+      <Transition.Group>
         {isMounted && (
-          <CSSTransition timeout={3000} classNames="fade">
+          <Transition>
             <SocialItemList>
               {socialMedia &&
                 Object.values(socialMedia).map(({ url, name }, i) => (
@@ -77,9 +77,9 @@ const Social = () => {
                   </SocialItem>
                 ))}
             </SocialItemList>
-          </CSSTransition>
+          </Transition>
         )}
-      </TransitionGroup>
+      </Transition.Group>
     </SocialContainer>
   );
 };

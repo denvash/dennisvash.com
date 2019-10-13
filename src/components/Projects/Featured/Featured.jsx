@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import { theme, mixins, media, Section } from '@styles';
+import { theme, mixins, media } from '@styles';
 import { srConfig } from '@config';
 import { IconGithub, IconExternal } from '@components/icons';
 import sr from '@utils/sr';
@@ -13,11 +13,6 @@ import { useProjects } from '@hooks';
 // #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
-const FeaturedContainer = styled(Section)`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  align-items: flex-start;
-`;
 const ContentContainer = styled.div`
   position: relative;
   grid-column: 1 / 7;

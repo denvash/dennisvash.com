@@ -45,31 +45,21 @@ const config = {
     },
   },
 
-  navLinks: [
-    {
-      name: 'About',
-      url: '#about',
-    },
-    {
-      name: 'Timeline',
-      url: '#jobs',
-    },
-    {
-      name: 'Projects',
-      url: '#projects',
-    },
-    {
-      name: 'Contact',
-      url: '#contact',
-    },
-  ],
-
+  navBar: ['About', 'Timeline', 'Projects', 'Contact'],
   content: {
-    jobs: {
+    About: {
+      id: 'about',
+    },
+    Timeline: {
+      id: 'timeline',
       heading: `What I've been up to`,
     },
-    projects: {
+    Projects: {
+      id: 'projects',
       heading: `Some Things I've Built`,
+    },
+    Contact: {
+      id: 'contact',
     },
     footer: {
       heading: 'Crafted by Dennis Vash',
@@ -77,7 +67,6 @@ const config = {
     },
   },
 
-  navHeight: 100,
   greenColor: '#64ffda',
   navyColor: '#0a192f',
   darkNavyColor: '#020c1b',

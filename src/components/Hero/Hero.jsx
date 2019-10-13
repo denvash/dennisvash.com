@@ -1,10 +1,9 @@
 // #region  Imports
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Transition, { delay } from '@components/Transition';
+import { useHero } from '@hooks';
+import { media, mixins, Section, theme } from '@styles';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
-import { theme, mixins, media, Section } from '@styles';
 // #endregion
 
 const { colors, fontSizes, fonts } = theme;
@@ -57,43 +56,31 @@ const Blurb = styled.div`
 `;
 // #endregion
 
-const delay = number => ({ transitionDelay: `${number}ms` });
+const DELAY = 100;
 
-const Hero = ({ title, name, subtitle, html }) => {
+const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const { title, name, subtitle, html } = useHero();
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsMounted(true), 1000);
     return () => clearTimeout(timeout);
   }, []);
 
-  const one = () => <Hi style={delay(100)}>{title}</Hi>;
-  const two = () => <Name style={delay(200)}>{name}.</Name>;
-  const three = () => <Subtitle style={delay(300)}>{subtitle}</Subtitle>;
-  const four = () => <Blurb style={delay(400)} dangerouslySetInnerHTML={{ __html: html }} />;
+  const one = <Hi style={delay(DELAY)}>{title}</Hi>;
+  const two = <Name style={delay(2 * DELAY)}>{name}.</Name>;
+  const three = <Subtitle style={delay(3 * DELAY)}>{subtitle}</Subtitle>;
+  const four = <Blurb style={delay(4 * DELAY)} dangerouslySetInnerHTML={{ __html: html }} />;
 
   const items = [one, two, three, four];
 
   return (
     <HeroContainer>
-      <TransitionGroup component={null}>
-        {isMounted &&
-          items.map((item, key) => (
-            <CSSTransition key={key} classNames="fadeup" timeout={3000}>
-              {item}
-            </CSSTransition>
-          ))}
-      </TransitionGroup>
+      <Transition.Group>
+        {isMounted && items.map((item, i) => <Transition key={i}>{item}</Transition>)}
+      </Transition.Group>
     </HeroContainer>
   );
-};
-
-Hero.propTypes = {
-  title: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  contactText: PropTypes.string.isRequired,
-  html: PropTypes.string.isRequired,
 };
 
 export default Hero;

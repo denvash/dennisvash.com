@@ -2,8 +2,8 @@
 import { email } from '@config';
 import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
+import Transition from '@components/Transition';
 // #endregion
 
 // #region  Styling
@@ -61,17 +61,17 @@ const Email = () => {
 
   return (
     <EmailContainer>
-      <TransitionGroup>
+      <Transition.Group>
         {isMounted && (
-          <CSSTransition timeout={3000} classNames="fade">
+          <Transition>
             <EmailLinkWrapper>
               <EmailLink href={`mailto:${email}`} target="_blank">
                 {email}
               </EmailLink>
             </EmailLinkWrapper>
-          </CSSTransition>
+          </Transition>
         )}
-      </TransitionGroup>
+      </Transition.Group>
     </EmailContainer>
   );
 };

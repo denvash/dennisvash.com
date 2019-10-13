@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Projects } from '@components';
+import Projects from './Projects';
 
 export default {
   title: 'Molecules|Projects/Projects',

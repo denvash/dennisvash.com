@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { throttle } from '@utils';
-import { navLinks, navHeight } from '@config';
+// #region  Imports
 import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
+import Transition, { delay } from '@components/Transition';
+import { navBar, content } from '@config';
+import { ANIMATION_CLASSES, media, MEDIA_SIZES, mixins, theme } from '@styles';
+import { throttle } from '@utils';
+import React, { useEffect, useRef, useState } from 'react';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fontSizes, fonts } = theme;
 
 const NavContainer = styled.header`
@@ -31,6 +35,7 @@ const NavContainer = styled.header`
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
 `;
+
 const Navbar = styled.nav`
   ${mixins.flexBetween};
   position: relative;
@@ -71,12 +76,14 @@ const Hamburger = styled.div`
   display: none;
   ${media.tablet`display: flex;`};
 `;
+
 const HamburgerBox = styled.div`
   position: relative;
   display: inline-block;
   width: ${theme.hamburgerWidth}px;
   height: 24px;
 `;
+
 const HamburgerInner = styled.div`
   background-color: ${colors.green};
   position: absolute;
@@ -121,16 +128,19 @@ const HamburgerInner = styled.div`
     transition: ${props => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
   }
 `;
+
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
   ${media.tablet`display: none;`};
 `;
+
 const NavList = styled.ol`
   div {
     ${mixins.flexBetween};
   }
 `;
+
 const NavListItem = styled.li`
   margin: 0 10px;
   position: relative;
@@ -143,150 +153,151 @@ const NavListItem = styled.li`
     font-size: ${fontSizes.xsmall};
   }
 `;
+
 const NavLink = styled(AnchorLink)`
   padding: 12px 10px;
 `;
+
 const ResumeLink = styled.a`
   ${mixins.smallButton};
   margin-left: 10px;
   font-size: ${fontSizes.smallish};
 `;
+// #endregion
 
+// #region  Helpers
 const DELTA = 5;
 
-class Nav extends Component {
-  state = {
-    isMounted: false,
-    menuOpen: false,
-    scrollDirection: 'none',
-    lastScrollTop: 0,
-  };
+const DIRECTIONS = {
+  UP: 'up',
+  DOWN: 'down',
+  NONE: 'none',
+};
 
-  componentDidMount() {
-    setTimeout(() => this.setState({ isMounted: true }), 100);
+const navHeight = Number(theme.navHeight.replace('px', ''));
+// #endregion
 
-    window.addEventListener('scroll', () => throttle(this.handleScroll()));
-    window.addEventListener('resize', () => throttle(this.handleResize()));
-    window.addEventListener('keydown', e => this.handleKeydown(e));
-  }
+const Nav = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState(DIRECTIONS.NONE);
 
-  componentWillUnmount() {
-    this.setState({ isMounted: false });
+  const isMountedRef = useRef(isMounted);
+  const isMenuOpenRef = useRef(isMenuOpen);
+  const lastScrollY = useRef(0);
 
-    window.removeEventListener('scroll', () => this.handleScroll());
-    window.removeEventListener('resize', () => this.handleResize());
-    window.removeEventListener('keydown', e => this.handleKeydown(e));
-  }
+  const toggleMenu = () => setIsMenuOpen(p => !p);
 
-  toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
-  handleScroll = () => {
-    const { isMounted, menuOpen, scrollDirection, lastScrollTop } = this.state;
-    const fromTop = window.scrollY;
+  useEffect(() => {
+    isMenuOpenRef.current = isMenuOpen;
+  }, [setIsMenuOpen]);
 
-    // Make sure they scroll more than DELTA
-    if (!isMounted || Math.abs(lastScrollTop - fromTop) <= DELTA || menuOpen) {
-      return;
-    }
+  useEffect(() => {
+    isMountedRef.current = isMounted;
+  }, [isMounted]);
 
-    if (fromTop < DELTA) {
-      this.setState({ scrollDirection: 'none' });
-    } else if (fromTop > lastScrollTop && fromTop > navHeight) {
-      if (scrollDirection !== 'down') {
-        this.setState({ scrollDirection: 'down' });
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      const isHandleSkipped =
+        !isMountedRef.current ||
+        isMenuOpenRef.current ||
+        Math.abs(lastScrollY.current - scrollY) <= DELTA;
+
+      if (isHandleSkipped) {
+        return;
       }
-    } else if (fromTop + window.innerHeight < document.body.scrollHeight) {
-      if (scrollDirection !== 'up') {
-        this.setState({ scrollDirection: 'up' });
+
+      if (scrollY < DELTA) {
+        setScrollDirection(DIRECTIONS.NONE);
+      } else if (scrollY > lastScrollY.current && scrollY > navHeight) {
+        scrollDirection !== DIRECTIONS.DOWN && setScrollDirection(DIRECTIONS.DOWN);
+      } else if (scrollY + window.innerHeight < document.body.scrollHeight) {
+        scrollDirection !== DIRECTIONS.UP && setScrollDirection(DIRECTIONS.UP);
       }
-    }
+      lastScrollY.current = scrollY;
+    };
 
-    this.setState({ lastScrollTop: fromTop });
-  };
+    const handleResize = () => {
+      if (window.innerWidth > MEDIA_SIZES.tablet && isMenuOpenRef.current) {
+        toggleMenu();
+      }
+    };
 
-  handleResize = () => {
-    if (window.innerWidth > 768 && this.state.menuOpen) {
-      this.toggleMenu();
-    }
-  };
+    window.addEventListener('scroll', () => throttle(handleScroll()));
+    window.addEventListener('resize', () => throttle(handleResize()));
 
-  handleKeydown = e => {
-    if (!this.state.menuOpen) {
-      return;
-    }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    if (e.which === 27 || e.key === 'Escape') {
-      this.toggleMenu();
-    }
-  };
+  return (
+    <NavContainer scrollDirection={scrollDirection}>
+      <Helmet>
+        <body className={isMenuOpen ? 'blur' : ''} />
+      </Helmet>
+      <Navbar>
+        <Transition.Group>
+          {isMounted && (
+            <Transition>
+              <LogoContainer>
+                <IconLogo />
+              </LogoContainer>
+            </Transition>
+          )}
+        </Transition.Group>
 
-  render() {
-    const { isMounted, menuOpen, scrollDirection } = this.state;
+        <Transition.Group>
+          {isMounted && (
+            <Transition>
+              <Hamburger onClick={toggleMenu}>
+                <HamburgerBox>
+                  <HamburgerInner menuOpen={isMenuOpen} />
+                </HamburgerBox>
+              </Hamburger>
+            </Transition>
+          )}
+        </Transition.Group>
 
-    return (
-      <NavContainer scrollDirection={scrollDirection}>
-        <Helmet>
-          <body className={menuOpen ? 'blur' : ''} />
-        </Helmet>
-        <Navbar>
-          <TransitionGroup>
+        <NavLinks>
+          <NavList>
+            <Transition.Group>
+              {isMounted &&
+                navBar.map((name, i) => (
+                  <Transition key={i} classNames={ANIMATION_CLASSES.FADE_DOWN}>
+                    <NavListItem key={i} style={delay(i * 100)}>
+                      <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+                    </NavListItem>
+                  </Transition>
+                ))}
+            </Transition.Group>
+          </NavList>
+
+          <Transition.Group>
             {isMounted && (
-              <CSSTransition classNames="fade" timeout={3000}>
-                <LogoContainer>
-                  <IconLogo />
-                </LogoContainer>
-              </CSSTransition>
+              <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
+                <div style={delay(600)}>
+                  <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
+                    Resume
+                  </ResumeLink>
+                </div>
+              </Transition>
             )}
-          </TransitionGroup>
+          </Transition.Group>
+        </NavLinks>
+      </Navbar>
 
-          <TransitionGroup>
-            {isMounted && (
-              <CSSTransition classNames="fade" timeout={3000}>
-                <Hamburger onClick={this.toggleMenu}>
-                  <HamburgerBox>
-                    <HamburgerInner menuOpen={menuOpen} />
-                  </HamburgerBox>
-                </Hamburger>
-              </CSSTransition>
-            )}
-          </TransitionGroup>
-
-          <NavLinks>
-            <NavList>
-              <TransitionGroup>
-                {isMounted &&
-                  navLinks &&
-                  navLinks.map(({ url, name }, i) => (
-                    <CSSTransition key={i} classNames="fadedown" timeout={3000}>
-                      <NavListItem key={i} style={{ transitionDelay: `${i * 100}ms` }}>
-                        <NavLink href={url}>{name}</NavLink>
-                      </NavListItem>
-                    </CSSTransition>
-                  ))}
-              </TransitionGroup>
-            </NavList>
-
-            <TransitionGroup>
-              {isMounted && (
-                <CSSTransition classNames="fadedown" timeout={3000}>
-                  <div style={{ transitionDelay: `600ms` }}>
-                    <ResumeLink
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="nofollow noopener noreferrer">
-                      Resume
-                    </ResumeLink>
-                  </div>
-                </CSSTransition>
-              )}
-            </TransitionGroup>
-          </NavLinks>
-        </Navbar>
-
-        <Menu menuOpen={menuOpen} toggleMenu={this.toggleMenu} />
-      </NavContainer>
-    );
-  }
-}
+      <Menu menuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+    </NavContainer>
+  );
+};
 
 export default Nav;

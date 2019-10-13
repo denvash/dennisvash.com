@@ -1,14 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
+// #region  Imports
+import { github, srConfig } from '@config';
+import { useAbout } from '@hooks';
+import { Heading, media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
-import { srConfig, github } from '@config';
+import Img from 'gatsby-image';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { theme, mixins, media, Section, Heading } from '@styles';
-
-const { colors, fontSizes, fonts } = theme;
+// #endregion
 
 // #region  Styling
+const { colors, fontSizes, fonts } = theme;
+
 const AboutContainer = styled(Section)`
   position: relative;
 `;
@@ -121,9 +123,11 @@ const AvatarContainer = styled.a`
 `;
 // #endregion
 
-const About = ({ title, skills, avatar, html }) => {
+const About = () => {
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+
+  const { title, skills, avatar, html } = useAbout();
 
   return (
     <AboutContainer id="about" ref={revealContainer}>
@@ -135,23 +139,14 @@ const About = ({ title, skills, avatar, html }) => {
             {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
           </SkillsContainer>
         </ContentContainer>
-        {avatar && (
-          <PicContainer>
-            <AvatarContainer href={github}>
-              <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
-            </AvatarContainer>
-          </PicContainer>
-        )}
+        <PicContainer>
+          <AvatarContainer href={github}>
+            <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+          </AvatarContainer>
+        </PicContainer>
       </FlexContainer>
     </AboutContainer>
   );
-};
-
-About.propTypes = {
-  title: PropTypes.string.isRequired,
-  skills: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  html: PropTypes.string,
 };
 
 export default About;

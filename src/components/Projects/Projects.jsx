@@ -16,9 +16,7 @@ const Container = styled(Section)`
 `;
 // #endregion
 
-const {
-  projects: { heading },
-} = content;
+const { heading, id } = content.Projects;
 
 const Projects = () => {
   const revealTitle = useRef(null);
@@ -28,7 +26,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <Container>
+    <Container id={id}>
       <Heading ref={revealTitle}>{heading}</Heading>
       <Featured />
       <SideProjects />
