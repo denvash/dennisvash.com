@@ -1,5 +1,5 @@
 import React from 'react';
-import IndexPage from './index';
+import IndexPage from '@pages';
 
 export default {
   title: 'Pages|Index',
