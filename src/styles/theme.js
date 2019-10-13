@@ -1,31 +1,40 @@
+import styledTheme from 'styled-theming';
+
+const hack = {
+  primary: '#64ffda',
+  secondary: '#606a86',
+  title: '#e6f1ff',
+  background: '#0a192f',
+};
+
+const summerTime = {
+  primary: '#F699D9',
+  secondary: '#EBEA8B',
+  background: '#2B303B',
+  title: '#ECF6FF',
+};
+
+const primary = styledTheme('mode', {
+  hack: hack.primary,
+  summerTime: summerTime.primary,
+});
+
 const theme = {
   colors: {
-    primary: '#64ffda',
-
-    dark: '#000007',
-    darkestNavy: '#01050b',
-    darkNavy: '#020c1b',
-    navy: '#0a192f',
-    lightNavy: '#172a45',
+    primary,
     darkGrey: '#333f58',
-    mediumGrey: '#2d3952',
-    grey: '#4c5772',
-    lightGrey: '#606a86',
-    slate: '#8892b0',
-    lightSlate: '#a8b2d1',
-    lightestSlate: '#ccd6f6',
-    offWhite: '#dce7ff',
-    white: '#e6f1ff',
-    pink: '#FF647F',
-    yellow: '#FFC464',
-    orange: '#FF9E64',
+    darkNavy: '#020c1b',
     green: '#64ffda',
-    blue: '#71AFFF',
-    darkBlue: '#1D7FFC',
-    highlight: 'rgba(41, 61, 90, 0.99)',
-    transGreen: 'rgba(100, 255, 218, 0.07)',
-    transNavy: '#0a192f',
-    shadowNavy: '#020c1b',
+    grey: '#4c5772',
+    lightestSlate: '#ccd6f6',
+    lightGrey: '#606a86',
+    lightNavy: '#172a45',
+    lightSlate: '#a8b2d1',
+    mediumGrey: '#2d3952',
+    navy: '#0a192f',
+    slate: '#8892b0',
+    transGreen: '#64ffda12',
+    white: '#e6f1ff',
   },
 
   fonts: {
@@ -56,10 +65,6 @@ const theme = {
   tabHeight: 42,
   tabWidth: 120,
   radius: 3,
-
-  gradient: `linear-gradient(0.4turn, #64d6ff, #64ffda)`,
-
-  loaderDelay: `6`,
 
   hamburgerWidth: 30,
   hamBefore: `top 0.1s ease-in 0.25s, opacity 0.1s ease-in`,

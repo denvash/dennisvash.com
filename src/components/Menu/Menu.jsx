@@ -36,7 +36,7 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${colors.shadowNavy};
+  box-shadow: -10px 0px 30px -15px ${colors.darkNavy};
   ${media.thone`padding: 25px;`};
   ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};

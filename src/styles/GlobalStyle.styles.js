@@ -181,7 +181,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${colors.highlight};
+    background-color: ${colors.lightNavy};
   }
 
   h1,
@@ -235,11 +235,6 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: 0;
     border-radius: 0;
-
-    &:focus,
-    &:active {
-      outline-color: ${colors.blue};
-    }
   }
 
   input, textarea {

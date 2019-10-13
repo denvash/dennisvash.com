@@ -2,18 +2,31 @@ import React from 'react';
 
 import { configure, addParameters, addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
+import { radios, withKnobs } from '@storybook/addon-knobs';
 import GlobalStyle from '../src/styles/GlobalStyle.styles';
+import ThemeProvider from '../src/components/ThemeProvider';
 
-addDecorator(s => (
-  <>
-    <GlobalStyle />
-    {s()}
-  </>
-));
+const label = 'Themes';
+const options = {
+  SummerTime: 'summerTime',
+  Hack: 'hack',
+};
+const defaultValue = options.Hack;
+
+addDecorator(withKnobs);
+addDecorator(s => {
+  const mode = radios(label, options, defaultValue);
+  return (
+    <>
+      <GlobalStyle />
+      <ThemeProvider mode={mode}>{s()}</ThemeProvider>
+    </>
+  );
+});
 
 addParameters({
   options: {
-    panelPosition: 'right',
+    panelPosition: 'bottom',
     storySort: (a, b) => a[1].id.localeCompare(b[1].id),
     theme: themes.dark,
   },
