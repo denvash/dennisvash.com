@@ -14,13 +14,13 @@ const options = {
 const defaultValue = options.Hack;
 
 addDecorator(withKnobs);
-addDecorator(s => {
+addDecorator(S => {
   const mode = radios(label, options, defaultValue);
   return (
-    <>
+    <ThemeProvider mode={mode}>
       <GlobalStyle />
-      <ThemeProvider mode={mode}>{s()}</ThemeProvider>
-    </>
+      <S />
+    </ThemeProvider>
   );
 });
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import styled from 'styled-components';
+import { darken, lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -28,7 +29,7 @@ const MenuContainer = styled.div`
 const Sidebar = styled.div`
   ${mixins.flexCenter};
   flex-direction: column;
-  background-color: ${colors.lightNavy};
+  background-color: ${props => lighten(0.03, colors.background(props))};
   padding: 50px;
   width: 50vw;
   height: 100%;
@@ -36,9 +37,8 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${colors.darkNavy};
+  box-shadow: -10px 0px 30px -15px ${props => darken(0.1, colors.background(props))};
   ${media.thone`padding: 25px;`};
-  ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
 `;
 const NavLinks = styled.nav`
@@ -73,11 +73,14 @@ const NavLink = styled(AnchorLink)`
   padding: 3px 20px 20px;
   width: 100%;
 `;
+
 const ResumeLink = styled.a`
   ${mixins.bigButton};
   padding: 18px 50px;
   margin: 10% auto 0;
   width: max-content;
+  ${media.phablet`
+    ${mixins.smallButton}`}
 `;
 // #endregion
 

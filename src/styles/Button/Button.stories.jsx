@@ -18,16 +18,9 @@ export default {
   decorators: [decorator],
 };
 
-const Big = styled.div`
-  ${mixins.bigButton};
-  max-width: fit-content;
-`;
-
-const Small = styled.div`
+const Small = styled(Button)`
   ${mixins.smallButton};
-  max-width: fit-content;
 `;
 
 export const Default = () => <Button>Default</Button>;
-export const BigButton = () => <Big>With Mixin</Big>;
 export const SmallButton = () => <Small>With Mixin</Small>;

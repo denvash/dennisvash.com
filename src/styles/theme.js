@@ -26,10 +26,22 @@ const secondary = styledTheme(MODE, {
   summerTime: summerTime.secondary,
 });
 
+const background = styledTheme(MODE, {
+  hack: hack.background,
+  summerTime: summerTime.background,
+});
+
+const title = styledTheme(MODE, {
+  hack: hack.title,
+  summerTime: summerTime.title,
+});
+
 const theme = {
   colors: {
     primary,
     secondary,
+    background,
+    title,
     darkGrey: '#333f58',
     darkNavy: '#020c1b',
     green: '#64ffda',

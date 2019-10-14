@@ -151,7 +151,7 @@ const NavListItem = styled.li`
   &:before {
     content: '0' counter(item) '.';
     text-align: right;
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.xsmall};
   }
 `;
