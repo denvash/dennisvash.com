@@ -1,8 +1,10 @@
 import styledTheme from 'styled-theming';
 
+const MODE = 'mode';
+
 const hack = {
   primary: '#64ffda',
-  secondary: '#606a86',
+  secondary: '#8892b0',
   title: '#e6f1ff',
   background: '#0a192f',
 };
@@ -14,14 +16,20 @@ const summerTime = {
   title: '#ECF6FF',
 };
 
-const primary = styledTheme('mode', {
+const primary = styledTheme(MODE, {
   hack: hack.primary,
   summerTime: summerTime.primary,
+});
+
+const secondary = styledTheme(MODE, {
+  hack: hack.secondary,
+  summerTime: summerTime.secondary,
 });
 
 const theme = {
   colors: {
     primary,
+    secondary,
     darkGrey: '#333f58',
     darkNavy: '#020c1b',
     green: '#64ffda',

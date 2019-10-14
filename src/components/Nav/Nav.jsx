@@ -9,10 +9,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import { lighten } from 'polished';
 // #endregion
 
 // #region  Styling
 const { colors, fontSizes, fonts } = theme;
+const navHeight = Number(theme.navHeight.replace('px', ''));
 
 const NavContainer = styled.header`
   ${mixins.flexBetween};
@@ -40,7 +42,7 @@ const Navbar = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${colors.lightestSlate};
+  color: ${props => lighten(0.2, colors.secondary(props))};
   font-family: ${fonts.SFMono};
   counter-reset: item 0;
   z-index: 12;
@@ -48,9 +50,9 @@ const Navbar = styled.nav`
 
 const LogoContainer = styled.div`
   svg {
-    width: 100px;
-    height: 40px;
-    user-select: none;
+    width: 60px;
+    ${media.tiny`width: 50px; padding-right: 5px;`};
+    height: ${theme.navHeight};
     #inner {
       stroke-width: 7px;
     }
@@ -85,7 +87,7 @@ const HamburgerBox = styled.div`
 `;
 
 const HamburgerInner = styled.div`
-  background-color: ${colors.green};
+  background-color: ${colors.primary};
   position: absolute;
   width: ${theme.hamburgerWidth}px;
   height: 2px;
@@ -174,7 +176,6 @@ const DIRECTIONS = {
   NONE: 'none',
 };
 
-const navHeight = Number(theme.navHeight.replace('px', ''));
 // #endregion
 
 const Nav = () => {
