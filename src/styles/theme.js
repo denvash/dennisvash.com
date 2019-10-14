@@ -81,9 +81,6 @@ const theme = {
   navHeight: '100px',
   navScrollHeight: '70px',
   margin: '20px',
-
-  tabHeight: 42,
-  tabWidth: 120,
   radius: 3,
 
   hamburgerWidth: 30,

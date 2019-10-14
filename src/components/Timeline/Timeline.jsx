@@ -3,8 +3,9 @@ import { content, srConfig } from '@config';
 import { Heading, media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTimeline } from '@hooks';
+import { darken, transparentize, lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -60,28 +61,43 @@ const Tabs = styled.ul`
     }
   }
 `;
+
+const transparentizeSecondary = props => transparentize(0.5, colors.secondary(props));
+const tabBorder = props => `2px solid ${transparentizeSecondary(props)}`;
+const tabHeight = 42;
+const tabWidth = 120;
+
+const cssTabHeight = css`
+  height: ${tabHeight}px;
+`;
+
+const transformTab = value => css`
+  transform: translateY(${({ activeTabId }) => (activeTabId > 0 ? activeTabId * value : 0)}px);
+`;
+
 const Tab = styled.button`
   ${mixins.link};
   display: flex;
   align-items: center;
   width: 100%;
   background-color: transparent;
-  height: ${theme.tabHeight}px;
+  ${cssTabHeight};
   padding: 0 20px 2px;
   transition: ${theme.transition};
-  border-left: 2px solid ${colors.darkGrey};
+  border-left: ${tabBorder};
   text-align: left;
   white-space: nowrap;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
-  color: ${props => (props.isActive ? colors.green : colors.lightGrey)};
+  color: ${({ isActive, ...props }) =>
+    isActive ? colors.primary : transparentizeSecondary(props)};
   ${media.tablet`padding: 0 15px 2px;`};
   ${media.thone`
     ${mixins.flexCenter};
     padding: 0 15px;
     text-align: center;
     border-left: 0;
-    border-bottom: 2px solid ${colors.darkGrey};
+    border-bottom: ${tabBorder};
     min-width: 120px;
   `};
   &:hover,
@@ -91,9 +107,9 @@ const Tab = styled.button`
 `;
 const Highlighter = styled.span`
   display: block;
-  background: ${colors.green};
+  background: ${colors.primary};
   width: 2px;
-  height: ${theme.tabHeight}px;
+  ${cssTabHeight};
   border-radius: ${theme.borderRadius};
   position: absolute;
   top: 0;
@@ -101,18 +117,14 @@ const Highlighter = styled.span`
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
   z-index: 10;
-  transform: translateY(
-    ${props => (props.activeTabId > 0 ? props.activeTabId * theme.tabHeight : 0)}px
-  );
+  ${transformTab(tabHeight)}
   ${media.thone`
     width: 100%;
-    max-width: ${theme.tabWidth}px;
+    max-width: ${tabWidth}px;
     height: 2px;
     top: auto;
     bottom: 10px;
-    transform: translateX(
-      ${props => (props.activeTabId > 0 ? props.activeTabId * theme.tabWidth : 0)}px
-    );
+    ${transformTab(tabWidth)}
     margin-left: 50px;
   `};
   ${media.phablet`
@@ -169,7 +181,7 @@ const TimelineTitle = styled.h4`
 `;
 
 const Company = styled.span`
-  color: ${colors.green};
+  color: ${colors.primary};
 `;
 
 const TimelineDetails = styled.h5`
@@ -177,7 +189,7 @@ const TimelineDetails = styled.h5`
   font-size: ${fontSizes.smallish};
   font-weight: normal;
   letter-spacing: 0.5px;
-  color: ${colors.lightSlate};
+  color: ${props => lighten(0.1, colors.secondary(props))};
   margin-bottom: 30px;
   svg {
     width: 15px;

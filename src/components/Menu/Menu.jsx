@@ -22,7 +22,7 @@ const MenuContainer = styled.div`
   outline: 0;
   transition: ${theme.transition};
   transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
-  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
+  visibility: ${({ menuOpen }) => (menuOpen ? 'visible' : 'hidden')};
   display: none;
   ${media.tablet`display: block;`};
 `;
