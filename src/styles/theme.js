@@ -59,7 +59,7 @@ const polish = {
 };
 
 const theme = {
-  palettes: [summerTime, hack, gentleman],
+  palettes: [gentleman, summerTime, hack],
   polish,
   colors: {
     primary,
