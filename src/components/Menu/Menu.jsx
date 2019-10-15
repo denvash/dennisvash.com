@@ -1,11 +1,11 @@
 // #region  Imports
 import { content, navBar } from '@config';
 import { media, mixins, theme } from '@styles';
+import { Link } from 'gatsby';
+import { lighten } from 'polished';
 import PropTypes from 'prop-types';
 import React from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -37,7 +37,7 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${props => colors.darkenBackground(props, 0.1)};
+  box-shadow: -10px 0px 30px -15px ${props => colors.backgroundDarken(props, 0.1)};
   ${media.thone`padding: 25px;`};
   ${media.tiny`padding: 10px;`};
 `;
@@ -68,7 +68,7 @@ const NavListItem = styled.li`
     margin-bottom: 5px;
   }
 `;
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(Link)`
   ${mixins.link};
   padding: 3px 20px 20px;
   width: 100%;
@@ -104,7 +104,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
           <NavList>
             {navBar.map((name, i) => (
               <NavListItem key={i}>
-                <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+                <NavLink to={`/#${content[name].id}`}>{name}</NavLink>
               </NavListItem>
             ))}
           </NavList>

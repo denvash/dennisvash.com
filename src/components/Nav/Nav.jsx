@@ -6,9 +6,9 @@ import { content, navBar } from '@config';
 import { ANIMATION_CLASSES, media, MEDIA_SIZES, mixins, theme } from '@styles';
 import { throttle } from '@utils';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import Helmet from 'react-helmet';
 import styled, { css, ThemeContext } from 'styled-components';
+import { Link } from 'gatsby';
 // #endregion
 
 // #region  Styling
@@ -23,7 +23,7 @@ const navHeightOnScroll = ({ scrollDirection }) =>
   scrollDirection === 'none' ? navHeight : navScrollHeight;
 
 const navBoxShadow = ({ scrollDirection, ...props }) =>
-  scrollDirection === 'up' ? `0 10px 30px -10px ${colors.darkenBackground(props, 0.05)}` : 'none';
+  scrollDirection === 'up' ? `0 10px 30px -10px ${colors.backgroundDarken(props, 0.05)}` : 'none';
 
 const navTransform = ({ scrollDirection }) =>
   scrollDirection === 'down' ? `-${navScrollHeight}` : '0px';
@@ -51,7 +51,7 @@ const Navbar = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${colors.lightenSecondary};
+  color: ${colors.text};
   font-family: ${fonts.SFMono};
   counter-reset: item 0;
   z-index: 12;
@@ -72,6 +72,16 @@ const LogoContainer = styled.div`
     #${outer} {
       stroke: ${colors.primary};
       stroke-width: 5px;
+    }
+    &:hover {
+      #${inner} {
+        stroke: ${colors.secondary};
+        stroke-width: 5px;
+      }
+      #${outer} {
+        stroke: ${colors.secondary};
+        stroke-width: 7px;
+      }
     }
   }
 `;
@@ -188,7 +198,7 @@ const NavListItem = styled.li`
   }
 `;
 
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 
@@ -196,6 +206,10 @@ const ResumeLink = styled.a`
   ${mixins.smallButton};
   margin-left: 10px;
   font-size: ${fontSizes.smallish};
+  &:hover,
+  &:focus {
+    color: ${colors.primary};
+  }
 `;
 // #endregion
 
@@ -309,7 +323,7 @@ const Nav = () => {
                 navBar.map((name, i) => (
                   <Transition key={i} classNames={ANIMATION_CLASSES.FADE_DOWN}>
                     <NavListItem key={i} style={delay(i * 100)}>
-                      <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+                      <NavLink to={`/#${content[name].id}`}>{name}</NavLink>
                     </NavListItem>
                   </Transition>
                 ))}

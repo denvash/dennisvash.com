@@ -14,7 +14,7 @@ const EmailContainer = styled.div`
   position: fixed;
   bottom: 0;
   right: 40px;
-  color: ${colors.lightenSecondary};
+  color: ${colors.backgroundLighten};
   ${media.desktop`right: 25px;`};
   ${media.tablet`display: none;`};
   div {
@@ -33,7 +33,7 @@ const EmailLinkWrapper = styled.div`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: ${colors.lightenSecondary};
+    background-color: ${colors.backgroundLighten};
   }
 `;
 const EmailLink = styled.a`

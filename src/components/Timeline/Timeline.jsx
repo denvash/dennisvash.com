@@ -84,13 +84,12 @@ const Tab = styled.button`
   ${cssTabHeight};
   padding: 0 20px 2px;
   transition: ${theme.transition};
-  border-left: ${tabBorder};
+  border-left: 2px solid ${colors.primaryTransparent};
   text-align: left;
   white-space: nowrap;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
-  color: ${({ isActive, ...props }) =>
-    isActive ? colors.primary : transparentizeSecondary(props)};
+  color: ${({ isActive, ...props }) => (isActive ? colors.primary : colors.textTransparent(props))};
   ${media.tablet`padding: 0 15px 2px;`};
   ${media.thone`
     ${mixins.flexCenter};
@@ -102,7 +101,7 @@ const Tab = styled.button`
   `};
   &:hover,
   &:focus {
-    background-color: ${colors.lightenBackground};
+    background-color: ${colors.backgroundLight};
   }
 `;
 const Highlighter = styled.span`
@@ -174,14 +173,19 @@ const TabContent = styled.div`
   }
 `;
 const TimelineTitle = styled.h4`
-  color: ${colors.lightenSecondary};
   font-size: ${fontSizes.xxlarge};
   font-weight: 500;
   margin-bottom: 5px;
+  span {
+    color: ${colors.textLight};
+  }
 `;
 
 const Company = styled.span`
   color: ${colors.primary};
+  span {
+    color: ${colors.secondary};
+  }
 `;
 
 const TimelineDetails = styled.h5`
@@ -189,7 +193,7 @@ const TimelineDetails = styled.h5`
   font-size: ${fontSizes.smallish};
   font-weight: normal;
   letter-spacing: 0.5px;
-  color: ${props => lighten(0.1, colors.secondary(props))};
+  color: ${colors.text};
   margin-bottom: 30px;
   svg {
     width: 15px;

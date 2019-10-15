@@ -1,14 +1,13 @@
 import { css } from 'styled-components';
 import theme from './theme';
 import media from './media';
+
 const { colors, fontSizes, fonts } = theme;
 
-const { primary, darkenBackground } = colors;
-
 const smallButton = css`
-  color: ${primary};
+  color: ${colors.primary};
   background-color: transparent;
-  border: 1px solid ${primary};
+  border: 1px solid ${colors.primary};
   border-radius: ${theme.borderRadius};
   padding: 0.75rem 1rem;
   font-size: ${fontSizes.smallish};
@@ -44,7 +43,7 @@ const link = css`
   &:hover,
   &:active,
   &:focus {
-    color: ${primary};
+    color: ${colors.primary};
     outline: 0;
   }
 `;
@@ -64,7 +63,7 @@ const mixins = {
   link,
 
   inlineLink: css`
-    color: ${primary};
+    color: ${colors.secondary};
     &:hover,
     &:focus,
     &:active {
@@ -79,7 +78,7 @@ const mixins = {
       height: 1px;
       position: relative;
       bottom: 0.37em;
-      background-color: ${primary};
+      background-color: ${colors.secondary};
       transition: ${theme.transition};
       opacity: 0.5;
     }
@@ -100,12 +99,12 @@ const mixins = {
   `,
 
   boxShadow: css`
-    box-shadow: 0 10px 30px -15px ${darkenBackground};
+    box-shadow: 0 10px 30px -15px ${colors.backgroundLight};
     transition: ${theme.transition};
 
     &:hover,
     &:focus {
-      box-shadow: 0 20px 30px -15px ${darkenBackground};
+      box-shadow: 0 20px 30px -15px ${colors.backgroundLight};
     }
   `,
 };

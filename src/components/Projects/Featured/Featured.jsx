@@ -36,9 +36,9 @@ const ProjectName = styled.h5`
   font-size: 28px;
   font-weight: 600;
   margin: 0 0 20px;
-  color: ${colors.lightenSecondary};
+  color: ${colors.textTransparent};
   ${media.tablet`font-size: 24px;`};
-  ${media.thone`color: ${colors.title};`};
+  ${media.thone`color: ${colors.text};`};
   a {
     ${media.tablet`display: block;`};
   }
@@ -48,8 +48,8 @@ const ProjectDescription = styled.div`
   position: relative;
   z-index: 2;
   padding: 25px;
-  background-color: ${colors.lightenBackground};
-  color: ${colors.lightenSecondary};
+  background-color: ${colors.backgroundLight};
+  color: ${colors.text};
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
   ${media.thone`
@@ -74,7 +74,7 @@ const TechList = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.smallish};
-    color: ${colors.secondary};
+    color: ${colors.textTransparent};
     margin-right: ${theme.margin};
     margin-bottom: 7px;
     white-space: nowrap;
@@ -82,7 +82,6 @@ const TechList = styled.ul`
       margin-right: 0;
     }
     ${media.thone`
-      color: ${colors.lightenSecondary};
       margin-right: 10px;
     `};
   }
@@ -93,7 +92,7 @@ const Links = styled.div`
   position: relative;
   margin-top: 10px;
   margin-left: -10px;
-  color: ${colors.lightenSecondary};
+  color: ${colors.textTransparent};
   a {
     padding: 10px;
     svg {
@@ -114,7 +113,7 @@ const FeaturedImg = styled(Img)`
     object-fit: cover;
     width: auto;
     height: 100%;
-    filter: grayscale(100%) contrast(1) brightness(80%);
+    filter: grayscale(100%) contrast(1) brightness(30%);
   `};
 `;
 const ImgContainer = styled.a`
@@ -123,7 +122,7 @@ const ImgContainer = styled.a`
   grid-row: 1 / -1;
   position: relative;
   z-index: 1;
-  background-color: ${colors.primary};
+  background-color: ${colors.secondary};
   border-radius: ${theme.radius + 1}px;
   transition: ${theme.transition};
   ${media.tablet`height: 100%;`};
@@ -199,6 +198,7 @@ const Project = styled.div`
     }
   }
 `;
+
 // #endregion
 
 const predicate = ({ featured }) => featured === 'true';

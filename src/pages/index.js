@@ -1,5 +1,6 @@
 import { About, Contact, Hero, Layout, Projects, Timeline } from '@components';
 import { Main, mixins } from '@styles';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,8 +9,8 @@ const MainContainer = styled(Main)`
   counter-reset: section;
 `;
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
     <MainContainer id="content">
       <Hero />
       <About />
@@ -19,5 +20,9 @@ const IndexPage = () => (
     </MainContainer>
   </Layout>
 );
+
+IndexPage.propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default IndexPage;

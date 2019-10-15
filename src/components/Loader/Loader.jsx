@@ -17,7 +17,7 @@ const { colors } = theme;
 
 const CenterScreen = styled.div`
   ${mixins.flexCenter};
-  background-color: ${colors.darkenBackground};
+  background-color: ${colors.backgroundDarken};
   position: fixed;
   width: 100%;
   height: 100%;

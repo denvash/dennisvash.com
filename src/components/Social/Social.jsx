@@ -5,20 +5,17 @@ import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Transition from '@components/Transition';
-import { lighten } from 'polished';
 // #endregion
 
 // #region  Styling
 const { colors } = theme;
-
-const lightenSecondary = props => lighten(0.1, colors.secondary(props));
 
 const SocialContainer = styled.div`
   width: 40px;
   position: fixed;
   bottom: 0;
   left: 40px;
-  color: ${lightenSecondary};
+  color: ${colors.backgroundLighten};
   ${media.desktop`left: 25px;`};
   ${media.tablet`display: none;`};
 `;
@@ -32,7 +29,7 @@ const SocialItemList = styled.ul`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: ${lightenSecondary};
+    background-color: ${colors.backgroundLighten};
   }
 `;
 const SocialItem = styled.li`

@@ -20,10 +20,10 @@ const Transition = ({ children, animationClassName = FADE, timeout = 3000, ...pr
 export const delay = (number = 200) => ({ transitionDelay: `${number}ms` });
 
 Transition.propTypes = {
+  ...CSSTransition.propTypes,
   children: PropTypes.node.isRequired,
   animationClassName: PropTypes.string,
   timeout: PropTypes.number,
-  ...CSSTransition.propTypes,
 };
 
 Transition.Group = Group;

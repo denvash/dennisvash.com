@@ -2,14 +2,25 @@
 import { Email, Footer, Head, Loader, Nav, Social, ThemeProvider } from '@components';
 import { GlobalStyle } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { scrollIntoView } from '@utils';
 // #endregion
 
 const INITIAL_GITHUB_INFO = { stars: 20, forks: 15 };
 
-const Layout = ({ children }) => {
+// https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line global-require
+  require('smooth-scroll')('a[href*="#"]');
+}
+
+const Layout = ({ children, location }) => {
   const [isLoading, setIsLoading] = useState(true);
   const parameters = { complete: () => setIsLoading(false) };
+
+  useEffect(() => {
+    !isLoading && scrollIntoView(location);
+  }, [isLoading]);
 
   return (
     <ThemeProvider>
@@ -33,6 +44,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
+  location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 };
 

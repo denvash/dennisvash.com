@@ -6,8 +6,8 @@ const MODE = 'mode';
 const hack = {
   name: 'hack',
   primary: '#64ffda',
-  secondary: '#8892b0',
-  title: '#e6f1ff',
+  secondary: '#64ffda',
+  text: '#8892b0',
   background: '#0a192f',
 };
 
@@ -16,7 +16,7 @@ const summerTime = {
   primary: '#F699D9',
   secondary: '#EBEA8B',
   background: '#2B303B',
-  title: '#ECF6FF',
+  text: '#ECF6FF',
 };
 
 const primary = styledTheme(MODE, {
@@ -34,24 +34,35 @@ const background = styledTheme(MODE, {
   summerTime: summerTime.background,
 });
 
-const title = styledTheme(MODE, {
-  hack: hack.title,
-  summerTime: summerTime.title,
+const text = styledTheme(MODE, {
+  hack: hack.text,
+  summerTime: summerTime.text,
 });
+
+const polish = {
+  lighten: (amount, polish) => props => lighten(amount, polish(props)),
+  transparentize: (amount, polish) => props => transparentize(amount, polish(props)),
+  darken: (amount, polish) => props => darken(amount, polish(props)),
+};
 
 const theme = {
   palettes: [hack, summerTime],
-
+  polish,
   colors: {
     primary,
+    primaryTransparent: polish.transparentize(0.9, primary),
+
     secondary,
+    secondaryLighten: polish.lighten(0.1, secondary),
+
     background,
-    title,
-    primaryTransparent: (mode, amount = 0.9) => transparentize(amount, primary(mode)),
-    lightenSecondary: (mode, amount = 0.1) => lighten(amount, secondary(mode)),
-    darkenBackground: (props, amount = 0.03) => darken(amount, background(props)),
-    titleTransparent: (mode, amount = 0.6) => transparentize(amount, title(mode)),
-    lightenBackground: (mode, amount = 0.07) => lighten(amount, background(mode)),
+    backgroundLight: polish.lighten(0.07, background),
+    backgroundLighten: polish.lighten(0.6, background),
+    backgroundDarken: polish.darken(0.03, background),
+
+    text,
+    textTransparent: polish.transparentize(0.3, text),
+    textLight: polish.lighten(0.5, text),
   },
 
   fonts: {

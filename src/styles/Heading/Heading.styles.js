@@ -31,7 +31,7 @@ const Heading = styled.h3`
     display: block;
     height: 1px;
     width: 300px;
-    background-color: ${props => colors.titleTransparent(props)};
+    background-color: ${props => colors.textTransparent(props)};
     position: relative;
     top: -5px;
     margin-left: 20px;
