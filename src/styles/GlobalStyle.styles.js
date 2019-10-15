@@ -182,7 +182,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${props => transparentize(0.8, colors.primary(props))};
+    background-color: ${props => colors.primaryTransparent(props, 0.8)};
   }
 
   h1,

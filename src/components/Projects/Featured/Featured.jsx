@@ -27,7 +27,7 @@ const ContentContainer = styled.div`
 const FeaturedLabel = styled.h4`
   font-size: ${fontSizes.smallish};
   font-weight: normal;
-  color: ${colors.green};
+  color: ${colors.primary};
   font-family: ${fonts.SFMono};
   margin-top: 10px;
   padding-top: 0;
@@ -36,9 +36,9 @@ const ProjectName = styled.h5`
   font-size: 28px;
   font-weight: 600;
   margin: 0 0 20px;
-  color: ${colors.lightestSlate};
+  color: ${colors.lightenSecondary};
   ${media.tablet`font-size: 24px;`};
-  ${media.thone`color: ${colors.white};`};
+  ${media.thone`color: ${colors.title};`};
   a {
     ${media.tablet`display: block;`};
   }
@@ -48,8 +48,8 @@ const ProjectDescription = styled.div`
   position: relative;
   z-index: 2;
   padding: 25px;
-  background-color: ${colors.lightNavy};
-  color: ${colors.lightSlate};
+  background-color: ${colors.lightenBackground};
+  color: ${colors.lightenSecondary};
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
   ${media.thone`
@@ -74,7 +74,7 @@ const TechList = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.smallish};
-    color: ${colors.slate};
+    color: ${colors.secondary};
     margin-right: ${theme.margin};
     margin-bottom: 7px;
     white-space: nowrap;
@@ -82,7 +82,7 @@ const TechList = styled.ul`
       margin-right: 0;
     }
     ${media.thone`
-      color: ${colors.lightestSlate};
+      color: ${colors.lightenSecondary};
       margin-right: 10px;
     `};
   }
@@ -93,7 +93,7 @@ const Links = styled.div`
   position: relative;
   margin-top: 10px;
   margin-left: -10px;
-  color: ${colors.lightestSlate};
+  color: ${colors.lightenSecondary};
   a {
     padding: 10px;
     svg {
@@ -123,7 +123,7 @@ const ImgContainer = styled.a`
   grid-row: 1 / -1;
   position: relative;
   z-index: 1;
-  background-color: ${colors.green};
+  background-color: ${colors.primary};
   border-radius: ${theme.radius + 1}px;
   transition: ${theme.transition};
   ${media.tablet`height: 100%;`};
@@ -151,7 +151,7 @@ const ImgContainer = styled.a`
     bottom: 0;
     z-index: 3;
     transition: ${theme.transition};
-    background-color: ${colors.navy};
+    background-color: ${colors.background};
     mix-blend-mode: screen;
   }
 `;

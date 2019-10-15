@@ -14,14 +14,14 @@ const FooterContainer = styled.footer`
   ${mixins.flexCenter};
   flex-direction: column;
   padding: 15px;
-  background-color: ${colors.darkNavy};
-  color: ${colors.slate};
+  background-color: ${colors.darkenBackground};
+  color: ${colors.secondary};
   text-align: center;
   height: auto;
   min-height: 70px;
 `;
 const SocialContainer = styled.div`
-  color: ${colors.lightSlate};
+  color: ${colors.lightenSecondary};
   width: 100%;
   max-width: 270px;
   margin: 0 auto 10px;
@@ -45,7 +45,7 @@ const GithubContainer = styled.div`
   line-height: 1;
 `;
 const GithubLink = styled.a`
-  color: ${colors.slate};
+  color: ${colors.secondary};
 `;
 const GithubInfo = styled.div`
   margin-top: 10px;

@@ -5,7 +5,7 @@ import Footer from './Footer/Footer';
 import Head from './Head';
 import Hero from './Hero/Hero';
 import Timeline from './Timeline/Timeline';
-import Layout from './Layout';
+import Layout from './Layout/Layout';
 import Loader from './Loader/Loader';
 import Menu from './Menu/Menu';
 import Nav from './Nav/Nav';

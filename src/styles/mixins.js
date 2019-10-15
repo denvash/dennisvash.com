@@ -3,7 +3,7 @@ import theme from './theme';
 import media from './media';
 const { colors, fontSizes, fonts } = theme;
 
-const { primary } = colors;
+const { primary, darkenBackground } = colors;
 
 const smallButton = css`
   color: ${primary};
@@ -20,7 +20,7 @@ const smallButton = css`
   &:hover,
   &:focus,
   &:active {
-    background-color: ${colors.transGreen};
+    background-color: ${colors.primaryTransparent};
   }
   &:after {
     display: none !important;
@@ -100,12 +100,12 @@ const mixins = {
   `,
 
   boxShadow: css`
-    box-shadow: 0 10px 30px -15px ${colors.darkNavy};
+    box-shadow: 0 10px 30px -15px ${darkenBackground};
     transition: ${theme.transition};
 
     &:hover,
     &:focus {
-      box-shadow: 0 20px 30px -15px ${colors.darkNavy};
+      box-shadow: 0 20px 30px -15px ${darkenBackground};
     }
   `,
 };

@@ -19,7 +19,7 @@ const Heading = styled.h3`
     margin-right: 10px;
     font-family: ${fonts.SFMono};
     font-weight: normal;
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.xlarge};
     position: relative;
     bottom: 4px;
@@ -31,7 +31,7 @@ const Heading = styled.h3`
     display: block;
     height: 1px;
     width: 300px;
-    background-color: ${colors.mediumGrey};
+    background-color: ${props => colors.titleTransparent(props)};
     position: relative;
     top: -5px;
     margin-left: 20px;

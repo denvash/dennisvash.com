@@ -67,9 +67,9 @@ const config = {
     },
   },
 
-  greenColor: '#64ffda',
-  navyColor: '#0a192f',
-  darkNavyColor: '#020c1b',
+  primary: '#64ffda',
+  secondary: '#0a192f',
+  dark: '#020c1b',
 
   srConfig: (delay = 200) => ({
     origin: 'bottom',

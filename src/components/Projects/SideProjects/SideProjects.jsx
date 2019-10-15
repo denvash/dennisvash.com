@@ -31,7 +31,7 @@ const ProjectInner = styled.div`
   height: 100%;
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
-  background-color: ${colors.lightNavy};
+  background-color: ${colors.lightenBackground};
 `;
 const Project = styled.div`
   transition: ${theme.transition};
@@ -49,7 +49,7 @@ const ProjectHeader = styled.div`
   margin-bottom: 30px;
 `;
 const Folder = styled.div`
-  color: ${colors.green};
+  color: ${colors.primary};
   svg {
     width: 40px;
     height: 40px;
@@ -57,7 +57,7 @@ const Folder = styled.div`
 `;
 const Links = styled.div`
   margin-right: -10px;
-  color: ${colors.lightSlate};
+  color: ${colors.lightenSecondary};
 `;
 const IconLink = styled.a`
   position: relative;
@@ -72,11 +72,11 @@ const IconLink = styled.a`
 const ProjectName = styled.h5`
   margin: 0 0 10px;
   font-size: ${fontSizes.xxlarge};
-  color: ${colors.lightestSlate};
+  color: ${colors.lightenSecondary};
 `;
 const ProjectDescription = styled.div`
   font-size: 17px;
-  color: ${colors.lightSlate};
+  color: ${colors.lightenSecondary};
   a {
     ${mixins.inlineLink};
   }
@@ -90,7 +90,7 @@ const TechList = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.xsmall};
-    color: ${colors.slate};
+    color: ${colors.secondary};
     line-height: 1.75;
     margin-right: 15px;
     &:last-of-type {

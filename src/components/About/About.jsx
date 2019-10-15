@@ -43,18 +43,18 @@ const Skill = styled.li`
   padding-left: 20px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
-  color: ${colors.slate};
+  color: ${colors.secondary};
   &:before {
     content: '▹';
     position: absolute;
     left: 0;
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.small};
     line-height: 12px;
   }
   &:hover {
     cursor: pointer;
-    color: ${colors.lightSlate};
+    color: ${colors.lightenSecondary};
     outline: none;
     transition: ${theme.transition};
   }
@@ -82,7 +82,7 @@ const AvatarContainer = styled.a`
   width: 100%;
   position: relative;
   border-radius: ${theme.borderRadius};
-  background-color: ${colors.green};
+  background-color: ${colors.primary};
   margin-left: -20px;
   &:hover,
   &:focus {
@@ -111,11 +111,11 @@ const AvatarContainer = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${colors.navy};
+    background-color: ${colors.background};
     mix-blend-mode: screen;
   }
   &:after {
-    border: 2px solid ${colors.green};
+    border: 2px solid ${colors.primary};
     top: 20px;
     left: 20px;
     z-index: -1;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import styled from 'styled-components';
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -37,7 +37,7 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${props => darken(0.1, colors.background(props))};
+  box-shadow: -10px 0px 30px -15px ${props => colors.darkenBackground(props, 0.1)};
   ${media.thone`padding: 25px;`};
   ${media.tiny`padding: 10px;`};
 `;
@@ -63,7 +63,7 @@ const NavListItem = styled.li`
   &:before {
     display: block;
     content: '0' counter(item) '.';
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.small};
     margin-bottom: 5px;
   }

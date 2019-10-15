@@ -5,7 +5,7 @@ import sr from '@utils/sr';
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTimeline } from '@hooks';
-import { darken, transparentize, lighten } from 'polished';
+import { transparentize, lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -102,7 +102,7 @@ const Tab = styled.button`
   `};
   &:hover,
   &:focus {
-    background-color: ${colors.lightNavy};
+    background-color: ${colors.lightenBackground};
   }
 `;
 const Highlighter = styled.span`
@@ -164,7 +164,7 @@ const TabContent = styled.div`
         content: '▹';
         position: absolute;
         left: 0;
-        color: ${colors.green};
+        color: ${colors.primary};
         line-height: ${fontSizes.xlarge};
       }
     }
@@ -174,7 +174,7 @@ const TabContent = styled.div`
   }
 `;
 const TimelineTitle = styled.h4`
-  color: ${colors.lightestSlate};
+  color: ${colors.lightenSecondary};
   font-size: ${fontSizes.xxlarge};
   font-weight: 500;
   margin-bottom: 5px;
