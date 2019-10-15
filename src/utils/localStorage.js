@@ -1,6 +1,16 @@
-export const setLSItem = (str, object) => window.localStorage.setItem(str, object);
+export const setLSItem = (str, object) => {
+  if (typeof window !== `undefined`) {
+    return window.localStorage.setItem(str, object);
+  }
+  return '0';
+};
 
-export const getLSItem = str => window.localStorage.getItem(str);
+export const getLSItem = str => {
+  if (typeof window !== `undefined`) {
+    return window.localStorage.getItem(str);
+  }
+  return '0';
+};
 
 export const getNumberLSItem = str => {
   const storageItem = getLSItem(str);
