@@ -15,7 +15,7 @@ const SocialContainer = styled.div`
   position: fixed;
   bottom: 0;
   left: 40px;
-  color: ${colors.backgroundLighten};
+  color: ${colors.text};
   ${media.desktop`left: 25px;`};
   ${media.tablet`display: none;`};
 `;
@@ -29,7 +29,7 @@ const SocialItemList = styled.ul`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: ${colors.backgroundLighten};
+    background-color: ${colors.text};
   }
 `;
 const SocialItem = styled.li`

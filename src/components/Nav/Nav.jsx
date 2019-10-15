@@ -23,7 +23,7 @@ const navHeightOnScroll = ({ scrollDirection }) =>
   scrollDirection === 'none' ? navHeight : navScrollHeight;
 
 const navBoxShadow = ({ scrollDirection, ...props }) =>
-  scrollDirection === 'up' ? `0 10px 30px -10px ${colors.backgroundDarken(props, 0.05)}` : 'none';
+  scrollDirection === 'up' ? `0 10px 30px -10px ${colors.backgroundDark(props, 0.05)}` : 'none';
 
 const navTransform = ({ scrollDirection }) =>
   scrollDirection === 'down' ? `-${navScrollHeight}` : '0px';
@@ -68,18 +68,22 @@ const LogoContainer = styled.div`
     #${inner} {
       stroke: ${colors.primary};
       stroke-width: 7px;
+      transition: ${theme.transition};
     }
     #${outer} {
       stroke: ${colors.primary};
       stroke-width: 5px;
+      transition: ${theme.transition};
     }
     &:hover {
       #${inner} {
         stroke: ${colors.secondary};
         stroke-width: 5px;
+        transition: ${theme.transition};
       }
       #${outer} {
         stroke: ${colors.secondary};
+        transition: ${theme.transition};
         stroke-width: 7px;
       }
     }

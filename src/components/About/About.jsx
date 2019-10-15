@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // #endregion
 
 // #region  Styling
-const { colors, fontSizes, fonts } = theme;
+const { colors, fontSizes, fonts, polish } = theme;
 
 const AboutContainer = styled(Section)`
   position: relative;
@@ -72,7 +72,7 @@ const PicContainer = styled.div`
 const Avatar = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
+  filter: grayscale(100%) contrast(1) brightness(100%);
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
 `;
@@ -111,11 +111,11 @@ const AvatarContainer = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${colors.secondary};
+    background-color: ${colors.secondaryBrighter};
     mix-blend-mode: screen;
   }
   &:after {
-    border: 2px solid ${colors.secondary};
+    border: 2px solid ${colors.secondaryLighten};
     top: 20px;
     left: 20px;
     z-index: -1;

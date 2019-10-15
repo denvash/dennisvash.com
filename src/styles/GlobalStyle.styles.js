@@ -191,7 +191,7 @@ const GlobalStyle = createGlobalStyle`
   h4,
   h5 {
     font-weight: 600;
-    color: ${colors.textLight};
+    color: ${colors.text};
     margin: 0 0 10px 0;
   }
 
@@ -227,7 +227,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover,
     &:focus {
-      color: ${colors.secondary};
+      color: ${colors.primary};
       outline: 0;
     }
   }
@@ -310,12 +310,12 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar {
     height: 1px;
-    width: 4px;
+    width: 10px;
     background-color: ${props => transparentize(0.9, colors.secondary(props))};
   }
 
   ::-webkit-scrollbar-thumb {
-    width: 1px;
+    width: 3px;
     background-color: ${colors.secondary};
   }
 `;

@@ -5,7 +5,6 @@ import sr from '@utils/sr';
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTimeline } from '@hooks';
-import { transparentize, lighten } from 'polished';
 // #endregion
 
 // #region  Styling
@@ -62,8 +61,6 @@ const Tabs = styled.ul`
   }
 `;
 
-const transparentizeSecondary = props => transparentize(0.5, colors.secondary(props));
-const tabBorder = props => `2px solid ${transparentizeSecondary(props)}`;
 const tabHeight = 42;
 const tabWidth = 120;
 
@@ -96,7 +93,7 @@ const Tab = styled.button`
     padding: 0 15px;
     text-align: center;
     border-left: 0;
-    border-bottom: ${tabBorder};
+    border-bottom: 2px solid ${colors.primaryTransparent};
     min-width: 120px;
   `};
   &:hover,
@@ -177,7 +174,7 @@ const TimelineTitle = styled.h4`
   font-weight: 500;
   margin-bottom: 5px;
   span {
-    color: ${colors.textLight};
+    color: ${colors.text};
   }
 `;
 

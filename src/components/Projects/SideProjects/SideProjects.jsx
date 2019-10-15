@@ -22,7 +22,7 @@ const ProjectsGrid = styled.div`
   }
 `;
 const ProjectInner = styled.div`
-  ${mixins.boxShadow};
+  ${mixins.boxShadowSmall};
   ${mixins.flexBetween};
   flex-direction: column;
   align-items: flex-start;
@@ -30,6 +30,7 @@ const ProjectInner = styled.div`
   padding: 2rem 1.75rem;
   height: 100%;
   border-radius: ${theme.borderRadius};
+  border: 0.5px solid ${colors.secondaryTransparent};
   transition: ${theme.transition};
   background-color: ${colors.backgroundLight};
 `;
@@ -72,7 +73,7 @@ const IconLink = styled.a`
 const ProjectName = styled.h5`
   margin: 0 0 10px;
   font-size: ${fontSizes.xxlarge};
-  color: ${colors.textLight};
+  color: ${colors.textTransparent};
 `;
 const ProjectDescription = styled.div`
   font-size: 17px;

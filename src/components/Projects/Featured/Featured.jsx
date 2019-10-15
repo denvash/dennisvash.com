@@ -11,7 +11,7 @@ import { useProjects } from '@hooks';
 // #endregion
 
 // #region  Styling
-const { colors, fontSizes, fonts } = theme;
+const { colors, fontSizes, fonts, polish } = theme;
 
 const ContentContainer = styled.div`
   position: relative;
@@ -108,7 +108,7 @@ const FeaturedImg = styled(Img)`
   border-radius: ${theme.borderRadius};
   position: relative;
   mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1) brightness(90%);
+  filter: grayscale(100%) contrast(1) brightness(100%);
   ${media.tablet`
     object-fit: cover;
     width: auto;
@@ -122,8 +122,7 @@ const ImgContainer = styled.a`
   grid-row: 1 / -1;
   position: relative;
   z-index: 1;
-  background-color: ${colors.secondary};
-  border-radius: ${theme.radius + 1}px;
+  background-color: transparent;
   transition: ${theme.transition};
   ${media.tablet`height: 100%;`};
   ${media.thone`
@@ -150,7 +149,8 @@ const ImgContainer = styled.a`
     bottom: 0;
     z-index: 3;
     transition: ${theme.transition};
-    background-color: ${colors.background};
+    background-color: ${polish.brighter(0.1, colors.secondary)};
+    border-radius: ${+theme.borderRadius.replace('px', '') + 2}px;
     mix-blend-mode: screen;
   }
 `;

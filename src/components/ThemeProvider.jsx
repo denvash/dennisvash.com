@@ -18,7 +18,12 @@ const ThemeProvider = ({ children }) => {
   const modeToggle = () => setIndex(index => (index === palettes.length - 1 ? 0 : index + 1));
 
   return (
-    <SCThemeProvider theme={{ mode: palettes[index], modeToggle, setIndex }}>
+    <SCThemeProvider
+      theme={{
+        mode: palettes[index],
+        modeToggle,
+        setIndex,
+      }}>
       {children}
     </SCThemeProvider>
   );

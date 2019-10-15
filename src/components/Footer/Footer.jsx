@@ -14,7 +14,7 @@ const FooterContainer = styled.footer`
   ${mixins.flexCenter};
   flex-direction: column;
   padding: 15px;
-  background-color: ${colors.backgroundDarken};
+  background-color: ${colors.backgroundDark};
   color: ${colors.secondary};
   text-align: center;
   height: auto;
@@ -45,7 +45,7 @@ const GithubContainer = styled.div`
   line-height: 1;
 `;
 const GithubLink = styled.a`
-  color: ${colors.secondary};
+  color: ${colors.text};
 `;
 const GithubInfo = styled.div`
   margin-top: 10px;
@@ -82,28 +82,21 @@ const Footer = ({ githubInfo: { stars = 0, forks = 0 } }) => (
           ))}
       </SocialItemList>
     </SocialContainer>
-    🚧 The site still under construction ⚠️
-    {/* {reval after fixing git auth} */}
-    {false && (
-      <GithubContainer>
-        <GithubLink
-          href={socialMedia.GITHUB.url}
-          target="_blank"
-          rel="nofollow noopener noreferrer">
-          <div>{content.footer.heading}</div>
-          <GithubInfo>
-            <span>
-              <IconStar />
-              <span>{stars}</span>
-            </span>
-            <span>
-              <IconFork />
-              <span>{forks}</span>
-            </span>
-          </GithubInfo>
-        </GithubLink>
-      </GithubContainer>
-    )}
+    <GithubContainer>
+      <GithubLink href={socialMedia.GITHUB.url} target="_blank" rel="nofollow noopener noreferrer">
+        <div>{content.footer.heading}</div>
+        <GithubInfo>
+          <span>
+            <IconStar />
+            <span>{stars}</span>
+          </span>
+          <span>
+            <IconFork />
+            <span>{forks}</span>
+          </span>
+        </GithubInfo>
+      </GithubLink>
+    </GithubContainer>
   </FooterContainer>
 );
 

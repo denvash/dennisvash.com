@@ -29,7 +29,7 @@ const MenuContainer = styled.div`
 const Sidebar = styled.div`
   ${mixins.flexCenter};
   flex-direction: column;
-  background-color: ${props => lighten(0.03, colors.background(props))};
+  background-color: ${colors.backgroundLight};
   padding: 50px;
   width: 50vw;
   height: 100%;
@@ -37,7 +37,7 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${props => colors.backgroundDarken(props, 0.1)};
+  box-shadow: -10px 0px 30px -15px ${colors.backgroundDarken};
   ${media.thone`padding: 25px;`};
   ${media.tiny`padding: 10px;`};
 `;
