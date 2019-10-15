@@ -4,13 +4,11 @@ import anime from 'animejs';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { mixins, theme } from 'styles';
+import { mixins, theme } from '@styles';
 // #endregion
 
 const ID = {
-  inner: 'inner',
-  outer: 'outer',
-  loader: 'loader',
+  ...IconLogo.IDs,
   logoWrapper: 'logoWrapper',
 };
 
@@ -19,7 +17,7 @@ const { colors } = theme;
 
 const CenterScreen = styled.div`
   ${mixins.flexCenter};
-  background-color: ${colors.darkNavy};
+  background-color: ${colors.backgroundDark};
   position: fixed;
   width: 100%;
   height: 100%;
@@ -42,8 +40,12 @@ const LogoWrapper = styled.div`
     margin: 0 auto;
     fill: none;
     user-select: none;
+    #${ID.outer} {
+      stroke: ${colors.primary};
+    }
     #${ID.inner} {
       opacity: 0;
+      stroke: ${colors.primary};
     }
   }
 `;
@@ -61,20 +63,20 @@ const animate = parameters => {
       opacity: [0, 1],
     })
     .add({
-      targets: `#${ID.loader} path`,
+      targets: `#${ID.container} path`,
       delay: 500,
       duration: 2000,
       easing,
       strokeDashoffset: [anime.setDashoffset, 0],
     })
     .add({
-      targets: `#${ID.loader} #${ID.inner}`,
+      targets: `#${ID.container} #${ID.inner}`,
       duration: 800,
       easing,
       opacity: 1,
     })
     .add({
-      targets: `#${ID.loader}`,
+      targets: `#${ID.container}`,
       delay: 700,
       duration: 300,
       easing,
@@ -82,7 +84,7 @@ const animate = parameters => {
       scale: 0.1,
     })
     .add({
-      targets: `.${ID.loader}`,
+      targets: `.${ID.container}`,
       duration: 200,
       easing,
       opacity: 0,

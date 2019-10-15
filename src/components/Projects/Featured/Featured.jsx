@@ -11,7 +11,7 @@ import { useProjects } from '@hooks';
 // #endregion
 
 // #region  Styling
-const { colors, fontSizes, fonts } = theme;
+const { colors, fontSizes, fonts, polish } = theme;
 
 const ContentContainer = styled.div`
   position: relative;
@@ -27,7 +27,7 @@ const ContentContainer = styled.div`
 const FeaturedLabel = styled.h4`
   font-size: ${fontSizes.smallish};
   font-weight: normal;
-  color: ${colors.green};
+  color: ${colors.primary};
   font-family: ${fonts.SFMono};
   margin-top: 10px;
   padding-top: 0;
@@ -36,9 +36,9 @@ const ProjectName = styled.h5`
   font-size: 28px;
   font-weight: 600;
   margin: 0 0 20px;
-  color: ${colors.lightestSlate};
+  color: ${colors.textTransparent};
   ${media.tablet`font-size: 24px;`};
-  ${media.thone`color: ${colors.white};`};
+  ${media.thone`color: ${colors.text};`};
   a {
     ${media.tablet`display: block;`};
   }
@@ -48,8 +48,8 @@ const ProjectDescription = styled.div`
   position: relative;
   z-index: 2;
   padding: 25px;
-  background-color: ${colors.lightNavy};
-  color: ${colors.lightSlate};
+  background-color: ${colors.backgroundLight};
+  color: ${colors.text};
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
   ${media.thone`
@@ -74,7 +74,7 @@ const TechList = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.smallish};
-    color: ${colors.slate};
+    color: ${colors.textTransparent};
     margin-right: ${theme.margin};
     margin-bottom: 7px;
     white-space: nowrap;
@@ -82,7 +82,6 @@ const TechList = styled.ul`
       margin-right: 0;
     }
     ${media.thone`
-      color: ${colors.lightestSlate};
       margin-right: 10px;
     `};
   }
@@ -93,7 +92,7 @@ const Links = styled.div`
   position: relative;
   margin-top: 10px;
   margin-left: -10px;
-  color: ${colors.lightestSlate};
+  color: ${colors.textTransparent};
   a {
     padding: 10px;
     svg {
@@ -109,12 +108,12 @@ const FeaturedImg = styled(Img)`
   border-radius: ${theme.borderRadius};
   position: relative;
   mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1) brightness(90%);
+  filter: grayscale(100%) contrast(1) brightness(100%);
   ${media.tablet`
     object-fit: cover;
     width: auto;
     height: 100%;
-    filter: grayscale(100%) contrast(1) brightness(80%);
+    filter: grayscale(100%) contrast(1) brightness(30%);
   `};
 `;
 const ImgContainer = styled.a`
@@ -123,8 +122,7 @@ const ImgContainer = styled.a`
   grid-row: 1 / -1;
   position: relative;
   z-index: 1;
-  background-color: ${colors.green};
-  border-radius: ${theme.radius + 1}px;
+  background-color: transparent;
   transition: ${theme.transition};
   ${media.tablet`height: 100%;`};
   ${media.thone`
@@ -151,7 +149,8 @@ const ImgContainer = styled.a`
     bottom: 0;
     z-index: 3;
     transition: ${theme.transition};
-    background-color: ${colors.navy};
+    background-color: ${polish.brighter(0.1, colors.secondary)};
+    border-radius: ${+theme.borderRadius.replace('px', '') + 2}px;
     mix-blend-mode: screen;
   }
 `;
@@ -199,6 +198,7 @@ const Project = styled.div`
     }
   }
 `;
+
 // #endregion
 
 const predicate = ({ featured }) => featured === 'true';

@@ -2,38 +2,47 @@
 import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
 import Transition, { delay } from '@components/Transition';
-import { navBar, content } from '@config';
+import { content, navBar } from '@config';
 import { ANIMATION_CLASSES, media, MEDIA_SIZES, mixins, theme } from '@styles';
 import { throttle } from '@utils';
-import React, { useEffect, useRef, useState } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
-import { lighten } from 'polished';
+import styled, { css, ThemeContext } from 'styled-components';
+import { Link } from 'gatsby';
 // #endregion
 
 // #region  Styling
+const navHeight = `100px`;
 const { colors, fontSizes, fonts } = theme;
-const navHeight = Number(theme.navHeight.replace('px', ''));
+
+const navHeightNumber = Number(navHeight.replace('px', ''));
+
+const navScrollHeight = `70px`;
+
+const navHeightOnScroll = ({ scrollDirection }) =>
+  scrollDirection === 'none' ? navHeight : navScrollHeight;
+
+const navBoxShadow = ({ scrollDirection, ...props }) =>
+  scrollDirection === 'up' ? `0 10px 30px -10px ${colors.backgroundDark(props, 0.05)}` : 'none';
+
+const navTransform = ({ scrollDirection }) =>
+  scrollDirection === 'down' ? `-${navScrollHeight}` : '0px';
 
 const NavContainer = styled.header`
   ${mixins.flexBetween};
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${colors.navy};
+  background-color: ${colors.background};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
   width: 100%;
-  height: ${props => (props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight)};
-  box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 10px 30px -10px ${colors.darkNavy}` : 'none'};
-  transform: translateY(
-    ${props => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
-  );
+  height: ${navHeightOnScroll};
+  box-shadow: ${navBoxShadow};
+  transform: translateY(${navTransform});
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
 `;
@@ -42,22 +51,41 @@ const Navbar = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${props => lighten(0.2, colors.secondary(props))};
+  color: ${colors.text};
   font-family: ${fonts.SFMono};
   counter-reset: item 0;
   z-index: 12;
 `;
 
+const { inner, outer } = IconLogo.IDs;
+
 const LogoContainer = styled.div`
+  cursor: pointer;
   svg {
     width: 60px;
     ${media.tiny`width: 50px; padding-right: 5px;`};
-    height: ${theme.navHeight};
-    #inner {
+    height: ${navHeight};
+    #${inner} {
+      stroke: ${colors.primary};
       stroke-width: 7px;
+      transition: ${theme.transition};
     }
-    #outer {
+    #${outer} {
+      stroke: ${colors.primary};
       stroke-width: 5px;
+      transition: ${theme.transition};
+    }
+    &:hover {
+      #${inner} {
+        stroke: ${colors.secondary};
+        stroke-width: 5px;
+        transition: ${theme.transition};
+      }
+      #${outer} {
+        stroke: ${colors.secondary};
+        transition: ${theme.transition};
+        stroke-width: 7px;
+      }
     }
   }
 `;
@@ -79,55 +107,73 @@ const Hamburger = styled.div`
   ${media.tablet`display: flex;`};
 `;
 
+const hamburgerWidth = css`
+  width: 30px;
+`;
+
+const hamburgerCSS = css`
+  background-color: ${colors.primary};
+  position: absolute;
+  ${hamburgerWidth}
+  height: 2px;
+  border-radius: ${theme.borderRadius};
+  left: 0;
+  right: 0;
+`;
+
 const HamburgerBox = styled.div`
   position: relative;
   display: inline-block;
-  width: ${theme.hamburgerWidth}px;
+  ${hamburgerWidth}
   height: 24px;
 `;
 
+const hamAfterActive = css`
+  transition: bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+`;
+
+const hamAfter = css`
+  transition: bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+`;
+
+const hamBefore = css`
+  transition: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+`;
+
+const hamBeforeActive = css`
+  transition: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+`;
+
 const HamburgerInner = styled.div`
-  background-color: ${colors.primary};
-  position: absolute;
-  width: ${theme.hamburgerWidth}px;
-  height: 2px;
-  border-radius: ${theme.borderRadius};
+  ${hamburgerCSS}
   top: 50%;
-  left: 0;
-  right: 0;
   transition-duration: 0.22s;
   transition-property: transform;
-  transition-delay: ${props => (props.menuOpen ? `0.12s` : `0s`)};
-  transform: rotate(${props => (props.menuOpen ? `225deg` : `0deg`)});
+  transition-delay: ${({ menuOpen }) => (menuOpen ? `0.12s` : `0s`)};
+  transform: rotate(${({ menuOpen }) => (menuOpen ? `225deg` : `0deg`)});
   transition-timing-function: cubic-bezier(
-    ${props => (props.menuOpen ? `0.215, 0.61, 0.355, 1` : `0.55, 0.055, 0.675, 0.19`)}
+    ${({ menuOpen }) => (menuOpen ? `0.215, 0.61, 0.355, 1` : `0.55, 0.055, 0.675, 0.19`)}
   );
   &:before,
   &:after {
+    ${hamburgerCSS}
     content: '';
     display: block;
-    background-color: ${colors.green};
-    position: absolute;
     left: auto;
-    right: 0;
-    width: ${theme.hamburgerWidth}px;
-    height: 2px;
     transition-timing-function: ease;
     transition-duration: 0.15s;
     transition-property: transform;
     border-radius: 4px;
+    width: ${({ menuOpen }) => (menuOpen ? 100 : 80)}%;
+    bottom: ${({ menuOpen }) => (menuOpen ? 0 : -10)}px;
+    transform: rotate(${({ menuOpen }) => (menuOpen ? `-90deg` : `0`)});
+    ${({ menuOpen }) => (menuOpen ? hamAfterActive : hamAfter)}
   }
   &:before {
-    width: ${props => (props.menuOpen ? `100%` : `120%`)};
-    top: ${props => (props.menuOpen ? `0` : `-10px`)};
-    opacity: ${props => (props.menuOpen ? 0 : 1)};
-    transition: ${props => (props.menuOpen ? theme.hamBeforeActive : theme.hamBefore)};
-  }
-  &:after {
-    width: ${props => (props.menuOpen ? `100%` : `80%`)};
-    bottom: ${props => (props.menuOpen ? `0` : `-10px`)};
-    transform: rotate(${props => (props.menuOpen ? `-90deg` : `0`)});
-    transition: ${props => (props.menuOpen ? theme.hamAfterActive : theme.hamAfter)};
+    width: ${({ menuOpen }) => (menuOpen ? 100 : 120)}%;
+    top: ${({ menuOpen }) => (menuOpen ? 0 : -10)}px;
+    opacity: ${({ menuOpen }) => (menuOpen ? 0 : 1)};
+    ${({ menuOpen }) => (menuOpen ? hamBeforeActive : hamBefore)}
   }
 `;
 
@@ -151,12 +197,12 @@ const NavListItem = styled.li`
   &:before {
     content: '0' counter(item) '.';
     text-align: right;
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.xsmall};
   }
 `;
 
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 
@@ -164,6 +210,10 @@ const ResumeLink = styled.a`
   ${mixins.smallButton};
   margin-left: 10px;
   font-size: ${fontSizes.smallish};
+  &:hover,
+  &:focus {
+    color: ${colors.primary};
+  }
 `;
 // #endregion
 
@@ -182,6 +232,8 @@ const Nav = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(DIRECTIONS.NONE);
+
+  const { modeToggle } = useContext(ThemeContext);
 
   const isMountedRef = useRef(isMounted);
   const isMenuOpenRef = useRef(isMenuOpen);
@@ -217,7 +269,7 @@ const Nav = () => {
 
       if (scrollY < DELTA) {
         setScrollDirection(DIRECTIONS.NONE);
-      } else if (scrollY > lastScrollY.current && scrollY > navHeight) {
+      } else if (scrollY > lastScrollY.current && scrollY > navHeightNumber) {
         scrollDirection !== DIRECTIONS.DOWN && setScrollDirection(DIRECTIONS.DOWN);
       } else if (scrollY + window.innerHeight < document.body.scrollHeight) {
         scrollDirection !== DIRECTIONS.UP && setScrollDirection(DIRECTIONS.UP);
@@ -249,7 +301,7 @@ const Nav = () => {
         <Transition.Group>
           {isMounted && (
             <Transition>
-              <LogoContainer>
+              <LogoContainer onClick={modeToggle}>
                 <IconLogo />
               </LogoContainer>
             </Transition>
@@ -275,7 +327,7 @@ const Nav = () => {
                 navBar.map((name, i) => (
                   <Transition key={i} classNames={ANIMATION_CLASSES.FADE_DOWN}>
                     <NavListItem key={i} style={delay(i * 100)}>
-                      <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+                      <NavLink to={`/#${content[name].id}`}>{name}</NavLink>
                     </NavListItem>
                   </Transition>
                 ))}

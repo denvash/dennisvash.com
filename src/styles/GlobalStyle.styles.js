@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import * as fontFamilies from './fonts';
 import media from './media';
 import theme from './theme';
+import { transparentize } from 'polished';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -159,8 +160,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: ${colors.navy};
-    color: ${colors.slate};
+    background-color: ${colors.background};
+    color: ${colors.text};
     line-height: 1.3;
     font-family: ${fonts.Calibre};
     font-size: ${fontSizes.xlarge};
@@ -181,7 +182,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${colors.lightNavy};
+    background-color: ${props => colors.primaryTransparent(props, 0.8)};
   }
 
   h1,
@@ -190,7 +191,7 @@ const GlobalStyle = createGlobalStyle`
   h4,
   h5 {
     font-weight: 600;
-    color: ${colors.white};
+    color: ${colors.text};
     margin: 0 0 10px 0;
   }
 
@@ -226,7 +227,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover,
     &:focus {
-      color: ${colors.green};
+      color: ${colors.primary};
       outline: 0;
     }
   }
@@ -309,13 +310,13 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar {
     height: 1px;
-    width: 4px;
-    background-color: ${colors.lightNavy};
+    width: 10px;
+    background-color: ${props => transparentize(0.9, colors.secondary(props))};
   }
 
   ::-webkit-scrollbar-thumb {
-    width: 1px;
-    background-color: ${colors.lightSlate};
+    width: 3px;
+    background-color: ${colors.secondary};
   }
 `;
 

@@ -1,48 +1,84 @@
 import styledTheme from 'styled-theming';
+import { lighten, darken, transparentize, setLightness } from 'polished';
 
 const MODE = 'mode';
 
-const hack = {
-  primary: '#64ffda',
-  secondary: '#8892b0',
-  title: '#e6f1ff',
-  background: '#0a192f',
-};
-
 const summerTime = {
+  name: 'summerTime',
   primary: '#F699D9',
   secondary: '#EBEA8B',
   background: '#2B303B',
-  title: '#ECF6FF',
+  text: '#ECF6FF',
+};
+
+const hack = {
+  name: 'hack',
+  primary: '#64ffda',
+  secondary: '#64ffda',
+  text: '#8892b0',
+  background: '#0a192f',
+};
+
+const gentleman = {
+  name: 'gentleman',
+  primary: 'black',
+  secondary: '#2E383B',
+  text: '#99A1AA',
+  background: 'white',
 };
 
 const primary = styledTheme(MODE, {
   hack: hack.primary,
   summerTime: summerTime.primary,
+  gentleman: gentleman.primary,
 });
 
 const secondary = styledTheme(MODE, {
   hack: hack.secondary,
   summerTime: summerTime.secondary,
+  gentleman: gentleman.secondary,
 });
 
+const background = styledTheme(MODE, {
+  hack: hack.background,
+  summerTime: summerTime.background,
+  gentleman: gentleman.background,
+});
+
+const text = styledTheme(MODE, {
+  hack: hack.text,
+  summerTime: summerTime.text,
+  gentleman: gentleman.text,
+});
+
+const polish = {
+  lighten: (amount, polish) => props => lighten(amount, polish(props)),
+  transparentize: (amount, polish) => props => transparentize(amount, polish(props)),
+  darken: (amount, polish) => props => darken(amount, polish(props)),
+  brighter: (amount, polish) => props => setLightness(amount, polish(props)),
+};
+
 const theme = {
+  palettes: [gentleman, summerTime, hack],
+  polish,
   colors: {
     primary,
+    primaryTransparent: polish.transparentize(0.9, primary),
+
     secondary,
-    darkGrey: '#333f58',
-    darkNavy: '#020c1b',
-    green: '#64ffda',
-    grey: '#4c5772',
-    lightestSlate: '#ccd6f6',
-    lightGrey: '#606a86',
-    lightNavy: '#172a45',
-    lightSlate: '#a8b2d1',
-    mediumGrey: '#2d3952',
-    navy: '#0a192f',
-    slate: '#8892b0',
-    transGreen: '#64ffda12',
-    white: '#e6f1ff',
+    secondaryLighten: polish.lighten(0.1, secondary),
+    secondaryBrighter: polish.brighter(0.8, secondary),
+    secondaryTransparent: polish.transparentize(0.9, secondary),
+
+    background,
+    backgroundLight: polish.lighten(0.07, background),
+    backgroundLighten: polish.lighten(0.6, background),
+    backgroundDark: polish.darken(0.03, background),
+    backgroundDarken: polish.darken(0.5, background),
+
+    text,
+    textTransparent: polish.transparentize(0.3, text),
+    textLight: polish.lighten(0.5, text),
   },
 
   fonts: {
@@ -66,19 +102,7 @@ const theme = {
   transition: 'all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)',
 
   borderRadius: '3px',
-  navHeight: '100px',
-  navScrollHeight: '70px',
   margin: '20px',
-
-  tabHeight: 42,
-  tabWidth: 120,
-  radius: 3,
-
-  hamburgerWidth: 30,
-  hamBefore: `top 0.1s ease-in 0.25s, opacity 0.1s ease-in`,
-  hamBeforeActive: `top 0.1s ease-out, opacity 0.1s ease-out 0.12s`,
-  hamAfter: `bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19)`,
-  hamAfterActive: `bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s`,
 };
 
 export default theme;

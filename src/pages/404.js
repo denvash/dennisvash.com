@@ -1,8 +1,13 @@
-import React from 'react';
-import { Link } from 'gatsby';
+// #region  Imports
 import { Layout } from '@components';
+import { Main, media, mixins, theme } from '@styles';
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
-import { theme, mixins, media, Main } from '@styles';
+// #endregion
+
+// #region  Styling
 const { colors, fonts } = theme;
 
 const MainContainer = styled(Main)`
@@ -11,7 +16,7 @@ const MainContainer = styled(Main)`
   height: 100vh !important;
 `;
 const Title = styled.h1`
-  color: ${colors.green};
+  color: ${colors.primary};
   font-family: ${fonts.SFMono};
   font-size: 12vw;
   line-height: 1;
@@ -28,9 +33,10 @@ const HomeButton = styled(Link)`
   ${mixins.bigButton};
   margin-top: 40px;
 `;
+// #endregion
 
-const NotFoundPage = () => (
-  <Layout>
+const NotFoundPage = ({ location }) => (
+  <Layout location={location}>
     <MainContainer id="content">
       <Title>404</Title>
       <Subtitle>Page Not Found</Subtitle>
@@ -38,5 +44,9 @@ const NotFoundPage = () => (
     </MainContainer>
   </Layout>
 );
+
+NotFoundPage.propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default NotFoundPage;

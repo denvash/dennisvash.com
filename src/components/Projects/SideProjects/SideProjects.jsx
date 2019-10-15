@@ -22,7 +22,7 @@ const ProjectsGrid = styled.div`
   }
 `;
 const ProjectInner = styled.div`
-  ${mixins.boxShadow};
+  ${mixins.boxShadowSmall};
   ${mixins.flexBetween};
   flex-direction: column;
   align-items: flex-start;
@@ -30,8 +30,9 @@ const ProjectInner = styled.div`
   padding: 2rem 1.75rem;
   height: 100%;
   border-radius: ${theme.borderRadius};
+  border: 0.5px solid ${colors.secondaryTransparent};
   transition: ${theme.transition};
-  background-color: ${colors.lightNavy};
+  background-color: ${colors.backgroundLight};
 `;
 const Project = styled.div`
   transition: ${theme.transition};
@@ -49,7 +50,7 @@ const ProjectHeader = styled.div`
   margin-bottom: 30px;
 `;
 const Folder = styled.div`
-  color: ${colors.green};
+  color: ${colors.primary};
   svg {
     width: 40px;
     height: 40px;
@@ -57,13 +58,13 @@ const Folder = styled.div`
 `;
 const Links = styled.div`
   margin-right: -10px;
-  color: ${colors.lightSlate};
+  color: ${colors.secondaryLighten};
 `;
 const IconLink = styled.a`
   position: relative;
   top: -10px;
   padding: 10px;
-
+  color: ${colors.textTransparent};
   svg {
     width: 20px;
     height: 20px;
@@ -72,11 +73,11 @@ const IconLink = styled.a`
 const ProjectName = styled.h5`
   margin: 0 0 10px;
   font-size: ${fontSizes.xxlarge};
-  color: ${colors.lightestSlate};
+  color: ${colors.textTransparent};
 `;
 const ProjectDescription = styled.div`
   font-size: 17px;
-  color: ${colors.lightSlate};
+  color: ${colors.text};
   a {
     ${mixins.inlineLink};
   }
@@ -90,7 +91,7 @@ const TechList = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.xsmall};
-    color: ${colors.slate};
+    color: ${colors.textTransparent};
     line-height: 1.75;
     margin-right: 15px;
     &:last-of-type {

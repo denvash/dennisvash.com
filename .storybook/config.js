@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { configure, addParameters, addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
 import { radios, withKnobs } from '@storybook/addon-knobs';
+import { ThemeContext } from 'styled-components';
+
 import GlobalStyle from '../src/styles/GlobalStyle.styles';
 import ThemeProvider from '../src/components/ThemeProvider';
 
 const label = 'Themes';
 const options = {
-  SummerTime: 'summerTime',
-  Hack: 'hack',
+  Hack: '0',
+  SummerTime: '1',
 };
 const defaultValue = options.Hack;
 
+const Container = ({ children }) => {
+  const controlledIndex = radios(label, options, defaultValue);
+  const { setIndex } = useContext(ThemeContext);
+  setIndex(controlledIndex);
+  return <>{children}</>;
+};
+
 addDecorator(withKnobs);
-addDecorator(s => {
-  const mode = radios(label, options, defaultValue);
+addDecorator(S => {
   return (
-    <>
-      <GlobalStyle />
-      <ThemeProvider mode={mode}>{s()}</ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Container>
+        <GlobalStyle />
+        <S />
+      </Container>
+    </ThemeProvider>
   );
 });
 

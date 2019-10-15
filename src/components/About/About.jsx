@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // #endregion
 
 // #region  Styling
-const { colors, fontSizes, fonts } = theme;
+const { colors, fontSizes, fonts, polish } = theme;
 
 const AboutContainer = styled(Section)`
   position: relative;
@@ -43,18 +43,18 @@ const Skill = styled.li`
   padding-left: 20px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smallish};
-  color: ${colors.slate};
+  color: ${colors.text};
   &:before {
     content: '▹';
     position: absolute;
     left: 0;
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.small};
     line-height: 12px;
   }
   &:hover {
     cursor: pointer;
-    color: ${colors.lightSlate};
+    color: ${colors.secondaryLighten};
     outline: none;
     transition: ${theme.transition};
   }
@@ -72,7 +72,7 @@ const PicContainer = styled.div`
 const Avatar = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
+  filter: grayscale(100%) contrast(1) brightness(100%);
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
 `;
@@ -82,7 +82,7 @@ const AvatarContainer = styled.a`
   width: 100%;
   position: relative;
   border-radius: ${theme.borderRadius};
-  background-color: ${colors.green};
+  background-color: ${colors.secondary};
   margin-left: -20px;
   &:hover,
   &:focus {
@@ -111,11 +111,11 @@ const AvatarContainer = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${colors.navy};
+    background-color: ${colors.secondaryBrighter};
     mix-blend-mode: screen;
   }
   &:after {
-    border: 2px solid ${colors.green};
+    border: 2px solid ${colors.secondaryLighten};
     top: 20px;
     left: 20px;
     z-index: -1;
@@ -140,7 +140,7 @@ const About = () => {
           </SkillsContainer>
         </ContentContainer>
         <PicContainer>
-          <AvatarContainer href={github}>
+          <AvatarContainer href={github} target="_blank" rel="nofollow noopener noreferrer">
             <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
           </AvatarContainer>
         </PicContainer>

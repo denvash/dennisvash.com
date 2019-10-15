@@ -1,9 +1,10 @@
 // #region  Imports
 import { content, navBar } from '@config';
 import { media, mixins, theme } from '@styles';
+import { Link } from 'gatsby';
+import { lighten } from 'polished';
 import PropTypes from 'prop-types';
 import React from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import styled from 'styled-components';
 // #endregion
 
@@ -21,14 +22,14 @@ const MenuContainer = styled.div`
   outline: 0;
   transition: ${theme.transition};
   transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
-  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
+  visibility: ${({ menuOpen }) => (menuOpen ? 'visible' : 'hidden')};
   display: none;
   ${media.tablet`display: block;`};
 `;
 const Sidebar = styled.div`
   ${mixins.flexCenter};
   flex-direction: column;
-  background-color: ${colors.lightNavy};
+  background-color: ${colors.backgroundLight};
   padding: 50px;
   width: 50vw;
   height: 100%;
@@ -36,9 +37,8 @@ const Sidebar = styled.div`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${colors.darkNavy};
+  box-shadow: -10px 0px 30px -15px ${colors.backgroundDarken};
   ${media.thone`padding: 25px;`};
-  ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
 `;
 const NavLinks = styled.nav`
@@ -63,21 +63,24 @@ const NavListItem = styled.li`
   &:before {
     display: block;
     content: '0' counter(item) '.';
-    color: ${colors.green};
+    color: ${colors.primary};
     font-size: ${fontSizes.small};
     margin-bottom: 5px;
   }
 `;
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(Link)`
   ${mixins.link};
   padding: 3px 20px 20px;
   width: 100%;
 `;
+
 const ResumeLink = styled.a`
   ${mixins.bigButton};
   padding: 18px 50px;
   margin: 10% auto 0;
   width: max-content;
+  ${media.phablet`
+    ${mixins.smallButton}`}
 `;
 // #endregion
 
@@ -101,7 +104,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
           <NavList>
             {navBar.map((name, i) => (
               <NavListItem key={i}>
-                <NavLink href={`#${content[name].id}`}>{name}</NavLink>
+                <NavLink to={`/#${content[name].id}`}>{name}</NavLink>
               </NavListItem>
             ))}
           </NavList>
