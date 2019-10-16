@@ -3,7 +3,7 @@ import iconMapper, { IconFork, IconStar } from '@components/icons';
 import { content, socialMedia } from '@config';
 import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 // #endregion
@@ -64,8 +64,6 @@ const GithubInfo = styled.div`
   }
 `;
 // #endregion
-
-const INITIAL_GITHUB = { stars: 20, forks: 15 };
 
 const query = graphql`
   query PersonalSiteInfo {
