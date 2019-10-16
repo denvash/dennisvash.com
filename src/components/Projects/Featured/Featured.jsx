@@ -43,7 +43,7 @@ const ProjectName = styled.h5`
   }
 `;
 const ProjectDescription = styled.div`
-  ${mixins.boxShadow};
+  ${mixins.boxShadowSmall};
   position: relative;
   z-index: 2;
   padding: 25px;

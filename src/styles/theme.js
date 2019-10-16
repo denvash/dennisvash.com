@@ -1,31 +1,8 @@
 import styledTheme from 'styled-theming';
 import { lighten, darken, transparentize, setLightness } from 'polished';
+import { hack, summerTime, gentleman } from './palettes';
 
 const MODE = 'mode';
-
-const summerTime = {
-  name: 'summerTime',
-  primary: '#F699D9',
-  secondary: '#EBEA8B',
-  background: '#2B303B',
-  text: '#ECF6FF',
-};
-
-const hack = {
-  name: 'hack',
-  primary: '#64ffda',
-  secondary: '#64ffda',
-  text: '#8892b0',
-  background: '#0a192f',
-};
-
-const gentleman = {
-  name: 'gentleman',
-  primary: 'black',
-  secondary: '#2E383B',
-  text: '#99A1AA',
-  background: 'white',
-};
 
 const primary = styledTheme(MODE, {
   hack: hack.primary,
@@ -43,6 +20,12 @@ const background = styledTheme(MODE, {
   hack: hack.background,
   summerTime: summerTime.background,
   gentleman: gentleman.background,
+});
+
+const backgroundLightDark = styledTheme(MODE, {
+  hack: hack.background,
+  summerTime: summerTime.background,
+  gentleman: darken(0.07, gentleman.backgroundDark),
 });
 
 const text = styledTheme(MODE, {
@@ -71,7 +54,7 @@ const theme = {
     secondaryTransparent: polish.transparentize(0.9, secondary),
 
     background,
-    backgroundLight: polish.lighten(0.07, background),
+    backgroundLight: polish.lighten(0.07, backgroundLightDark),
     backgroundLighten: polish.lighten(0.6, background),
     backgroundDark: polish.darken(0.03, background),
     backgroundDarken: polish.darken(0.5, background),

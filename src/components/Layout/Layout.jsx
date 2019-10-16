@@ -6,8 +6,6 @@ import React, { useState, useEffect } from 'react';
 import { scrollIntoView } from '@utils';
 // #endregion
 
-const INITIAL_GITHUB_INFO = { stars: 20, forks: 15 };
-
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line global-require
@@ -35,7 +33,7 @@ const Layout = ({ children, location }) => {
             <Social />
             <Email />
             {children}
-            <Footer githubInfo={INITIAL_GITHUB_INFO} />
+            <Footer />
           </div>
         )}
       </div>
