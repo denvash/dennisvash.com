@@ -17,7 +17,7 @@ const ContentContainer = styled.div`
   position: relative;
   grid-column: 1 / 7;
   grid-row: 1 / -1;
-  ${media.thone`
+  ${media.tablet`
     grid-column: 1 / -1;
     padding: 40px 40px 30px;
     z-index: 5;
@@ -29,7 +29,6 @@ const FeaturedLabel = styled.h4`
   font-weight: normal;
   color: ${colors.primary};
   font-family: ${fonts.SFMono};
-  margin-top: 10px;
   padding-top: 0;
 `;
 const ProjectName = styled.h5`
@@ -52,9 +51,8 @@ const ProjectDescription = styled.div`
   color: ${colors.text};
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
-  ${media.thone`
-    background-color: transparent;
-    padding: 20px 0;
+  ${media.phone`
+  padding: 20px 0;
     box-shadow: none;
     &:hover {
       box-shadow: none;
@@ -77,11 +75,11 @@ const TechList = styled.ul`
     color: ${colors.textTransparent};
     margin-right: ${theme.margin};
     margin-bottom: 7px;
-    white-space: nowrap;
+    white-space: normal;
     &:last-of-type {
       margin-right: 0;
     }
-    ${media.thone`
+    ${media.tablet`
       margin-right: 10px;
     `};
   }
@@ -109,22 +107,19 @@ const FeaturedImg = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1) brightness(100%);
-  ${media.tablet`
-    object-fit: cover;
-    width: auto;
-    height: 100%;
-    filter: grayscale(100%) contrast(1) brightness(30%);
-  `};
+  ${media.tablet`display: none`};
 `;
+
 const ImgContainer = styled.a`
   ${mixins.boxShadow};
+  box-shadow: 0px 6px 20px -15px ${colors.secondary};
   grid-column: 6 / -1;
   grid-row: 1 / -1;
   position: relative;
   z-index: 1;
   background-color: transparent;
   transition: ${theme.transition};
-  ${media.tablet`height: 100%;`};
+  ${media.tablet`display: none;`};
   ${media.thone`
     grid-column: 1 / -1;
     opacity: 0.25;
@@ -154,27 +149,32 @@ const ImgContainer = styled.a`
     mix-blend-mode: screen;
   }
 `;
+
 const Project = styled.div`
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
   margin-bottom: 100px;
-  ${media.thone`
-    margin-bottom: 70px;
+  ${media.tablet`
+    margin-bottom: 0px;
   `};
   &:last-of-type {
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
   &:nth-of-type(odd) {
     ${ContentContainer} {
       grid-column: 7 / -1;
       text-align: right;
-      ${media.thone`
+      ${media.tablet`
         grid-column: 1 / -1;
-        padding: 40px 40px 30px;
       `};
-      ${media.phablet`padding: 30px 25px 20px;`};
+      ${media.thone`
+      text-align: left;
+      `}
+      ${media.phablet`
+        padding: 30px 25px 20px;
+      `};
     }
     ${TechList} {
       justify-content: flex-end;
@@ -190,11 +190,6 @@ const Project = styled.div`
     }
     ${ImgContainer} {
       grid-column: 1 / 8;
-      ${media.tablet`height: 100%;`};
-      ${media.thone`
-        grid-column: 1 / -1;
-        opacity: 0.25;
-      `};
     }
   }
 `;
