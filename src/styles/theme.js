@@ -1,37 +1,43 @@
 import styledTheme from 'styled-theming';
 import { lighten, darken, transparentize, setLightness } from 'polished';
-import { hack, summerTime, gentleman } from './palettes';
+import { hack, summerTime, gentleman, blackPurple } from './palettes';
 
 const MODE = 'mode';
 
 const primary = styledTheme(MODE, {
-  hack: hack.primary,
-  summerTime: summerTime.primary,
-  gentleman: gentleman.primary,
+  [hack.name]: hack.primary,
+  [summerTime.name]: summerTime.primary,
+  [gentleman.name]: gentleman.primary,
+  [blackPurple.name]: blackPurple.primary,
 });
 
 const secondary = styledTheme(MODE, {
-  hack: hack.secondary,
-  summerTime: summerTime.secondary,
-  gentleman: gentleman.secondary,
-});
-
-const background = styledTheme(MODE, {
-  hack: hack.background,
-  summerTime: summerTime.background,
-  gentleman: gentleman.background,
-});
-
-const backgroundLightDark = styledTheme(MODE, {
-  hack: hack.background,
-  summerTime: summerTime.background,
-  gentleman: darken(0.07, gentleman.backgroundDark),
+  [hack.name]: hack.secondary,
+  [summerTime.name]: summerTime.secondary,
+  [gentleman.name]: gentleman.secondary,
+  [blackPurple.name]: blackPurple.secondary,
 });
 
 const text = styledTheme(MODE, {
-  hack: hack.text,
-  summerTime: summerTime.text,
-  gentleman: gentleman.text,
+  [hack.name]: hack.text,
+  [summerTime.name]: summerTime.text,
+  [gentleman.name]: gentleman.text,
+  [blackPurple.name]: blackPurple.text,
+});
+
+const background = styledTheme(MODE, {
+  [hack.name]: hack.background,
+  [summerTime.name]: summerTime.background,
+  [gentleman.name]: gentleman.background,
+  [blackPurple.name]: blackPurple.background,
+});
+
+const backgroundLightDark = styledTheme(MODE, {
+  [hack.name]: hack.background,
+  [summerTime.name]: summerTime.background,
+  // contrast backgroundLighten polish for light themes.
+  [gentleman.name]: darken(0.07, gentleman.backgroundDark),
+  [blackPurple.name]: blackPurple.background,
 });
 
 const polish = {
@@ -42,7 +48,7 @@ const polish = {
 };
 
 const theme = {
-  palettes: [gentleman, summerTime, hack],
+  palettes: [gentleman, summerTime, blackPurple, hack],
   polish,
   colors: {
     primary,

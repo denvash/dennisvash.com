@@ -22,3 +22,11 @@ export const gentleman = {
   background: 'white',
   backgroundDark: '#fafafa',
 };
+
+export const blackPurple = {
+  name: 'blackPurple',
+  primary: '#AE8AE0',
+  secondary: '#AE8AE0',
+  text: 'white',
+  background: 'black',
+};
