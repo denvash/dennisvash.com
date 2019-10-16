@@ -23,6 +23,7 @@ const ProjectsGrid = styled.div`
 `;
 const ProjectInner = styled.div`
   ${mixins.flexBetween};
+  ${mixins.boxShadowSmall}
   flex-direction: column;
   align-items: flex-start;
   position: relative;
@@ -33,7 +34,6 @@ const ProjectInner = styled.div`
   background-color: ${colors.backgroundLight};
 `;
 const Project = styled.div`
-  ${mixins.boxShadowSmall}
   transition: ${theme.transition};
   cursor: default;
   &:hover,

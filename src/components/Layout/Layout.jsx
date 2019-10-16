@@ -2,7 +2,7 @@
 import { Email, Footer, Head, Loader, Nav, Social, ThemeProvider } from '@components';
 import { GlobalStyle } from '@styles';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { scrollIntoView } from '@utils';
 // #endregion
 
@@ -13,29 +13,22 @@ if (typeof window !== 'undefined') {
 }
 
 const Layout = ({ children, location }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const parameters = { complete: () => setIsLoading(false) };
-
   useEffect(() => {
-    !isLoading && scrollIntoView(location);
-  }, [isLoading]);
+    scrollIntoView(location);
+  }, []);
 
   return (
     <ThemeProvider>
       <div id="root">
         <Head />
         <GlobalStyle />
-        {isLoading ? (
-          <Loader parameters={parameters} />
-        ) : (
-          <div className="container">
-            <Nav />
-            <Social />
-            <Email />
-            {children}
-            <Footer />
-          </div>
-        )}
+        <div className="container">
+          <Nav />
+          <Social />
+          <Email />
+          {children}
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   );

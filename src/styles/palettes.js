@@ -25,8 +25,9 @@ export const gentleman = {
 
 export const blackPurple = {
   name: 'blackPurple',
-  primary: '#AE8AE0',
-  secondary: '#AE8AE0',
-  text: 'white',
-  background: 'black',
+  primary: '#A641FE',
+  secondary: '#9013FE',
+  text: '#7801E2',
+  background: '#F1E8FF',
+  backgroundDark: '#E7CEFC',
 };

@@ -32,12 +32,17 @@ const background = styledTheme(MODE, {
   [blackPurple.name]: blackPurple.background,
 });
 
+const LIGHTEN_CONST = 0.07;
+
+const contrastBackground = palette =>
+  palette.backgroundDark ? darken(LIGHTEN_CONST, palette.backgroundDark) : palette.background;
+
 const backgroundLightDark = styledTheme(MODE, {
   [hack.name]: hack.background,
   [summerTime.name]: summerTime.background,
   // contrast backgroundLighten polish for light themes.
-  [gentleman.name]: darken(0.07, gentleman.backgroundDark),
-  [blackPurple.name]: blackPurple.background,
+  [gentleman.name]: contrastBackground(gentleman),
+  [blackPurple.name]: contrastBackground(blackPurple),
 });
 
 const polish = {
@@ -60,7 +65,7 @@ const theme = {
     secondaryTransparent: polish.transparentize(0.9, secondary),
 
     background,
-    backgroundLight: polish.lighten(0.07, backgroundLightDark),
+    backgroundLight: polish.lighten(LIGHTEN_CONST, backgroundLightDark),
     backgroundLighten: polish.lighten(0.6, background),
     backgroundDark: polish.darken(0.03, background),
     backgroundDarken: polish.darken(0.5, background),
