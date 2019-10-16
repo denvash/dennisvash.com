@@ -4,6 +4,7 @@ import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Transition from '@components/Transition';
+import { IconLogo } from '@components/icons';
 // #endregion
 
 // #region  Styling
@@ -47,6 +48,18 @@ const EmailLink = styled.a`
   &:hover,
   &:focus {
     transform: translateY(-3px);
+  }
+`;
+
+const ThemeButton = styled.div`
+  padding: 10px;
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+  }
+  svg {
+    width: 18px;
+    height: 18px;
   }
 `;
 // #endregion

@@ -22,15 +22,14 @@ const ProjectsGrid = styled.div`
   }
 `;
 const ProjectInner = styled.div`
-  ${mixins.boxShadowSmall};
   ${mixins.flexBetween};
+  ${mixins.boxShadowSmall}
   flex-direction: column;
   align-items: flex-start;
   position: relative;
   padding: 2rem 1.75rem;
   height: 100%;
   border-radius: ${theme.borderRadius};
-  border: 0.5px solid ${colors.secondaryTransparent};
   transition: ${theme.transition};
   background-color: ${colors.backgroundLight};
 `;

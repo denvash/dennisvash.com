@@ -5,6 +5,7 @@ import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 // #endregion
 
 // #region  Styling
@@ -64,41 +65,71 @@ const GithubInfo = styled.div`
 `;
 // #endregion
 
-const Footer = ({ githubInfo: { stars = 0, forks = 0 } }) => (
-  <FooterContainer>
-    <SocialContainer>
-      <SocialItemList>
-        {socialMedia &&
-          Object.values(socialMedia).map(({ name, url }, i) => (
-            <li key={i}>
-              <SocialLink
-                href={url}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                aria-label={name}>
-                {iconMapper[name]}
-              </SocialLink>
-            </li>
-          ))}
-      </SocialItemList>
-    </SocialContainer>
-    <GithubContainer>
-      <GithubLink href={socialMedia.GITHUB.url} target="_blank" rel="nofollow noopener noreferrer">
-        <div>{content.footer.heading}</div>
-        <GithubInfo>
-          <span>
-            <IconStar />
-            <span>{stars}</span>
-          </span>
-          <span>
-            <IconFork />
-            <span>{forks}</span>
-          </span>
-        </GithubInfo>
-      </GithubLink>
-    </GithubContainer>
-  </FooterContainer>
-);
+const query = graphql`
+  query PersonalSiteInfo {
+    github {
+      viewer {
+        repository(name: "dennisvash.com") {
+          stargazers {
+            totalCount
+          }
+          forks {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+`;
+
+const parseDataInfo = data => {
+  const { stargazers, forks } = data.github.viewer.repository;
+  return { stars: stargazers.totalCount, forks: forks.totalCount };
+};
+
+const Footer = () => {
+  const data = useStaticQuery(query);
+  const { stars, forks } = parseDataInfo(data);
+
+  return (
+    <FooterContainer>
+      <SocialContainer>
+        <SocialItemList>
+          {socialMedia &&
+            Object.values(socialMedia).map(({ name, url }, i) => (
+              <li key={i}>
+                <SocialLink
+                  href={url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  aria-label={name}>
+                  {iconMapper[name]}
+                </SocialLink>
+              </li>
+            ))}
+        </SocialItemList>
+      </SocialContainer>
+      <GithubContainer>
+        <GithubLink
+          href={socialMedia.GITHUB.url}
+          target="_blank"
+          rel="nofollow noopener noreferrer">
+          <div>{content.footer.heading}</div>
+          <GithubInfo>
+            <span>
+              <IconStar />
+              <span>{stars}</span>
+            </span>
+            <span>
+              <IconFork />
+              <span>{forks}</span>
+            </span>
+          </GithubInfo>
+        </GithubLink>
+      </GithubContainer>
+    </FooterContainer>
+  );
+};
 
 Footer.propTypes = {
   githubInfo: PropTypes.object,

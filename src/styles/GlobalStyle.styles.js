@@ -142,6 +142,14 @@ const GlobalStyle = createGlobalStyle`
     font-display: auto;
   }
 
+  @font-face {
+    font-family: 'Major Mono Display';
+    src: url(${fontFamilies.MajorMonoTTF}) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: auto;
+  }
+
   html {
     box-sizing: border-box;
     width: 100%;

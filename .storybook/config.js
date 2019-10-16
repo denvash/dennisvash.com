@@ -7,32 +7,33 @@ import { ThemeContext } from 'styled-components';
 
 import GlobalStyle from '../src/styles/GlobalStyle.styles';
 import ThemeProvider from '../src/components/ThemeProvider';
+import theme from '../src/styles/theme';
+
+const reducer = (acc, { name }, i) => {
+  acc[name] = String(i);
+  return acc;
+};
 
 const label = 'Themes';
-const options = {
-  Hack: '0',
-  SummerTime: '1',
-};
-const defaultValue = options.Hack;
+const options = theme.palettes.reduce(reducer, {});
+const defaultValue = Object.values(options)[0];
 
 const Container = ({ children }) => {
   const controlledIndex = radios(label, options, defaultValue);
   const { setIndex } = useContext(ThemeContext);
-  setIndex(controlledIndex);
+  setIndex(Number(controlledIndex));
   return <>{children}</>;
 };
 
 addDecorator(withKnobs);
-addDecorator(S => {
-  return (
-    <ThemeProvider>
-      <Container>
-        <GlobalStyle />
-        <S />
-      </Container>
-    </ThemeProvider>
-  );
-});
+addDecorator(S => (
+  <ThemeProvider>
+    <Container>
+      <GlobalStyle />
+      <S />
+    </Container>
+  </ThemeProvider>
+));
 
 addParameters({
   options: {

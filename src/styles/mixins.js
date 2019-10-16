@@ -47,17 +47,6 @@ const link = css`
     outline: 0;
   }
 `;
-
-const boxShadow = css`
-  box-shadow: 0 10px 30px -15px ${colors.secondary};
-  transition: ${theme.transition};
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 20px 30px -15px ${colors.secondary};
-  }
-`;
-
 const mixins = {
   flexCenter,
 
@@ -119,8 +108,11 @@ const mixins = {
   `,
 
   boxShadowSmall: css`
-    ${boxShadow}
-    box-shadow: 0 0px 0px -15px ${colors.secondary};
+    transition: ${theme.transition};
+    &:hover,
+    &:focus {
+      box-shadow: 1px 7px 30px -15px ${colors.secondary};
+    }
   `,
 };
 

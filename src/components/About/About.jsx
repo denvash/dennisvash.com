@@ -1,15 +1,15 @@
 // #region  Imports
-import { github, srConfig } from '@config';
+import { srConfig } from '@config';
 import { useAbout } from '@hooks';
 import { Heading, media, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
 import Img from 'gatsby-image';
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 // #endregion
 
 // #region  Styling
-const { colors, fontSizes, fonts, polish } = theme;
+const { colors, fontSizes, fonts } = theme;
 
 const AboutContainer = styled(Section)`
   position: relative;
@@ -23,7 +23,6 @@ const FlexContainer = styled.div`
 
 const ContentContainer = styled.div`
   width: 60%;
-  max-width: 480px;
   ${media.tablet`width: 100%;`};
   a {
     ${mixins.inlineLink};
@@ -77,8 +76,9 @@ const Avatar = styled(Img)`
   transition: ${theme.transition};
 `;
 
-const AvatarContainer = styled.a`
+const AvatarContainer = styled.div`
   ${mixins.boxShadow};
+  cursor: pointer;
   width: 100%;
   position: relative;
   border-radius: ${theme.borderRadius};
@@ -129,6 +129,8 @@ const About = () => {
 
   const { title, skills, avatar, html } = useAbout();
 
+  const { modeToggle } = useContext(ThemeContext);
+
   return (
     <AboutContainer id="about" ref={revealContainer}>
       <Heading>{title}</Heading>
@@ -140,7 +142,7 @@ const About = () => {
           </SkillsContainer>
         </ContentContainer>
         <PicContainer>
-          <AvatarContainer href={github} target="_blank" rel="nofollow noopener noreferrer">
+          <AvatarContainer onClick={modeToggle}>
             <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
           </AvatarContainer>
         </PicContainer>

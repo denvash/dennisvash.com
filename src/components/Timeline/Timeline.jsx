@@ -72,6 +72,10 @@ const transformTab = value => css`
   transform: translateY(${({ activeTabId }) => (activeTabId > 0 ? activeTabId * value : 0)}px);
 `;
 
+const transformTabX = value => css`
+  transform: translateX(${({ activeTabId }) => (activeTabId > 0 ? activeTabId * value : 0)}px);
+`;
+
 const Tab = styled.button`
   ${mixins.link};
   display: flex;
@@ -120,12 +124,11 @@ const Highlighter = styled.span`
     height: 2px;
     top: auto;
     bottom: 10px;
-    ${transformTab(tabWidth)}
+    ${transformTabX(tabWidth)}
     margin-left: 50px;
   `};
   ${media.phablet`
     margin-left: 25px;
-    bottom: 10px;
   `};
 `;
 const ContentContainer = styled.div`
