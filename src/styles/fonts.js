@@ -42,7 +42,10 @@ import SFMonoSemiboldItalicTTF from '@fonts/SFMono/SFMono-SemiboldItalic.ttf';
 import SFMonoSemiboldItalicWOFF from '@fonts/SFMono/SFMono-SemiboldItalic.woff';
 import SFMonoSemiboldItalicWOFF2 from '@fonts/SFMono/SFMono-SemiboldItalic.woff2';
 
+import MajorMonoTTF from '@fonts/MajorMonoDisplay/MajorMonoDisplay-Regular.ttf';
+
 export {
+  MajorMonoTTF,
   CalibreLightTTF,
   CalibreLightWOFF,
   CalibreLightWOFF2,

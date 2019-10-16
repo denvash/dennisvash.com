@@ -71,6 +71,7 @@ const theme = {
     backgroundDarken: polish.darken(0.5, background),
 
     text,
+    textDarken: polish.darken(0.3, text),
     textTransparent: polish.transparentize(0.3, text),
     textLight: polish.lighten(0.5, text),
   },
@@ -79,6 +80,8 @@ const theme = {
     Calibre:
       'Calibre, San Francisco, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Roboto, Helvetica Neue, Segoe UI, Arial, sans-serif',
     SFMono: 'SF Mono, Fira Code, Fira Mono, Roboto Mono, Lucida Console, Monaco, monospace',
+    MajorMono:
+      'Major Mono Display, Calibre, San Francisco, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Roboto, Helvetica Neue, Segoe UI, Arial, sans-serif',
   },
 
   fontSizes: {

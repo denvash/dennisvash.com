@@ -16,9 +16,8 @@ const MenuContainer = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  width: 100%;
   height: 100vh;
-  z-index: 10;
+  z-index: 1;
   outline: 0;
   transition: ${theme.transition};
   transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
@@ -33,7 +32,6 @@ const Sidebar = styled.div`
   padding: 50px;
   width: 50vw;
   height: 100%;
-  position: relative;
   right: 0;
   margin-left: auto;
   font-family: ${fonts.SFMono};
@@ -52,7 +50,6 @@ const NavList = styled.ol`
 `;
 const NavListItem = styled.li`
   margin: 0 auto 20px;
-  position: relative;
   font-size: ${fontSizes.large};
   counter-increment: item 1;
   ${media.thone`

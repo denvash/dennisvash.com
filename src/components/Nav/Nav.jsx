@@ -49,7 +49,6 @@ const NavContainer = styled.header`
 
 const Navbar = styled.nav`
   ${mixins.flexBetween};
-  position: relative;
   width: 100%;
   color: ${colors.text};
   font-family: ${fonts.SFMono};
@@ -206,7 +205,7 @@ const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 
-const ResumeLink = styled.a`
+const ChangeTheme = styled.div`
   ${mixins.smallButton};
   margin-left: 10px;
   font-size: ${fontSizes.smallish};
@@ -214,6 +213,15 @@ const ResumeLink = styled.a`
   &:focus {
     color: ${colors.primary};
   }
+  display: ${({ menuOpen }) => (menuOpen ? 'none' : 'block')};
+  ${media.tablet`
+    margin-right: 10px;
+  `};
+`;
+
+const HamburgerContainer = styled.div`
+  display: none;
+  ${media.tablet`${mixins.flexBetween}`};
 `;
 // #endregion
 
@@ -311,11 +319,16 @@ const Nav = () => {
         <Transition.Group>
           {isMounted && (
             <Transition>
-              <Hamburger onClick={toggleMenu}>
-                <HamburgerBox>
-                  <HamburgerInner menuOpen={isMenuOpen} />
-                </HamburgerBox>
-              </Hamburger>
+              <HamburgerContainer>
+                <ChangeTheme onClick={modeToggle} menuOpen={isMenuOpen}>
+                  Change Theme
+                </ChangeTheme>
+                <Hamburger onClick={toggleMenu}>
+                  <HamburgerBox>
+                    <HamburgerInner menuOpen={isMenuOpen} />
+                  </HamburgerBox>
+                </Hamburger>
+              </HamburgerContainer>
             </Transition>
           )}
         </Transition.Group>
@@ -338,9 +351,7 @@ const Nav = () => {
             {isMounted && (
               <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
                 <div style={delay(600)}>
-                  <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
-                    Resume
-                  </ResumeLink>
+                  <ChangeTheme onClick={modeToggle}>Change Theme</ChangeTheme>
                 </div>
               </Transition>
             )}

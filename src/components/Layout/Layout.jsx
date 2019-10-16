@@ -1,5 +1,7 @@
 // #region  Imports
-import { Email, Footer, Head, Loader, Nav, Social, ThemeProvider } from '@components';
+import { Email, Footer, Head, Nav, Social, ThemeProvider } from '@components';
+import styled from 'styled-components';
+
 import { GlobalStyle } from '@styles';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -12,23 +14,26 @@ if (typeof window !== 'undefined') {
   require('smooth-scroll')('a[href*="#"]');
 }
 
+const LayoutContainer = styled.div`
+  position: relative;
+`;
+
 const Layout = ({ children, location }) => {
   useEffect(() => {
     scrollIntoView(location);
   }, []);
-
   return (
     <ThemeProvider>
       <div id="root">
         <Head />
         <GlobalStyle />
-        <div className="container">
-          <Nav />
+        <Nav />
+        <LayoutContainer className="container">
           <Social />
           <Email />
           {children}
           <Footer />
-        </div>
+        </LayoutContainer>
       </div>
     </ThemeProvider>
   );
