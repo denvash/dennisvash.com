@@ -25,7 +25,6 @@ const Container = ({ children }) => {
   return <>{children}</>;
 };
 
-addDecorator(withKnobs);
 addDecorator(S => (
   <ThemeProvider>
     <Container>
@@ -34,6 +33,7 @@ addDecorator(S => (
     </Container>
   </ThemeProvider>
 ));
+addDecorator(withKnobs);
 
 addParameters({
   options: {

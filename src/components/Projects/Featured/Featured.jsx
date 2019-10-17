@@ -52,7 +52,7 @@ const ProjectDescription = styled.div`
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
   ${media.phone`
-  padding: 20px 0;
+  padding: 20px;
     box-shadow: none;
     &:hover {
       box-shadow: none;

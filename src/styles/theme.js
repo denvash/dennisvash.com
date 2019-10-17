@@ -1,48 +1,48 @@
 import styledTheme from 'styled-theming';
 import { lighten, darken, transparentize, setLightness } from 'polished';
-import { hack, summerTime, gentleman, blackPurple } from './palettes';
+import { hack, summerTime, newsPaper, purpleLife } from './palettes';
 
 const MODE = 'mode';
 
 const primary = styledTheme(MODE, {
   [hack.name]: hack.primary,
   [summerTime.name]: summerTime.primary,
-  [gentleman.name]: gentleman.primary,
-  [blackPurple.name]: blackPurple.primary,
+  [newsPaper.name]: newsPaper.primary,
+  [purpleLife.name]: purpleLife.primary,
 });
 
 const secondary = styledTheme(MODE, {
   [hack.name]: hack.secondary,
   [summerTime.name]: summerTime.secondary,
-  [gentleman.name]: gentleman.secondary,
-  [blackPurple.name]: blackPurple.secondary,
+  [newsPaper.name]: newsPaper.secondary,
+  [purpleLife.name]: purpleLife.secondary,
 });
 
 const text = styledTheme(MODE, {
   [hack.name]: hack.text,
   [summerTime.name]: summerTime.text,
-  [gentleman.name]: gentleman.text,
-  [blackPurple.name]: blackPurple.text,
+  [newsPaper.name]: newsPaper.text,
+  [purpleLife.name]: purpleLife.text,
 });
 
 const background = styledTheme(MODE, {
   [hack.name]: hack.background,
   [summerTime.name]: summerTime.background,
-  [gentleman.name]: gentleman.background,
-  [blackPurple.name]: blackPurple.background,
+  [newsPaper.name]: newsPaper.background,
+  [purpleLife.name]: purpleLife.background,
 });
 
 const LIGHTEN_CONST = 0.07;
 
+// contrast backgroundLighten polish for light themes.
 const contrastBackground = palette =>
   palette.backgroundDark ? darken(LIGHTEN_CONST, palette.backgroundDark) : palette.background;
 
-const backgroundLightDark = styledTheme(MODE, {
+const backgroundContrast = styledTheme(MODE, {
   [hack.name]: hack.background,
   [summerTime.name]: summerTime.background,
-  // contrast backgroundLighten polish for light themes.
-  [gentleman.name]: contrastBackground(gentleman),
-  [blackPurple.name]: contrastBackground(blackPurple),
+  [newsPaper.name]: contrastBackground(newsPaper),
+  [purpleLife.name]: contrastBackground(purpleLife),
 });
 
 const polish = {
@@ -53,7 +53,7 @@ const polish = {
 };
 
 const theme = {
-  palettes: [gentleman, summerTime, blackPurple, hack],
+  palettes: [newsPaper, summerTime, hack, purpleLife],
   polish,
   colors: {
     primary,
@@ -65,13 +65,12 @@ const theme = {
     secondaryTransparent: polish.transparentize(0.9, secondary),
 
     background,
-    backgroundLight: polish.lighten(LIGHTEN_CONST, backgroundLightDark),
+    backgroundLight: polish.lighten(LIGHTEN_CONST, backgroundContrast),
     backgroundLighten: polish.lighten(0.6, background),
     backgroundDark: polish.darken(0.03, background),
     backgroundDarken: polish.darken(0.5, background),
 
     text,
-    textDarken: polish.darken(0.3, text),
     textTransparent: polish.transparentize(0.3, text),
     textLight: polish.lighten(0.5, text),
   },

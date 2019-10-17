@@ -20,19 +20,32 @@ const LogoPosition = styled.div`
   ${mixins.flexCenter}
   position: absolute;
   z-index: 4;
-  top: 35vh;
   left: 50vw;
   max-width: 30em;
+  top: 30vh;
   ${media.desktop`
-    top: 30vh;
+    max-width: 20em;
+    top: 28vh;
   `}
   ${media.tablet`
-    top: 35vh;
-    left: 40vw;
-    max-width: 23em;
+    max-width: 18em;
+    top: 30vh;
   `}
   ${media.thone`
-    display: none;
+    max-width: 15em;
+    left: 45vw;
+    top: 35vh;
+  `}
+  ${media.phablet`
+    max-width: 14em;
+    top: 40vh;
+  `}
+  ${media.phone`
+    max-width: 11em;
+    top: 42vh;
+  `}
+  ${media.tiny`
+    max-width: 10em;
   `}
 `;
 

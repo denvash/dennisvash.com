@@ -9,6 +9,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import Helmet from 'react-helmet';
 import styled, { css, ThemeContext } from 'styled-components';
 import { Link } from 'gatsby';
+import IconThemePicker from '@components/icons/ThemePicker/ThemePicker.svg';
 // #endregion
 
 // #region  Styling
@@ -78,11 +79,9 @@ const LogoContainer = styled.div`
       #${inner} {
         stroke: ${colors.secondary};
         stroke-width: 5px;
-        transition: ${theme.transition};
       }
       #${outer} {
         stroke: ${colors.secondary};
-        transition: ${theme.transition};
         stroke-width: 7px;
       }
     }
@@ -205,23 +204,34 @@ const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 
-const ChangeTheme = styled.div`
-  ${mixins.smallButton};
-  margin-left: 10px;
-  font-size: ${fontSizes.smallish};
-  &:hover,
-  &:focus {
-    color: ${colors.primary};
-  }
-  display: ${({ menuOpen }) => (menuOpen ? 'none' : 'block')};
-  ${media.tablet`
-    margin-right: 10px;
-  `};
-`;
-
 const HamburgerContainer = styled.div`
   display: none;
   ${media.tablet`${mixins.flexBetween}`};
+`;
+
+const IconThemePickerContainer = styled.div`
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  cursor: pointer;
+  width: 35px;
+  svg {
+    #${IconThemePicker.IDs.up} {
+      fill: ${colors.primary};
+      transition: ${theme.transition};
+    }
+    #${IconThemePicker.IDs.down} {
+      fill: ${colors.secondary};
+      transition: ${theme.transition};
+    }
+    &:focus,
+    &:hover {
+      #${IconThemePicker.IDs.up} {
+        fill: ${({ nextPalette: { primary } }) => primary};
+      }
+      #${IconThemePicker.IDs.down} {
+        fill: ${({ nextPalette: { secondary } }) => secondary};
+      }
+    }
+  }
 `;
 // #endregion
 
@@ -241,7 +251,7 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(DIRECTIONS.NONE);
 
-  const { modeToggle } = useContext(ThemeContext);
+  const { modeToggle, nextPalette } = useContext(ThemeContext);
 
   const isMountedRef = useRef(isMounted);
   const isMenuOpenRef = useRef(isMenuOpen);
@@ -300,6 +310,18 @@ const Nav = () => {
     };
   }, []);
 
+  const themePickerButton = (
+    <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
+      <IconThemePickerContainer
+        nextPalette={nextPalette}
+        isVisible={!isMenuOpen}
+        onClick={modeToggle}
+        style={delay(600)}>
+        <IconThemePicker />
+      </IconThemePickerContainer>
+    </Transition>
+  );
+
   return (
     <NavContainer scrollDirection={scrollDirection}>
       <Helmet>
@@ -320,9 +342,7 @@ const Nav = () => {
           {isMounted && (
             <Transition>
               <HamburgerContainer>
-                <ChangeTheme onClick={modeToggle} menuOpen={isMenuOpen}>
-                  Change Theme
-                </ChangeTheme>
+                {themePickerButton}
                 <Hamburger onClick={toggleMenu}>
                   <HamburgerBox>
                     <HamburgerInner menuOpen={isMenuOpen} />
@@ -347,15 +367,7 @@ const Nav = () => {
             </Transition.Group>
           </NavList>
 
-          <Transition.Group>
-            {isMounted && (
-              <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
-                <div style={delay(600)}>
-                  <ChangeTheme onClick={modeToggle}>Change Theme</ChangeTheme>
-                </div>
-              </Transition>
-            )}
-          </Transition.Group>
+          <Transition.Group>{isMounted && themePickerButton}</Transition.Group>
         </NavLinks>
       </Navbar>
 
