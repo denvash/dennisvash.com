@@ -53,7 +53,7 @@ const polish = {
 };
 
 const theme = {
-  palettes: [newsPaper, summerTime, purpleLife, hack],
+  palettes: [newsPaper, summerTime, hack, purpleLife],
   polish,
   colors: {
     primary,

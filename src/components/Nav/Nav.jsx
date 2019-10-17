@@ -79,11 +79,9 @@ const LogoContainer = styled.div`
       #${inner} {
         stroke: ${colors.secondary};
         stroke-width: 5px;
-        transition: ${theme.transition};
       }
       #${outer} {
         stroke: ${colors.secondary};
-        transition: ${theme.transition};
         stroke-width: 7px;
       }
     }
@@ -218,9 +216,20 @@ const IconThemePickerContainer = styled.div`
   svg {
     #${IconThemePicker.IDs.up} {
       fill: ${colors.primary};
+      transition: ${theme.transition};
     }
     #${IconThemePicker.IDs.down} {
       fill: ${colors.secondary};
+      transition: ${theme.transition};
+    }
+    &:focus,
+    &:hover {
+      #${IconThemePicker.IDs.up} {
+        fill: ${({ nextPalette: { primary } }) => primary};
+      }
+      #${IconThemePicker.IDs.down} {
+        fill: ${({ nextPalette: { secondary } }) => secondary};
+      }
     }
   }
 `;
@@ -242,7 +251,7 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(DIRECTIONS.NONE);
 
-  const { modeToggle } = useContext(ThemeContext);
+  const { modeToggle, nextPalette } = useContext(ThemeContext);
 
   const isMountedRef = useRef(isMounted);
   const isMenuOpenRef = useRef(isMenuOpen);
@@ -303,7 +312,11 @@ const Nav = () => {
 
   const themePickerButton = (
     <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
-      <IconThemePickerContainer isVisible={!isMenuOpen} onClick={modeToggle} style={delay(600)}>
+      <IconThemePickerContainer
+        nextPalette={nextPalette}
+        isVisible={!isMenuOpen}
+        onClick={modeToggle}
+        style={delay(600)}>
         <IconThemePicker />
       </IconThemePickerContainer>
     </Transition>
