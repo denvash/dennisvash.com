@@ -9,6 +9,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import Helmet from 'react-helmet';
 import styled, { css, ThemeContext } from 'styled-components';
 import { Link } from 'gatsby';
+import IconThemePicker from '@components/icons/ThemePicker/ThemePicker.svg';
 // #endregion
 
 // #region  Styling
@@ -223,6 +224,19 @@ const HamburgerContainer = styled.div`
   display: none;
   ${media.tablet`${mixins.flexBetween}`};
 `;
+
+const IconThemePickerContainer = styled.div`
+  cursor: pointer;
+  width: 35px;
+  svg {
+    #${IconThemePicker.IDs.up} {
+      fill: ${colors.primary};
+    }
+    #${IconThemePicker.IDs.down} {
+      fill: ${colors.secondary};
+    }
+  }
+`;
 // #endregion
 
 // #region  Helpers
@@ -350,9 +364,9 @@ const Nav = () => {
           <Transition.Group>
             {isMounted && (
               <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
-                <div style={delay(600)}>
-                  <ChangeTheme onClick={modeToggle}>Change Theme</ChangeTheme>
-                </div>
+                <IconThemePickerContainer onClick={modeToggle} style={delay(600)}>
+                  <IconThemePicker />
+                </IconThemePickerContainer>
               </Transition>
             )}
           </Transition.Group>

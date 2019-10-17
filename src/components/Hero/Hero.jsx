@@ -46,7 +46,7 @@ const Name = styled.h2`
 const Subtitle = styled.h3`
   font-size: 80px;
   line-height: 1.1;
-  color: ${colors.textDarken};
+  color: ${colors.secondary};
   position: absolute;
   z-index: 4;
   ${mediaQueries}

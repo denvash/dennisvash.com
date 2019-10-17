@@ -9,25 +9,25 @@ export const summerTime = {
 export const hack = {
   name: 'hack',
   primary: '#64ffda',
-  secondary: '#64ffda',
+  secondary: '#00F5BB',
   text: '#8892b0',
   background: '#0a192f',
 };
 
-export const gentleman = {
+export const newsPaper = {
   name: 'gentleman',
   primary: 'black',
   secondary: '#2E383B',
   text: '#99A1AA',
   background: 'white',
-  backgroundDark: '#fafafa',
+  backgroundDark: '#F2F2F2',
 };
 
-export const blackPurple = {
+export const purpleLife = {
   name: 'blackPurple',
   primary: '#A641FE',
-  secondary: '#9013FE',
-  text: '#7801E2',
+  secondary: '#C584FE',
+  text: '#7001D0',
   background: '#F1E8FF',
-  backgroundDark: '#E7CEFC',
+  backgroundDark: '#EBD4FE',
 };

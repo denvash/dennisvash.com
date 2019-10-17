@@ -4,7 +4,6 @@ import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Transition from '@components/Transition';
-import { IconLogo } from '@components/icons';
 // #endregion
 
 // #region  Styling
