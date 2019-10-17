@@ -206,26 +206,13 @@ const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 
-const ChangeTheme = styled.div`
-  ${mixins.smallButton};
-  margin-left: 10px;
-  font-size: ${fontSizes.smallish};
-  &:hover,
-  &:focus {
-    color: ${colors.primary};
-  }
-  display: ${({ menuOpen }) => (menuOpen ? 'none' : 'block')};
-  ${media.tablet`
-    margin-right: 10px;
-  `};
-`;
-
 const HamburgerContainer = styled.div`
   display: none;
   ${media.tablet`${mixins.flexBetween}`};
 `;
 
 const IconThemePickerContainer = styled.div`
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   cursor: pointer;
   width: 35px;
   svg {
@@ -314,6 +301,14 @@ const Nav = () => {
     };
   }, []);
 
+  const themePickerButton = (
+    <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
+      <IconThemePickerContainer isVisible={!isMenuOpen} onClick={modeToggle} style={delay(600)}>
+        <IconThemePicker />
+      </IconThemePickerContainer>
+    </Transition>
+  );
+
   return (
     <NavContainer scrollDirection={scrollDirection}>
       <Helmet>
@@ -334,9 +329,7 @@ const Nav = () => {
           {isMounted && (
             <Transition>
               <HamburgerContainer>
-                <ChangeTheme onClick={modeToggle} menuOpen={isMenuOpen}>
-                  Change Theme
-                </ChangeTheme>
+                {themePickerButton}
                 <Hamburger onClick={toggleMenu}>
                   <HamburgerBox>
                     <HamburgerInner menuOpen={isMenuOpen} />
@@ -361,15 +354,7 @@ const Nav = () => {
             </Transition.Group>
           </NavList>
 
-          <Transition.Group>
-            {isMounted && (
-              <Transition classNames={ANIMATION_CLASSES.FADE_DOWN}>
-                <IconThemePickerContainer onClick={modeToggle} style={delay(600)}>
-                  <IconThemePicker />
-                </IconThemePickerContainer>
-              </Transition>
-            )}
-          </Transition.Group>
+          <Transition.Group>{isMounted && themePickerButton}</Transition.Group>
         </NavLinks>
       </Navbar>
 

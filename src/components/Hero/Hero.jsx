@@ -44,11 +44,11 @@ const Name = styled.h2`
   ${mediaQueries}
 `;
 const Subtitle = styled.h3`
+  position: relative;
   font-size: 80px;
   line-height: 1.1;
   color: ${colors.secondary};
-  position: absolute;
-  z-index: 4;
+  z-index: 5;
   ${mediaQueries}
 `;
 // #endregion
