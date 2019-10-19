@@ -9,7 +9,11 @@ tech:
   - React
   - CSS-in-JS
   - Figma
+  - Atomic-Design
+  - Storybook
 show: 'true'
 ---
 
-Server side rendering Personal website empowered by [Gatsby](https://www.gatsbyjs.org/).
+A themeable, animated personal static-site empowered by [Gatsby](https://www.gatsbyjs.org/).
+
+[Atomic-Design](https://bradfrost.com/blog/post/atomic-web-design/) methodology as [Design System](https://www.wikiwand.com/en/Systems_design) with [Storybook](https://storybook.js.org/) UI components developing.

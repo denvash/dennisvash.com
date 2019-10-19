@@ -15,7 +15,7 @@ const { colors, fontSizes, fonts } = theme;
 const ProjectsGrid = styled.div`
   .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 33.3%);
     grid-gap: 15px;
     position: relative;
     ${media.desktop`grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));`};

@@ -14,3 +14,5 @@ featured: 'true'
 
 Jesta is a social application which connects between people who are willing
 to take up tasks and people who publish them.
+
+Explore available tasks from the community, pick a desired one, chat and claim your reward.

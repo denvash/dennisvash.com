@@ -52,14 +52,10 @@ const ProjectDescription = styled.div`
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
   ${media.phone`
-  padding: 20px;
-    box-shadow: none;
-    &:hover {
-      box-shadow: none;
-    }
+    padding: 20px;
   `};
   p {
-    margin: 0;
+    margin: 6px 0 0 0;
   }
   a {
     ${mixins.inlineLink};
@@ -168,10 +164,8 @@ const Project = styled.div`
       text-align: right;
       ${media.tablet`
         grid-column: 1 / -1;
+        text-align: left;
       `};
-      ${media.thone`
-      text-align: left;
-      `}
       ${media.phablet`
         padding: 30px 25px 20px;
       `};

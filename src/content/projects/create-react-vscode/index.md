@@ -5,9 +5,9 @@ image: ''
 github: 'https://github.com/denvash/create-react-vscode'
 external: 'https://marketplace.visualstudio.com/items?itemName=DennisVash.create-react-vscode'
 tech:
-  - Extensions-Pack
-  - React
   - VS-Code
+  - React
+  - Extensions-Pack
 show: 'true'
 ---
 
