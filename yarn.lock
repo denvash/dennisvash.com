@@ -1259,6 +1259,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@dennisvash/prettier-config@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dennisvash/prettier-config/-/prettier-config-1.0.0.tgz#ef7f0fbab0f225933b584523203f5fb2d6e944df"
+  integrity sha512-gzfmMP8GDFXfDEKwYY46FgXwVyeBAd2ue38OFVQzR4VetYEK9DCM4wYoa9Xe69x0Hue2EUgfkzk2ivlMZjeU0Q==
+  dependencies:
+    prettier "^1.x.x"
+
 "@emotion/cache@^10.0.17", "@emotion/cache@^10.0.9":
   version "10.0.19"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.19.tgz#d258d94d9c707dcadaf1558def968b86bb87ad71"
@@ -2447,13 +2454,6 @@
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@upstatement/eslint-config/-/eslint-config-0.4.2.tgz#daea6cf675c5a08e088aae39757f607363459397"
   integrity sha512-gkbHkN40k4NahdnebDlhOCGoujrCy178c3d6Slkk4sg0gro6xKKFSpbBg2OJIkXshHMS4n/zCdQYSqzLMU/SUQ==
-
-"@upstatement/prettier-config@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@upstatement/prettier-config/-/prettier-config-0.3.0.tgz#cf34332dfba90c7586cd0bde134b7fc771163323"
-  integrity sha512-/DCKpd5tsgZ7Mshb7MSLdFkPRXHxZhzEKJP9ZW58ix0ARw1nbrcdbyiovHEutiQqmh4OjdLJjIAJ2MVUiEaB+Q==
-  dependencies:
-    prettier "^1.x.x"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"

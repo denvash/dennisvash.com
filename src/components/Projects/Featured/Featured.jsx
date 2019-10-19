@@ -103,7 +103,9 @@ const FeaturedImg = styled(Img)`
   position: relative;
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1) brightness(100%);
-  ${media.tablet`display: none`};
+  ${media.tablet`
+    display: none;
+  `};
 `;
 
 const ImgContainer = styled.a`
