@@ -210,7 +210,8 @@ const HamburgerContainer = styled.div`
 `;
 
 const IconThemePickerContainer = styled.div`
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  /* display: ${({ isVisible }) => (isVisible ? 'block' : 'none')}; */
+  display: none;
   cursor: pointer;
   width: 35px;
   svg {

@@ -1259,6 +1259,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@dennisvash/eslint-config@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dennisvash/eslint-config/-/eslint-config-1.1.0.tgz#309a0dd94de23a931b4f34b397b2579f1f298e1f"
+  integrity sha512-auDHsIqyCA+BZtwuV0eZ2dDheVKfpGCRB4VBSLFG+KP0eD6pvpr8c1WhVCCw9eX4lxTvm932jPw2ijgVv6K2jA==
+
 "@dennisvash/prettier-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@dennisvash/prettier-config/-/prettier-config-1.0.0.tgz#ef7f0fbab0f225933b584523203f5fb2d6e944df"
@@ -2449,11 +2454,6 @@
   dependencies:
     lodash.unescape "4.0.1"
     semver "5.5.0"
-
-"@upstatement/eslint-config@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@upstatement/eslint-config/-/eslint-config-0.4.2.tgz#daea6cf675c5a08e088aae39757f607363459397"
-  integrity sha512-gkbHkN40k4NahdnebDlhOCGoujrCy178c3d6Slkk4sg0gro6xKKFSpbBg2OJIkXshHMS4n/zCdQYSqzLMU/SUQ==
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"

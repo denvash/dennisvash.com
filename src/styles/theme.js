@@ -1,6 +1,6 @@
 import styledTheme from 'styled-theming';
 import { lighten, darken, transparentize, setLightness } from 'polished';
-import { hack, summerTime, newsPaper, purpleLife } from './palettes';
+import { hack, summerTime, newsPaper, purpleLife, lancome } from './palettes';
 
 const MODE = 'mode';
 
@@ -9,6 +9,7 @@ const primary = styledTheme(MODE, {
   [summerTime.name]: summerTime.primary,
   [newsPaper.name]: newsPaper.primary,
   [purpleLife.name]: purpleLife.primary,
+  [lancome.name]: lancome.primary,
 });
 
 const secondary = styledTheme(MODE, {
@@ -16,6 +17,7 @@ const secondary = styledTheme(MODE, {
   [summerTime.name]: summerTime.secondary,
   [newsPaper.name]: newsPaper.secondary,
   [purpleLife.name]: purpleLife.secondary,
+  [lancome.name]: lancome.secondary,
 });
 
 const text = styledTheme(MODE, {
@@ -23,6 +25,7 @@ const text = styledTheme(MODE, {
   [summerTime.name]: summerTime.text,
   [newsPaper.name]: newsPaper.text,
   [purpleLife.name]: purpleLife.text,
+  [lancome.name]: lancome.text,
 });
 
 const background = styledTheme(MODE, {
@@ -30,6 +33,7 @@ const background = styledTheme(MODE, {
   [summerTime.name]: summerTime.background,
   [newsPaper.name]: newsPaper.background,
   [purpleLife.name]: purpleLife.background,
+  [lancome.name]: lancome.background,
 });
 
 const LIGHTEN_CONST = 0.07;
@@ -43,6 +47,7 @@ const backgroundContrast = styledTheme(MODE, {
   [summerTime.name]: summerTime.background,
   [newsPaper.name]: contrastBackground(newsPaper),
   [purpleLife.name]: contrastBackground(purpleLife),
+  [lancome.name]: contrastBackground(lancome),
 });
 
 const polish = {
@@ -53,7 +58,7 @@ const polish = {
 };
 
 const theme = {
-  palettes: [newsPaper, summerTime, hack, purpleLife],
+  palettes: [purpleLife, newsPaper, lancome, summerTime, hack],
   polish,
   colors: {
     primary,

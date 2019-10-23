@@ -24,7 +24,8 @@ const LogoPosition = styled.div`
   max-width: 30em;
   top: 30vh;
   ${media.desktop`
-    max-width: 20em;
+    max-width: 25em;
+    left: 40vw;
     top: 28vh;
   `}
   ${media.tablet`
