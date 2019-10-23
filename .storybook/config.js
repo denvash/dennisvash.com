@@ -9,14 +9,14 @@ import GlobalStyle from '../src/styles/GlobalStyle.styles';
 import ThemeProvider from '../src/components/ThemeProvider';
 import theme from '../src/styles/theme';
 
-const reducer = (acc, { name }, i) => {
+const toOptionNames = (acc, { name }, i) => {
   acc[name] = String(i);
   return acc;
 };
 
 const label = 'Themes';
-const options = theme.palettes.reduce(reducer, {});
-const defaultValue = Object.values(options)[0];
+const options = theme.palettes.reduce(toOptionNames, {});
+const [defaultValue] = Object.values(options);
 
 const Container = ({ children }) => {
   const controlledIndex = radios(label, options, defaultValue);
