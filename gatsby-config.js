@@ -1,13 +1,13 @@
 const config = require('./src/config');
 
-// const fs = require(`fs`);
-// const fetch = require(`node-fetch`);
-// const { buildClientSchema } = require(`graphql`);
-// const { createHttpLink } = require(`apollo-link-http`);
+const fs = require(`fs`);
+const fetch = require(`node-fetch`);
+const { buildClientSchema } = require(`graphql`);
+const { createHttpLink } = require(`apollo-link-http`);
 
-// require('dotenv').config({
-//   path: `.env`,
-// });
+require('dotenv').config({
+  path: `.env`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -72,24 +72,24 @@ module.exports = {
       },
     },
     // TODO: implement graphql query.
-    // {
-    //   resolve: `gatsby-source-graphql`,
-    //   options: {
-    //     fieldName: `github`,
-    //     typeName: `GitHub`,
-    //     createLink: () =>
-    //       createHttpLink({
-    //         uri: `https://api.github.com/graphql`,
-    //         headers: {
-    //           Authorization: `bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
-    //         },
-    //         fetch,
-    //       }),
-    //     createSchema: async () => {
-    //       const json = JSON.parse(fs.readFileSync(`${__dirname}/github.json`));
-    //       return buildClientSchema(json.data);
-    //     },
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        fieldName: `github`,
+        typeName: `GitHub`,
+        createLink: () =>
+          createHttpLink({
+            uri: `https://api.github.com/graphql`,
+            headers: {
+              Authorization: `bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
+            },
+            fetch,
+          }),
+        createSchema: async () => {
+          const json = JSON.parse(fs.readFileSync(`${__dirname}/github.json`));
+          return buildClientSchema(json.data);
+        },
+      },
+    },
   ],
 };
