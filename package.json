@@ -18,7 +18,7 @@
     "serve": "gatsby serve",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "storybook": "NODE_PATH=src/ start-storybook -s public --port 6006",
-    "build-storybook": "yarn build; NODE_PATH=src/ build-storybook -s public"
+    "build-storybook": "NODE_PATH=src/ build-storybook -s public"
   },
   "husky": {
     "hooks": {
