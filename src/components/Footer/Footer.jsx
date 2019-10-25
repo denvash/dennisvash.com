@@ -1,5 +1,7 @@
 // #region  Imports
+// TODO: Implement query github
 import iconMapper, { IconFork, IconStar } from '@components/icons';
+// import iconMapper from '@components/icons';
 import { content, socialMedia } from '@config';
 import { media, mixins, theme } from '@styles';
 import PropTypes from 'prop-types';
@@ -66,7 +68,7 @@ const GithubInfo = styled.div`
 // #endregion
 
 const query = graphql`
-  query PersonalSiteInfo {
+  {
     github {
       viewer {
         repository(name: "dennisvash.com") {
@@ -110,10 +112,7 @@ const Footer = () => {
         </SocialItemList>
       </SocialContainer>
       <GithubContainer>
-        <GithubLink
-          href={socialMedia.GITHUB.url}
-          target="_blank"
-          rel="nofollow noopener noreferrer">
+        <GithubLink href={content.footer.url} target="_blank" rel="nofollow noopener noreferrer">
           <div>{content.footer.heading}</div>
           <GithubInfo>
             <span>
@@ -130,7 +129,6 @@ const Footer = () => {
     </FooterContainer>
   );
 };
-
 Footer.propTypes = {
   githubInfo: PropTypes.object,
 };
