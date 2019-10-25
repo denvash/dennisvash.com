@@ -4,4 +4,4 @@
 
 [context.storybook]
   command = "yarn build-storybook"
-  publish = "storybook"
+  publish = "storybook-static"
