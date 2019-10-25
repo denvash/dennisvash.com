@@ -81,7 +81,7 @@ module.exports = {
           createHttpLink({
             uri: `https://api.github.com/graphql`,
             headers: {
-              Authorization: `bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
+              Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
             },
             fetch,
           }),
