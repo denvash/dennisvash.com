@@ -34,7 +34,6 @@ const config = {
       name: 'Codesandbox',
       url: 'https://codesandbox.io/u/denvash',
     },
-
     MEDIUM: {
       name: 'Medium',
       url: 'https://medium.com/@dennisvash',
@@ -64,6 +63,7 @@ const config = {
     footer: {
       heading: 'Crafted by Dennis Vash',
       fetchUrl: 'https://api.github.com/repos/denvash/dennisvash.com',
+      url: 'https://github.com/denvash/dennisvash.com',
     },
   },
 
