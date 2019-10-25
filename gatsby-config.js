@@ -1,8 +1,5 @@
 const config = require('./src/config');
-
-// const fs = require(`fs`);
 const fetch = require(`node-fetch`);
-// const { buildClientSchema } = require(`graphql`);
 const { createHttpLink } = require(`apollo-link-http`);
 
 require('dotenv').config({
@@ -71,7 +68,6 @@ module.exports = {
         trackingId: config.googleAnalyticsID,
       },
     },
-    // TODO: implement graphql query.
     {
       resolve: `gatsby-source-graphql`,
       options: {

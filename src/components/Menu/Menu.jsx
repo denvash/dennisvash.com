@@ -2,7 +2,6 @@
 import { content, navBar } from '@config';
 import { media, mixins, theme } from '@styles';
 import { Link } from 'gatsby';
-import { lighten } from 'polished';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -70,15 +69,6 @@ const NavLink = styled(Link)`
   padding: 3px 20px 20px;
   width: 100%;
 `;
-
-const ResumeLink = styled.a`
-  ${mixins.bigButton};
-  padding: 18px 50px;
-  margin: 10% auto 0;
-  width: max-content;
-  ${media.phablet`
-    ${mixins.smallButton}`}
-`;
 // #endregion
 
 const Menu = ({ menuOpen, toggleMenu }) => {
@@ -99,15 +89,12 @@ const Menu = ({ menuOpen, toggleMenu }) => {
       <Sidebar>
         <NavLinks>
           <NavList>
-            {navBar.map((name, i) => (
-              <NavListItem key={i}>
+            {navBar.map(name => (
+              <NavListItem key={name}>
                 <NavLink to={`/#${content[name].id}`}>{name}</NavLink>
               </NavListItem>
             ))}
           </NavList>
-          <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
-            Resume
-          </ResumeLink>
         </NavLinks>
       </Sidebar>
     </MenuContainer>
