@@ -1,8 +1,8 @@
 const config = require('./src/config');
 
-const fs = require(`fs`);
+// const fs = require(`fs`);
 const fetch = require(`node-fetch`);
-const { buildClientSchema } = require(`graphql`);
+// const { buildClientSchema } = require(`graphql`);
 const { createHttpLink } = require(`apollo-link-http`);
 
 require('dotenv').config({
@@ -85,10 +85,6 @@ module.exports = {
             },
             fetch,
           }),
-        createSchema: async () => {
-          const json = JSON.parse(fs.readFileSync(`${__dirname}/github.json`));
-          return buildClientSchema(json.data);
-        },
       },
     },
   ],

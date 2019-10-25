@@ -61,7 +61,7 @@ const config = {
       id: 'contact',
     },
     footer: {
-      heading: 'Crafted by Dennis Vash',
+      heading: 'This Project is Open-Sourced with ❤️',
       fetchUrl: 'https://api.github.com/repos/denvash/dennisvash.com',
       url: 'https://github.com/denvash/dennisvash.com',
     },
