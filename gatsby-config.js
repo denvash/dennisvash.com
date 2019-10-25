@@ -23,6 +23,25 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
     {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        fieldName: `github`,
+        typeName: `GitHub`,
+        createLink: () =>
+          createHttpLink({
+            uri: `https://api.github.com/graphql`,
+            headers: {
+              Authorization: `bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
+            },
+            fetch,
+          }),
+        createSchema: async () => {
+          const json = JSON.parse(fs.readFileSync(`${__dirname}/github.json`));
+          return buildClientSchema(json.data);
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'DennisVash',
@@ -69,25 +88,6 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.googleAnalyticsID,
-      },
-    },
-    {
-      resolve: `gatsby-source-graphql`,
-      options: {
-        fieldName: `github`,
-        typeName: `GitHub`,
-        createLink: () =>
-          createHttpLink({
-            uri: `https://api.github.com/graphql`,
-            headers: {
-              Authorization: `bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
-            },
-            fetch,
-          }),
-        createSchema: async () => {
-          const json = JSON.parse(fs.readFileSync(`${__dirname}/github.json`));
-          return buildClientSchema(json.data);
-        },
       },
     },
   ],
