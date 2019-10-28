@@ -10,6 +10,11 @@
 
 > ⚠️ Site still Under construction 🚧
 
+- [ ] Timeline
+- [ ] Tailwind
+- [ ] Easy palette generator
+- [ ] More readable stories
+
 ## Features
 
   <img align="right" height="200" src=".github/assets/ThemesSS.png" alt="3dLogo" >
@@ -58,3 +63,9 @@
    ```sh
    yarn serve
    ```
+
+## Possible Features
+
+- [ ] Color picker with [`react-color`](https://casesandberg.github.io/react-color/)
+- [ ] Blog
+- [ ] Synchronize `dev.to` posts with blog and `medium`.
