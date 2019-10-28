@@ -36,7 +36,7 @@ const NavContainer = styled.header`
   padding: 0px 50px;
   background-color: ${colors.background};
   transition: ${theme.transition};
-  z-index: 11;
+  z-index: 999;
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;

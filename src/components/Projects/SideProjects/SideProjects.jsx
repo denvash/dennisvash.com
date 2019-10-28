@@ -31,7 +31,7 @@ const ProjectInner = styled.div`
   height: 100%;
   border-radius: ${theme.borderRadius};
   transition: ${theme.transition};
-  background-color: ${colors.backgroundLight};
+  background-color: ${colors.backgroundContrast};
 `;
 const Project = styled.div`
   transition: ${theme.transition};

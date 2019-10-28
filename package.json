@@ -32,6 +32,7 @@
     ]
   },
   "dependencies": {
+    "@merc/react-timeline": "^0.1.42",
     "animejs": "^3.1.0",
     "babel-plugin-styled-components": "^1.10.6",
     "dotenv": "^8.2.0",

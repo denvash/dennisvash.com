@@ -20,7 +20,7 @@ export const newsPaper = {
   secondary: '#2E383B',
   text: '#99A1AA',
   background: 'white',
-  backgroundDark: '#F2F2F2',
+  isLightTheme: true,
 };
 
 export const purpleLife = {
@@ -29,7 +29,8 @@ export const purpleLife = {
   secondary: '#C788FE',
   text: '#755293',
   background: '#F2EDF8',
-  backgroundDark: '#ECE4F7',
+  backgroundContrast: '#ECE4F7',
+  isLightTheme: true,
 };
 
 export const lancome = {
@@ -38,5 +39,8 @@ export const lancome = {
   secondary: '#df42d1',
   text: '#2E383B',
   background: '#fad6d6',
-  backgroundDark: '#F6B9B9',
+  backgroundContrast: '#F6B9B9',
+  isLightTheme: true,
 };
+
+export default { summerTime, hack, newsPaper, purpleLife, lancome };

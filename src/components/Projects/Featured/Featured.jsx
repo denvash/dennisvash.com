@@ -47,7 +47,7 @@ const ProjectDescription = styled.div`
   position: relative;
   z-index: 2;
   padding: 25px;
-  background-color: ${colors.backgroundLight};
+  background-color: ${colors.backgroundContrast};
   color: ${colors.text};
   font-size: ${fontSizes.large};
   border-radius: ${theme.borderRadius};
@@ -189,7 +189,6 @@ const Project = styled.div`
     }
   }
 `;
-
 // #endregion
 
 const predicate = ({ featured }) => featured === 'true';
