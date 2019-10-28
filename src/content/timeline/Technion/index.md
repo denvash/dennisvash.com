@@ -1,7 +1,7 @@
 ---
 date: '2'
 title: 'CS Student'
-company: 'Technion'
+company: 'Technion Israel Institute of Technology'
 location: 'Israel'
 range: '2015 - 2020'
 url: 'https://www.wikiwand.com/en/Technion_%E2%80%93_Israel_Institute_of_Technology'

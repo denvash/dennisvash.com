@@ -1,54 +1,6 @@
 import styledTheme from 'styled-theming';
 import { lighten, darken, transparentize, setLightness } from 'polished';
-import { hack, summerTime, newsPaper, purpleLife, lancome } from './palettes';
-
-const MODE = 'mode';
-
-const primary = styledTheme(MODE, {
-  [hack.name]: hack.primary,
-  [summerTime.name]: summerTime.primary,
-  [newsPaper.name]: newsPaper.primary,
-  [purpleLife.name]: purpleLife.primary,
-  [lancome.name]: lancome.primary,
-});
-
-const secondary = styledTheme(MODE, {
-  [hack.name]: hack.secondary,
-  [summerTime.name]: summerTime.secondary,
-  [newsPaper.name]: newsPaper.secondary,
-  [purpleLife.name]: purpleLife.secondary,
-  [lancome.name]: lancome.secondary,
-});
-
-const text = styledTheme(MODE, {
-  [hack.name]: hack.text,
-  [summerTime.name]: summerTime.text,
-  [newsPaper.name]: newsPaper.text,
-  [purpleLife.name]: purpleLife.text,
-  [lancome.name]: lancome.text,
-});
-
-const background = styledTheme(MODE, {
-  [hack.name]: hack.background,
-  [summerTime.name]: summerTime.background,
-  [newsPaper.name]: newsPaper.background,
-  [purpleLife.name]: purpleLife.background,
-  [lancome.name]: lancome.background,
-});
-
-const LIGHTEN_CONST = 0.07;
-
-// contrast backgroundLighten polish for light themes.
-const contrastBackground = palette =>
-  palette.backgroundDark ? darken(LIGHTEN_CONST, palette.backgroundDark) : palette.background;
-
-const backgroundContrast = styledTheme(MODE, {
-  [hack.name]: hack.background,
-  [summerTime.name]: summerTime.background,
-  [newsPaper.name]: contrastBackground(newsPaper),
-  [purpleLife.name]: contrastBackground(purpleLife),
-  [lancome.name]: contrastBackground(lancome),
-});
+import palettes from './palettes';
 
 const polish = {
   lighten: (amount, polish) => props => lighten(amount, polish(props)),
@@ -56,6 +8,29 @@ const polish = {
   darken: (amount, polish) => props => darken(amount, polish(props)),
   brighter: (amount, polish) => props => setLightness(amount, polish(props)),
 };
+
+const { hack, summerTime, newsPaper, purpleLife, lancome } = palettes;
+
+const groupByProp = Object.values(palettes).reduce(
+  (acc, { name, primary, secondary, text, background, isLightTheme }) => ({
+    primary: { ...acc.primary, [name]: primary },
+    secondary: { ...acc.secondary, [name]: secondary },
+    text: { ...acc.text, [name]: text },
+    background: { ...acc.background, [name]: background },
+    backgroundContrast: {
+      ...acc.backgroundContrast,
+      [name]: isLightTheme ? darken(0.02, background) : lighten(0.07, background),
+    },
+  }),
+  {},
+);
+
+const dynamicProp = Object.entries(groupByProp).reduce(
+  (acc, [key, value]) => ({ ...acc, [key]: styledTheme('mode', value) }),
+  {},
+);
+
+const { primary, secondary, text, background, backgroundContrast } = dynamicProp;
 
 const theme = {
   palettes: [purpleLife, newsPaper, lancome, summerTime, hack],
@@ -70,7 +45,9 @@ const theme = {
     secondaryTransparent: polish.transparentize(0.9, secondary),
 
     background,
-    backgroundLight: polish.lighten(LIGHTEN_CONST, backgroundContrast),
+    backgroundContrast,
+    backgroundContrastDark: polish.darken(0.05, backgroundContrast),
+    backgroundLight: polish.lighten(0.07, background),
     backgroundLighten: polish.lighten(0.6, background),
     backgroundDark: polish.darken(0.03, background),
     backgroundDarken: polish.darken(0.5, background),

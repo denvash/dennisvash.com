@@ -74,12 +74,12 @@ const mixins = {
       content: '';
       display: block;
       width: 0;
-      height: 1px;
+      height: 3px;
       position: relative;
-      bottom: 0.37em;
+      bottom: 0.2rem;
       background-color: ${colors.secondary};
       transition: ${theme.transition};
-      opacity: 0.5;
+      opacity: 0.4;
     }
   `,
 
