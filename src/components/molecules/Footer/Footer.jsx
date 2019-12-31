@@ -1,6 +1,6 @@
 // #region  Imports
 // TODO: Implement query github
-import iconMapper, { IconFork, IconStar } from '@components/icons';
+import iconMapper, { IconFork, IconStar } from '@components/atoms/icons';
 // import iconMapper from '@components/icons';
 import { content, socialMedia } from '@config';
 import { media, mixins, theme } from '@styles';

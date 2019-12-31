@@ -1,6 +1,6 @@
 // #region  Imports
 import { Menu } from '@components';
-import { IconLogo } from '@components/icons';
+import { IconLogo } from '@components/atoms/icons';
 import Transition, { delay } from '@components/Transition';
 import { content, navBar } from '@config';
 import { ANIMATION_CLASSES, media, MEDIA_SIZES, mixins, theme } from '@styles';
@@ -9,7 +9,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import Helmet from 'react-helmet';
 import styled, { css, ThemeContext } from 'styled-components';
 import { Link } from 'gatsby';
-import IconThemePicker from '@components/icons/ThemePicker/ThemePicker.svg';
+import IconThemePicker from '@components/atoms/icons/ThemePicker/ThemePicker.svg';
 // #endregion
 
 // #region  Styling

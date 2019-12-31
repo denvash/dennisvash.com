@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 
 import { theme, mixins, media } from '@styles';
 import { srConfig } from '@config';
-import { IconGithub, IconExternal } from '@components/icons';
+import { IconGithub, IconExternal } from '@components/atoms/icons';
 import sr from '@utils/sr';
 import { useProjects } from '@hooks';
 // #endregion

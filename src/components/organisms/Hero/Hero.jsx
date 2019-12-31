@@ -4,7 +4,7 @@ import { useHero } from '@hooks';
 import { media, mixins, Section, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import LogoPlayer from '@components/Loader/LogoPlayer';
+import LogoPlayer from '@components/molecules/Loader/LogoPlayer';
 // #endregion
 
 const { colors, fontSizes, fonts } = theme;

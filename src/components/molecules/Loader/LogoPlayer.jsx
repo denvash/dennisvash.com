@@ -1,5 +1,5 @@
 // #region  Imports
-import { IconLogo } from '@components/icons';
+import { IconLogo } from '@components/atoms/icons';
 import anime from 'animejs';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';

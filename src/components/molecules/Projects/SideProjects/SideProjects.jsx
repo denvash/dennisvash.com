@@ -1,5 +1,5 @@
 // #region  Imports
-import { IconExternal, IconFolder, IconGithub } from '@components/icons';
+import { IconExternal, IconFolder, IconGithub } from '@components/atoms/icons';
 import { srConfig } from '@config';
 import { useProjects } from '@hooks';
 import { media, mixins, theme, ANIMATION_CLASSES } from '@styles';

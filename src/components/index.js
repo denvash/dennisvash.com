@@ -1,18 +1,18 @@
-import About from './About/About';
-import Contact from './Contact/Contact';
-import Email from './Email/Email';
-import Footer from './Footer/Footer';
+import About from './organisms/About/About';
+import Contact from './molecules/Contact/Contact';
+import Email from './molecules/Email/Email';
+import Footer from './molecules/Footer/Footer';
 import Head from './Head';
-import Hero from './Hero/Hero';
-import Layout from './Layout/Layout';
-import Loader from './Loader/Loader';
-import Menu from './Menu/Menu';
-import Nav from './Nav/Nav';
-import Projects from './Projects/Projects';
-import Social from './Social/Social';
+import Hero from './organisms/Hero/Hero';
+import Layout from './templates/Layout';
+import Loader from './molecules/Loader/Loader';
+import Menu from './molecules/Menu/Menu';
+import Nav from './organisms/Nav/Nav';
+import Projects from './molecules/Projects/Projects';
+import Social from './molecules/Social/Social';
 import Transition from './Transition';
 import ThemeProvider from './ThemeProvider';
-import Timeline from './Timeline/Timeline';
+import Timeline from './organisms/Timeline/Timeline';
 
 export {
   About,

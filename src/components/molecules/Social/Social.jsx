@@ -1,6 +1,6 @@
 // #region  Imports
 import { socialMedia } from '@config';
-import iconMapper from '@components/icons';
+import iconMapper from '@components/atoms/icons';
 import { media, theme } from '@styles';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';

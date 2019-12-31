@@ -6,7 +6,7 @@ import {
   IconTwitter,
   IconDev,
   IconMedium,
-} from '@components/icons';
+} from '@components/atoms/icons';
 import React from 'react';
 import { socialMedia } from '@config';
 
