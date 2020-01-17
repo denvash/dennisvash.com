@@ -1,8 +1,8 @@
 // #region  imports
-import { srConfig, content } from '@config';
+import { content, srConfig } from '@config';
 import { useTimeline } from '@hooks';
 import { Event, Events, Timeline as ReactTimeline } from '@merc/react-timeline';
-import { mixins, theme, Heading, Section, media } from '@styles';
+import { Heading, mixins, Section, theme } from '@styles';
 import sr from '@utils/sr';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
@@ -118,7 +118,7 @@ const Timeline = () => {
   const events = useTimeline();
 
   return (
-    <TimelineContainer>
+    <TimelineContainer id="timeline">
       <Heading>{content.Timeline.heading}</Heading>
       <ThemedTimeline>
         <Events>
